@@ -24,13 +24,23 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
     profilePicture: "",
   });
 
-  const { register, getValues, handleSubmit, reset } = useForm<FormDataType>({
+  const {
+    register,
+    getValues,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<FormDataType>({
     resolver: zodResolver(signUpSchema),
   });
+
+  console.log(errors);
 
   const onSubmitSignUp: SubmitHandler<FormDataType> = async (
     data: FormDataType,
   ) => {
+    console.log(data);
+
     const { email, password, confirmPassword } = data;
 
     const userSigningUp = {
@@ -63,7 +73,13 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
 
   return (
     <>
-      <form onSubmit={void handleSubmit(onSubmitSignUp)}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+
+          void handleSubmit(onSubmitSignUp)(event);
+        }}
+      >
         <h1>JobScraper</h1>
         <p>
           {signOrLoginForm
@@ -73,16 +89,15 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
         <label htmlFor="email">Email</label>
         <input
           type="email"
-          name="email"
           id="email"
           aria-label="email"
           placeholder="Enter your email"
-          {...(register("email"),
-          {
+          {...register("email", {
             required: true,
             minLength: 6,
           })}
         />
+
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -96,10 +111,10 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
         />
         {signOrLoginForm ? (
           <>
-            <label htmlFor="confirm_password">Confirm Password</label>
+            <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               type="password"
-              id="confirm_password"
+              id="confirmPassword"
               {...register("confirmPassword", {
                 required: true,
                 minLength: 8,
@@ -116,7 +131,7 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
         )}
         <button type="submit">{signOrLoginForm ? "Sign up" : "Log in"}</button>
 
-        <p>
+        <>
           {signOrLoginForm ? (
             <>
               <p>
@@ -130,7 +145,7 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
               </p>
             </>
           )}
-        </p>
+        </>
       </form>
     </>
   );

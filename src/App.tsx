@@ -4,7 +4,7 @@ import { FormComponent } from "./components/FormComponent/FormComponent";
 function App() {
   return (
     <>
-      <FormComponent signOrLoginForm={false} />
+      <FormComponent signOrLoginForm={true} />
     </>
   );
 }

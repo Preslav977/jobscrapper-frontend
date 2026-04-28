@@ -1,5 +1,3 @@
-export type RoleEnum = "USER" | "ADMIN";
-
 export type FormDataType = {
   firstName?: string;
   lastName?: string;
@@ -12,5 +10,4 @@ export type FormDataType = {
   githubURL?: string;
   portfolioURL?: string;
   profilePicture?: string;
-  role: RoleEnum;
 };
