@@ -11,12 +11,17 @@ export const signUpSchema = z.object({
       8,
       "Password must be minimum 8 characters, and contain at least one letter, and one number",
     )
-    .regex(passwordRegex),
+    .regex(
+      passwordRegex,
+      "Password must be minimum 8 characters, and contain at least one letter, and one number",
+    ),
   confirmPassword: z
     .string()
     .min(8, "Passwords must match!")
-    .regex(passwordRegex),
-  email: z.email("Email must be at least 6 characters!").min(6),
+    .regex(passwordRegex, "Passwords must match!"),
+  email: z
+    .email("Must be valid email!")
+    .min(6, "Email must be at least 6 characters!"),
   location: z.string().optional(),
   phoneNumber: z.number().optional(),
   linkedInURL: z.string().optional(),

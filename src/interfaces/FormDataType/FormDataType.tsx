@@ -11,3 +11,9 @@ export type FormDataType = {
   portfolioURL?: string;
   profilePicture?: string;
 };
+
+export type FormDataErrorType = {
+  type: string;
+  value: string;
+  msg: string;
+}[];

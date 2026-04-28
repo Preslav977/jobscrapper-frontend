@@ -3,7 +3,10 @@ import { useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import type { FormComponentInterface } from "../../interfaces/FormComponentInterface/FormComponentInterface";
-import type { FormDataType } from "../../interfaces/FormDataType/FormDataType";
+import type {
+  FormDataErrorType,
+  FormDataType,
+} from "../../interfaces/FormDataType/FormDataType";
 import {
   passwordRegex,
   signUpSchema,
@@ -24,6 +27,8 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
     profilePicture: "",
   });
 
+  const [emailTakenErr, setEmailTakenErr] = useState("");
+
   const {
     register,
     getValues,
@@ -34,13 +39,9 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
     resolver: zodResolver(signUpSchema),
   });
 
-  console.log(errors);
-
   const onSubmitSignUp: SubmitHandler<FormDataType> = async (
     data: FormDataType,
   ) => {
-    console.log(data);
-
     const { email, password, confirmPassword } = data;
 
     const userSigningUp = {
@@ -65,7 +66,12 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
         }),
       });
 
-      console.log(response);
+      if (response.status >= 400) {
+        const result = (await response.json()) as FormDataErrorType;
+
+        setEmailTakenErr(result[0].msg);
+      }
+      reset();
     } catch (error) {
       console.log(error);
     }
@@ -94,10 +100,11 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
           placeholder="Enter your email"
           {...register("email", {
             required: true,
-            minLength: 6,
+            min: 6,
           })}
+          aria-invalid={errors.email ? "true" : "false"}
         />
-
+        <span>{errors.email?.message || emailTakenErr}</span>
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -105,10 +112,11 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
           aria-label="password"
           {...register("password", {
             required: true,
-            minLength: 8,
+            min: 8,
             pattern: passwordRegex,
           })}
         />
+        <span>{errors.password?.message}</span>
         {signOrLoginForm ? (
           <>
             <label htmlFor="confirmPassword">Confirm Password</label>
@@ -117,7 +125,7 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
               id="confirmPassword"
               {...register("confirmPassword", {
                 required: true,
-                minLength: 8,
+                min: 8,
                 validate: (value) => {
                   const { password } = getValues();
 
@@ -125,6 +133,7 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
                 },
               })}
             />
+            <span>{errors.confirmPassword?.message}</span>
           </>
         ) : (
           ""
