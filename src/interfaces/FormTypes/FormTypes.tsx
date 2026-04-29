@@ -12,13 +12,13 @@ export type FormSignUp = {
   profilePicture?: string;
 };
 
-export type FormLogin = {
-  password: string;
-  email: string;
-};
-
 export type FormSignUpTakenError = {
   type: string;
   value: string;
   msg: string;
 }[];
+
+export type FormLogin = {
+  password: string;
+  email: string;
+};
