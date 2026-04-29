@@ -1,11 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import type { FormLogin } from "../../interfaces/FormTypes/FormTypes";
+import type {
+  BearerToken,
+  FormLogin,
+} from "../../interfaces/FormTypes/FormTypes";
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
 
 export function LoginForm() {
+  const [invalidCredentials, setInvalidCredentials] = useState("");
+
   const {
     register,
     formState: { errors },
@@ -30,7 +36,17 @@ export function LoginForm() {
         }),
       });
 
-      console.log(response);
+      if (response.status >= 400) {
+        setInvalidCredentials("Email or Password is incorrect!");
+      }
+
+      const { token } = (await response.json()) as BearerToken;
+
+      const bearerToken = `Bearer ${token}`;
+
+      sessionStorage.setItem("token", bearerToken);
+
+      reset();
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +75,7 @@ export function LoginForm() {
           })}
           aria-invalid={errors.email ? "true" : "false"}
         />
-        <span>{errors.email?.message}</span>
+        <span>{errors.email?.message || invalidCredentials}</span>
         <label htmlFor="password">Password</label>
         <input
           type="password"

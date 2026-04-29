@@ -22,3 +22,7 @@ export type FormLogin = {
   password: string;
   email: string;
 };
+
+export type BearerToken = {
+  token: string;
+};
