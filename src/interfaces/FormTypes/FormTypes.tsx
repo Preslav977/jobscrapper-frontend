@@ -1,4 +1,4 @@
-export type FormDataType = {
+export type FormSignUp = {
   firstName?: string;
   lastName?: string;
   password: string;
@@ -12,7 +12,12 @@ export type FormDataType = {
   profilePicture?: string;
 };
 
-export type FormDataErrorType = {
+export type FormLogin = {
+  password: string;
+  email: string;
+};
+
+export type FormSignUpTakenError = {
   type: string;
   value: string;
   msg: string;

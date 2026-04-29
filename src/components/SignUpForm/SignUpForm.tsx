@@ -2,18 +2,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import type { FormComponentInterface } from "../../interfaces/FormComponentInterface/FormComponentInterface";
 import type {
-  FormDataLogin,
-  FormDataLoginError,
-  FormDataSignUp,
+  FormSignUp,
+  FormSignUpTakenError,
 } from "../../interfaces/FormTypes/FormTypes";
 import {
   passwordRegex,
   signUpSchema,
 } from "../../schemas/signUpSchema/signUpSchema";
 
-export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
+export function SignUpForm() {
   const [userSignUp, setUserSignUp] = useState({
     firstName: "",
     lastName: "",
@@ -40,10 +38,8 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
     resolver: zodResolver(signUpSchema),
   });
 
-  console.log(errors);
-
-  const onSubmitSignUp: SubmitHandler<FormDataSignUp> = async (
-    data: FormDataSignUp,
+  const onSubmitSignUp: SubmitHandler<FormSignUp> = async (
+    data: FormSignUp,
   ) => {
     const { email, password, confirmPassword } = data;
 
@@ -70,7 +66,7 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
       });
 
       if (response.status >= 400) {
-        const result = (await response.json()) as FormDataLoginError;
+        const result = (await response.json()) as FormSignUpTakenError;
 
         setEmailTakenErr(result[0].msg);
       }
@@ -80,48 +76,17 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
     }
   };
 
-  const onSubmitLogin: SubmitHandler<FormDataLogin> = async (
-    data: FormDataLogin,
-  ) => {
-    console.log("test");
-
-    const { email, password } = data;
-
-    try {
-      const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <>
       <form
         onSubmit={(event) => {
-          console.log("Form submitted");
-
           event.preventDefault();
 
           void handleSubmit(onSubmitSignUp)(event);
         }}
       >
         <h1>JobScraper</h1>
-        <p>
-          {signOrLoginForm
-            ? "Sign up to find your dream jobs with JobScraper"
-            : "Welcome back! Sign in."}
-        </p>
+        <p>Sign up to find your dream jobs with JobScraper</p>
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -147,44 +112,27 @@ export function FormComponent({ signOrLoginForm }: FormComponentInterface) {
           })}
         />
         <span>{errors.password?.message}</span>
-        {signOrLoginForm ? (
-          <>
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              {...register("confirmPassword", {
-                required: true,
-                min: 8,
-                validate: (value) => {
-                  const { password } = getValues();
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          {...register("confirmPassword", {
+            required: true,
+            min: 8,
+            validate: (value) => {
+              const { password } = getValues();
 
-                  return password === value;
-                },
-              })}
-            />
-            <span>{errors.confirmPassword?.message}</span>
-          </>
-        ) : (
-          ""
-        )}
-        <button type="submit">{signOrLoginForm ? "Sign up" : "Log in"}</button>
+              return password === value;
+            },
+          })}
+        />
+        <span>{errors.confirmPassword?.message}</span>
 
-        <>
-          {signOrLoginForm ? (
-            <>
-              <p>
-                Already registered? <a href="">Log in</a>
-              </p>
-            </>
-          ) : (
-            <>
-              <p>
-                Not registered yet? <a href="">Sign up</a>{" "}
-              </p>
-            </>
-          )}
-        </>
+        <button type="submit">Sign Up</button>
+
+        <p>
+          Already registered? <a href="">Log in</a>
+        </p>
       </form>
     </>
   );

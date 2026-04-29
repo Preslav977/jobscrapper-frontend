@@ -1,10 +1,13 @@
 import "./App.css";
-import { FormComponent } from "./components/FormComponent/FormComponent";
+import { LoginForm } from "./components/LoginForm/LoginForm";
+import { SignUpForm } from "./components/SignUpForm/SignUpForm";
 
 function App() {
   return (
     <>
-      <FormComponent signOrLoginForm={true} />
+      <SignUpForm />
+
+      <LoginForm />
     </>
   );
 }
