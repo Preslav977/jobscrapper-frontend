@@ -11,8 +11,12 @@ import {
   signUpSchema,
 } from "../../schemas/signUpSchema/signUpSchema";
 
+import { localhostURL } from "../../utility/localhostURL";
+
+import { Link } from "react-router-dom";
+
 export function SignUpForm() {
-  const [userSignUp, setUserSignUp] = useState({
+  const [userSignUp, setUserSignUp] = useState<FormSignUp>({
     firstName: "",
     lastName: "",
     password: "",
@@ -26,7 +30,7 @@ export function SignUpForm() {
     profilePicture: "",
   });
 
-  const [emailTakenErr, setEmailTakenErr] = useState("");
+  const [emailTakenErr, setEmailTakenErr] = useState<string>("");
 
   const {
     register,
@@ -53,7 +57,7 @@ export function SignUpForm() {
     setUserSignUp(userSigningUp);
 
     try {
-      const response = await fetch("http://localhost:5000/signup", {
+      const response = await fetch(`${localhostURL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,7 +135,7 @@ export function SignUpForm() {
         <button type="submit">Sign Up</button>
 
         <p>
-          Already registered? <a href="">Log in</a>
+          Already registered? <Link to="/login">Log in</Link>
         </p>
       </form>
     </>

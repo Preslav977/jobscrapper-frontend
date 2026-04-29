@@ -2,15 +2,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router";
 import type {
   BearerToken,
   FormLogin,
 } from "../../interfaces/FormTypes/FormTypes";
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
+import { localhostURL } from "../../utility/localhostURL";
 
 export function LoginForm() {
-  const [invalidCredentials, setInvalidCredentials] = useState("");
+  const [invalidCredentials, setInvalidCredentials] = useState<string>("");
 
   const {
     register,
@@ -25,7 +27,7 @@ export function LoginForm() {
     const { email, password } = data;
 
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch(`${localhostURL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +95,7 @@ export function LoginForm() {
 
         <>
           <p>
-            Not registered yet? <a href="">Sign up</a>{" "}
+            Not registered yet? <Link to="/signup">Sign up</Link>{" "}
           </p>
         </>
       </form>
