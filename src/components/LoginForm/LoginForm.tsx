@@ -7,6 +7,7 @@ import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
 import type {
   BearerToken,
   FormLogin,
+  FormSignUp,
 } from "../../interfaces/FormTypes/FormTypes";
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
@@ -26,34 +27,50 @@ export function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
+  async function login(email: string, password: string) {
+    const response = await fetch(`${localhostURL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (response.status >= 400) {
+      setInvalidCredentials("Email or Password is incorrect!");
+    }
+
+    reset();
+
+    const { token } = (await response.json()) as BearerToken;
+
+    return token;
+  }
+
+  async function getUserDetails(token: string) {
+    const response = await fetch(`${localhostURL}/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return (await response.json()) as FormSignUp;
+  }
+
   const onSubmitLogin: SubmitHandler<FormLogin> = async (data: FormLogin) => {
-    const { email, password } = data;
-
     try {
-      const response = await fetch(`${localhostURL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      const token = await login(data.email, data.password);
 
-      if (response.status >= 400) {
-        setInvalidCredentials("Email or Password is incorrect!");
-      }
-
-      const { token } = (await response.json()) as BearerToken;
-
-      const bearerToken = `Bearer ${token}`;
-
-      sessionStorage.setItem("token", bearerToken);
+      sessionStorage.setItem("token", `Bearer ${token}`);
 
       isUserLoggedIn?.setIsUserLoggedIn(true);
 
-      reset();
+      const user = await getUserDetails(token);
+
+      console.log(user);
     } catch (error) {
       console.log(error);
     }

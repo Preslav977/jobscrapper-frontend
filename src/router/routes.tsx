@@ -1,5 +1,6 @@
 import { App } from "../App";
 import { LoginForm } from "../components/LoginForm/LoginForm";
+import { ProtectRoutes } from "../components/ProtectRoutes/ProtectRoutes";
 import { SignUpForm } from "../components/SignUpForm/SignUpForm";
 
 export const routes = [
@@ -17,8 +18,7 @@ export const routes = [
       },
       {
         path: "/dashboard",
-        element: <></>,
-        children: [],
+        element: <ProtectRoutes children requireAdmin={true}></ProtectRoutes>,
       },
     ],
   },
