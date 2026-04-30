@@ -42,10 +42,35 @@ export function SignUpForm() {
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmitSignUp: SubmitHandler<FormSignUp> = async (
-    data: FormSignUp,
-  ) => {
-    const { email, password, confirmPassword } = data;
+  async function signup(
+    email: string,
+    password: string,
+    confirmPassword: string,
+  ) {
+    const response = await fetch(`${localhostURL}/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        confirmPassword,
+      }),
+    });
+
+    if (response.status >= 400) {
+      const result = (await response.json()) as FormSignUpTakenError;
+
+      setEmailTakenErr(result[0].msg);
+    }
+    reset();
+
+    return (await response.json()) as FormSignUp;
+  }
+
+  function createUser(user: FormSignUp) {
+    const { email, password, confirmPassword } = user;
 
     const userSigningUp = {
       ...userSignUp,
@@ -55,26 +80,19 @@ export function SignUpForm() {
     };
 
     setUserSignUp(userSigningUp);
+  }
 
+  const onSubmitSignUp: SubmitHandler<FormSignUp> = async (
+    data: FormSignUp,
+  ) => {
     try {
-      const response = await fetch(`${localhostURL}/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          confirmPassword,
-        }),
-      });
+      const signUpUser = await signup(
+        data.email,
+        data.password,
+        data.confirmPassword,
+      );
 
-      if (response.status >= 400) {
-        const result = (await response.json()) as FormSignUpTakenError;
-
-        setEmailTakenErr(result[0].msg);
-      }
-      reset();
+      createUser(signUpUser);
     } catch (error) {
       console.log(error);
     }
