@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
 import type {
   BearerToken,
   FormLogin,
@@ -13,6 +14,8 @@ import { localhostURL } from "../../utility/localhostURL";
 
 export function LoginForm() {
   const [invalidCredentials, setInvalidCredentials] = useState<string>("");
+
+  const isUserLoggedIn = useContext(isUserLoggedInContext);
 
   const {
     register,
@@ -47,6 +50,8 @@ export function LoginForm() {
       const bearerToken = `Bearer ${token}`;
 
       sessionStorage.setItem("token", bearerToken);
+
+      isUserLoggedIn?.setIsUserLoggedIn(true);
 
       reset();
     } catch (error) {
