@@ -1,6 +1,7 @@
 import { useContext, type ReactNode } from "react";
 import { Navigate } from "react-router";
 import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
+import { userDetailsContext } from "../../context/userDetailsContext";
 
 export function ProtectRoutes({
   children,
@@ -9,13 +10,15 @@ export function ProtectRoutes({
   children: ReactNode;
   requireAdmin: boolean;
 }) {
-  const userLoggedIn = useContext(isUserLoggedInContext);
+  const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
 
-  if (!userLoggedIn?.isUserLoggedIn) {
+  const { userDetails } = useContext(userDetailsContext)!;
+
+  if (!isUserLoggedIn) {
     return <Navigate to={"/login"} />;
   }
 
-  if (requireAdmin) {
+  if (requireAdmin && userDetails?.role !== "ADMIN") {
     return <Navigate to={"/"} />;
   }
 

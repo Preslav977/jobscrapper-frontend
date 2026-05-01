@@ -2,8 +2,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext, useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
+import { userDetailsContext } from "../../context/userDetailsContext";
 import type {
   BearerToken,
   FormLogin,
@@ -16,7 +17,9 @@ import { localhostURL } from "../../utility/localhostURL";
 export function LoginForm() {
   const [invalidCredentials, setInvalidCredentials] = useState<string>("");
 
-  const isUserLoggedIn = useContext(isUserLoggedInContext);
+  const { setIsUserLoggedIn } = useContext(isUserLoggedInContext)!;
+
+  const { setUserDetails } = useContext(userDetailsContext)!;
 
   const {
     register,
@@ -26,6 +29,8 @@ export function LoginForm() {
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
+
+  const navigate = useNavigate();
 
   async function login(email: string, password: string) {
     const response = await fetch(`${localhostURL}/login`, {
@@ -66,11 +71,15 @@ export function LoginForm() {
 
       sessionStorage.setItem("token", `Bearer ${token}`);
 
-      isUserLoggedIn?.setIsUserLoggedIn(true);
-
       const user = await getUserDetails(token);
 
-      console.log(user);
+      const updateUser = { ...user, user };
+
+      setUserDetails(updateUser);
+
+      setIsUserLoggedIn(true);
+
+      void navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }

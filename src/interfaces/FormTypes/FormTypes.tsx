@@ -1,3 +1,5 @@
+export type Role = "USER" | "ADMIN";
+
 export type FormSignUp = {
   firstName?: string;
   lastName?: string;
@@ -10,6 +12,7 @@ export type FormSignUp = {
   githubURL?: string;
   portfolioURL?: string;
   profilePicture?: string;
+  role?: Role;
 };
 
 export type FormSignUpTakenError = {
