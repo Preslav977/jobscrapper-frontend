@@ -15,6 +15,8 @@ import { localhostURL } from "../../utility/localhostURL";
 
 import { Link } from "react-router-dom";
 
+import styles from "./SignUpForm.module.css";
+
 export function SignUpForm() {
   const [userSignUp, setUserSignUp] = useState<FormSignUp>({
     firstName: "",
@@ -99,63 +101,83 @@ export function SignUpForm() {
   };
 
   return (
-    <>
+    <div className={styles.formWrapper}>
       <form
+        className={styles.formContainer}
         onSubmit={(event) => {
           event.preventDefault();
 
           void handleSubmit(onSubmitSignUp)(event);
         }}
       >
-        <h1>JobScraper</h1>
-        <p>Sign up to find your dream jobs with JobScraper</p>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          aria-label="email"
-          placeholder="Enter your email"
-          {...register("email", {
-            required: true,
-            min: 6,
-          })}
-          aria-invalid={errors.email ? "true" : "false"}
-        />
-        <span>{errors.email?.message || emailTakenErr}</span>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          aria-label="password"
-          {...register("password", {
-            required: true,
-            min: 8,
-            pattern: passwordRegex,
-          })}
-        />
-        <span>{errors.password?.message}</span>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          {...register("confirmPassword", {
-            required: true,
-            min: 8,
-            validate: (value) => {
-              const { password } = getValues();
+        <div className={styles.formHeaderContainer}>
+          <h1 className={styles.formHeader}>JobScraper</h1>
+          <p>Sign up to find your dream jobs with JobScraper</p>
+        </div>
+        <label className={styles.formLabel} htmlFor="email">
+          Email
+          <input
+            type="email"
+            id="email"
+            aria-label="email"
+            placeholder="Enter your email"
+            {...register("email", {
+              required: true,
+              min: 6,
+            })}
+            aria-invalid={errors.email ? "true" : "false"}
+          />
+        </label>
 
-              return password === value;
-            },
-          })}
-        />
-        <span>{errors.confirmPassword?.message}</span>
+        <span className={styles.formValidationError}>
+          {errors.email?.message || emailTakenErr}
+        </span>
+        <label className={styles.formLabel} htmlFor="password">
+          Password
+          <input
+            type="password"
+            id="password"
+            aria-label="password"
+            {...register("password", {
+              required: true,
+              min: 8,
+              pattern: passwordRegex,
+            })}
+          />
+        </label>
 
-        <button type="submit">Sign Up</button>
+        <span className={styles.formValidationError}>
+          {errors.password?.message}
+        </span>
+        <label className={styles.formLabel} htmlFor="confirmPassword">
+          Confirm Password
+          <input
+            type="password"
+            id="confirmPassword"
+            {...register("confirmPassword", {
+              required: true,
+              min: 8,
+              validate: (value) => {
+                const { password } = getValues();
 
-        <p>
+                return password === value;
+              },
+            })}
+          />
+        </label>
+
+        <span className={styles.formValidationError}>
+          {errors.confirmPassword?.message}
+        </span>
+
+        <button className={styles.submitButton} type="submit">
+          Sign Up
+        </button>
+
+        <p className={styles.anchorPara}>
           Already registered? <Link to="/login">Log in</Link>
         </p>
       </form>
-    </>
+    </div>
   );
 }
