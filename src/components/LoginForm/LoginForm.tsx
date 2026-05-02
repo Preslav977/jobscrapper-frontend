@@ -80,7 +80,7 @@ export function LoginForm() {
 
       setIsUserLoggedIn(true);
 
-      void navigate("/dashboard");
+      void navigate("/jobs");
     } catch (error) {
       console.log(error);
     }

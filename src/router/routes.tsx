@@ -2,6 +2,7 @@ import { App } from "../App";
 import { Dashboard } from "../components/Dashboard/Dashboard";
 import { LoginForm } from "../components/LoginForm/LoginForm";
 import { ProtectRoutes } from "../components/ProtectRoutes/ProtectRoutes";
+import { RenderJobs } from "../components/RenderJobs/RenderJobs";
 import { SignUpForm } from "../components/SignUpForm/SignUpForm";
 
 export const routes = [
@@ -17,6 +18,7 @@ export const routes = [
         path: "login",
         element: <LoginForm />,
       },
+      { path: "jobs", element: <RenderJobs /> },
       {
         path: "dashboard",
         element: (
