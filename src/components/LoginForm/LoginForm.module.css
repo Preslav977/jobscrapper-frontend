@@ -1,0 +1,88 @@
+.formWrapper {
+  height: var(--main-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 400px;
+  max-height: 425px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 0.5em;
+  box-shadow: var(--main-box-shadow);
+}
+
+.formHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 30%;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.5em;
+}
+
+.formHeaderContainer > p {
+  color: var(--secondary-color);
+}
+
+.formHeader {
+  margin-bottom: -0.2em;
+  font-size: 2.5rem;
+  color: var(--main-color);
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.submitButton {
+  width: 90%;
+  margin-top: 1em;
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.25em;
+  border-radius: 0.45em;
+}
+
+.submitButton:hover {
+  cursor: pointer;
+}
+
+.anchorPara {
+  margin: 0.5em 0;
+  color: var(--secondary-color);
+}
+
+.anchorPara > a {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+.anchorPara > a:hover {
+  text-decoration: underline;
+}
+
+.formValidationError {
+  color: red;
+  width: 90%;
+  font-size: 0.95rem;
+  line-height: 1.2em;
+}
+
+.formContainer input {
+  padding: 0.2em;
+  border-radius: 0.45em;
+  padding-inline: 0.5em;
+  margin-top: 0.25em;
+}

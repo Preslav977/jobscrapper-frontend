@@ -13,6 +13,7 @@ import type {
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
 import { localhostURL } from "../../utility/localhostURL";
+import styles from "./LoginForm.module.css";
 
 export function LoginForm() {
   const [invalidCredentials, setInvalidCredentials] = useState<string>("");
@@ -86,50 +87,66 @@ export function LoginForm() {
   };
 
   return (
-    <>
+    <div className={styles.formWrapper}>
       <form
+        className={styles.formContainer}
         onSubmit={(event) => {
           event.preventDefault();
 
           void handleSubmit(onSubmitLogin)(event);
         }}
       >
-        <h1>JobScraper</h1>
-        <p>Welcome back! Sign in</p>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          aria-label="email"
-          placeholder="Enter your email"
-          {...register("email", {
-            required: true,
-            min: 6,
-          })}
-          aria-invalid={errors.email ? "true" : "false"}
-        />
-        <span>{errors.email?.message || invalidCredentials}</span>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          aria-label="password"
-          {...register("password", {
-            required: true,
-            min: 8,
-            pattern: passwordRegex,
-          })}
-        />
-        <span>{errors.password?.message}</span>
+        <div className={styles.formHeaderContainer}>
+          <h1 className={styles.formHeader}>JobScraper</h1>
+          <p>Welcome back! Sign in</p>
+        </div>
+        <label className={styles.formLabel} htmlFor="email">
+          Email
+          <input
+            type="email"
+            id="email"
+            aria-label="email"
+            placeholder="Enter your email"
+            {...register("email", {
+              required: true,
+              min: 6,
+            })}
+            aria-invalid={errors.email ? "true" : "false"}
+          />
+        </label>
 
-        <button type="submit">Log in</button>
+        <span className={styles.formValidationError}>
+          {errors.email?.message || invalidCredentials}
+        </span>
+        <label className={styles.formLabel} htmlFor="password">
+          Password
+          <input
+            type="password"
+            id="password"
+            aria-label="password"
+            placeholder="**********"
+            {...register("password", {
+              required: true,
+              min: 8,
+              pattern: passwordRegex,
+            })}
+          />
+        </label>
+
+        <span className={styles.formValidationError}>
+          {errors.password?.message}
+        </span>
+
+        <button className={styles.submitButton} type="submit">
+          Log in
+        </button>
 
         <>
-          <p>
+          <p className={styles.anchorPara}>
             Not registered yet? <Link to="/signup">Sign up</Link>{" "}
           </p>
         </>
       </form>
-    </>
+    </div>
   );
 }
