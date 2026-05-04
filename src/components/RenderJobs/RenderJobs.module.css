@@ -1,0 +1,26 @@
+.jobsContainer {
+  max-width: 400px;
+  padding: 1em;
+  display: flex;
+  border-radius: var(--main-border-radius);
+  box-shadow: var(--main-box-shadow);
+}
+
+.jobsContainer a {
+  text-decoration: none;
+  color: black;
+}
+
+.jobsCompanyLogo {
+  max-width: 25px;
+  margin-bottom: 0.25em;
+}
+
+.jobsTitle {
+  font-size: 1.15rem;
+}
+
+.jobsDescriptionWrapper {
+  display: flex;
+  gap: 0.5em;
+}

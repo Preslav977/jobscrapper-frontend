@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.25em;
-  border-radius: 0.5em;
+  border-radius: var(--main-border-radius);
   box-shadow: var(--main-box-shadow);
 }
 
