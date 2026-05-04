@@ -9,9 +9,7 @@ export function HomePage() {
         <input type="text" name="" id="" />
         <button type="submit">Search</button>
       </form>
-      <select name="" id="">
-        <option value=""></option>
-      </select>
+      <select name="companies" id="companies"></select>
 
       <RenderJobs />
     </>

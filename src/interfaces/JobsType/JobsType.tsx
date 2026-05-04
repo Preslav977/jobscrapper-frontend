@@ -1,6 +1,6 @@
 export type ScrapMode = "NAVIGATION" | "FETCH";
 
-export type Company = {
+export type CompanyType = {
   id: number;
   name: string;
   logo?: string | null;
@@ -16,6 +16,6 @@ export type JobsType = {
   datePosted: string;
   description: string;
   anchorHref: string;
-  company: Company;
+  company: CompanyType;
   companyID: number;
 };
