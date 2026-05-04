@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import type { JobsType } from "../../interfaces/JobsType/JobsType";
 import { localhostURL } from "../../utility/localhostURL";
 
-async function fetchJobs(): Promise<JobsType[]> {
-  const response = await fetch(`${localhostURL}/companies/get/jobs`, {
+async function fetchCompanyOrJobs(url: string): Promise<JobsType[]> {
+  const response = await fetch(`${localhostURL}/${url}`, {
     mode: "cors",
     headers: {
       Authorization: sessionStorage.getItem("token")!,
@@ -13,10 +13,10 @@ async function fetchJobs(): Promise<JobsType[]> {
   return response.json() as Promise<JobsType[]>;
 }
 
-export const useFetchJobs = () => {
+export const useFetchCompanyOrJobs = (url: string) => {
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["jobs"],
-    queryFn: fetchJobs,
+    queryKey: ["jobs", url],
+    queryFn: () => fetchCompanyOrJobs(url),
   });
 
   return { isPending, isError, data, error };

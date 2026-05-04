@@ -1,9 +1,10 @@
 import { Link } from "react-router";
-import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
+import { useFetchCompanyOrJobs } from "../../api/useFetchCompanyOrJobs/useFetchCompanyOrJobs";
 import styles from "./RenderJobs.module.css";
 
 export function RenderJobs() {
-  const { isPending, isError, data, error } = useFetchJobs();
+  const { isPending, isError, data, error } =
+    useFetchCompanyOrJobs("companies/get/jobs");
 
   if (isPending) return <p>Loading jobs, please wait...</p>;
 
