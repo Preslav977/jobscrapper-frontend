@@ -1,14 +1,14 @@
-export type ScrapMode = "NAVIGATION" | "FETCH";
+type ScrapeMode = "NAVIGATION | DIRECT";
 
-export type CompanyType = {
+export type Company = {
   id: number;
   name: string;
   logo?: string | null;
-  scrapMode: ScrapMode;
-  URL: string;
+  scrapMode: ScrapeMode;
+  jobs: Jobs[];
 };
 
-export type JobsType = {
+export type Jobs = {
   id: number;
   title: string;
   location: string;
@@ -16,6 +16,8 @@ export type JobsType = {
   datePosted: string;
   description: string;
   anchorHref: string;
-  company: CompanyType;
+  company: Company;
   companyID: number;
 };
+
+export type CompanyJobs = Company[] | Jobs[];
