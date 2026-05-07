@@ -17,6 +17,7 @@ export const useFetchCompanies = () => {
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["companies"],
     queryFn: () => fetchCompanies(),
+    initialData: [],
   });
 
   return { isPending, isError, data, error };

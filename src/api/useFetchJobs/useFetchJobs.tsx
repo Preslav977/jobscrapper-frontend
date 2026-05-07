@@ -17,6 +17,7 @@ export const useFetchJobs = () => {
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["jobs"],
     queryFn: () => fetchJobs(),
+    initialData: [],
   });
 
   return { isPending, isError, data, error };
