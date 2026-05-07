@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import type {
   FormSignUp,
   FormSignUpTakenError,
-} from "../../interfaces/FormTypes/FormTypes";
+} from "../../interfaces/FormInterface/FormTypes";
 import {
   passwordRegex,
   signUpSchema,

@@ -1,18 +1,11 @@
 import { Link } from "react-router";
-import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
-import type { RenderJobsType } from "../../interfaces/RenderJobsType/RenderJobsType";
+import type { RenderJobsInterface } from "../../interfaces/RenderJobsInterface/RenderJobsInterface";
 import styles from "./RenderJobs.module.css";
 
-export function RenderJobs({ filteredJobs }: RenderJobsType) {
-  const { isPending, isError, error } = useFetchJobs();
-
-  if (isPending) return <p>Loading jobs, please wait...</p>;
-
-  if (isError) return <p>{error?.message}</p>;
-
+export function RenderJobs({ data }: RenderJobsInterface) {
   return (
     <>
-      {filteredJobs?.map((jobs) => (
+      {data.map((jobs) => (
         <div key={jobs.id}>
           <div className={styles.jobsContainer}>
             <Link to={`/jobs/${jobs.id}`}>

@@ -1,14 +1,14 @@
 type ScrapeMode = "NAVIGATION | DIRECT";
 
-export type Company = {
+export interface Company {
   id: number;
   name: string;
   logo?: string | null;
   scrapMode: ScrapeMode;
   jobs: Jobs[];
-};
+}
 
-export type Jobs = {
+export interface Jobs {
   id: number;
   title: string;
   location: string;
@@ -18,4 +18,4 @@ export type Jobs = {
   anchorHref: string;
   company: Company;
   companyID: number;
-};
+}

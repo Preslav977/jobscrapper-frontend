@@ -9,7 +9,7 @@ import type {
   BearerToken,
   FormLogin,
   FormSignUp,
-} from "../../interfaces/FormTypes/FormTypes";
+} from "../../interfaces/FormInterface/FormTypes";
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
 import { localhostURL } from "../../utility/localhostURL";

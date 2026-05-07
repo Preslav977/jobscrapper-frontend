@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { FormSignUp } from "../interfaces/FormTypes/FormTypes";
+import type { FormSignUp } from "../interfaces/FormInterface/FormTypes";
 
 type userDetailsContext = {
   userDetails: FormSignUp | null;

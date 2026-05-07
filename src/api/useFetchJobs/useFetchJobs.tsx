@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Jobs } from "../../interfaces/CompanyJobsType/CompanyJobsType";
+import type { Jobs } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
 import { localhostURL } from "../../utility/localhostURL";
 
 async function fetchJobs(): Promise<Jobs[]> {
@@ -17,7 +17,7 @@ export const useFetchJobs = () => {
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["jobs"],
     queryFn: () => fetchJobs(),
-    initialData: [],
+    // initialData: [],
   });
 
   return { isPending, isError, data, error };

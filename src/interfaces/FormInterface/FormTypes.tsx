@@ -1,6 +1,6 @@
 export type Role = "USER" | "ADMIN";
 
-export type FormSignUp = {
+export interface FormSignUp {
   firstName?: string;
   lastName?: string;
   password: string;
@@ -13,19 +13,19 @@ export type FormSignUp = {
   portfolioURL?: string;
   profilePicture?: string;
   role?: Role;
-};
+}
 
-export type FormSignUpTakenError = {
+export interface FormSignUpTakenError {
   type: string;
   value: string;
   msg: string;
-}[];
+}
 
-export type FormLogin = {
+export interface FormLogin {
   password: string;
   email: string;
-};
+}
 
-export type BearerToken = {
+export interface BearerToken {
   token: string;
-};
+}
