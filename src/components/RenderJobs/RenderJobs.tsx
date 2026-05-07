@@ -3,7 +3,7 @@ import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
 import type { RenderJobsType } from "../../interfaces/RenderJobsType/RenderJobsType";
 import styles from "./RenderJobs.module.css";
 
-export function RenderJobs({ data }: RenderJobsType) {
+export function RenderJobs({ filteredJobs }: RenderJobsType) {
   const { isPending, isError, error } = useFetchJobs();
 
   if (isPending) return <p>Loading jobs, please wait...</p>;
@@ -12,7 +12,7 @@ export function RenderJobs({ data }: RenderJobsType) {
 
   return (
     <>
-      {data?.map((jobs) => (
+      {filteredJobs?.map((jobs) => (
         <div key={jobs.id}>
           <div className={styles.jobsContainer}>
             <Link to={`/jobs/${jobs.id}`}>
