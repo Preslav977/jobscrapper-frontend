@@ -1,5 +1,4 @@
-import type React from "react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
 import type { Jobs } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
@@ -11,19 +10,19 @@ export function HomePage() {
   const [selectedCompany, setSelectedCompany] =
     useState<string>("All companies");
 
-  function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
-    const companyName = e.currentTarget.value;
+  // function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
+  //   const companyName = e.currentTarget.value;
 
-    setSelectedCompany(companyName);
+  //   setSelectedCompany(companyName);
+  // }
 
-    // if (!data) return [];
+  const filteredJobs = useMemo(() => {
+    if (selectedCompany === "All companies") return data;
 
-    const filteredJobs = data!.filter(
-      (item: Jobs) => item.company.name === companyName,
-    );
+    const jobs = structuredClone(data);
 
-    return filteredJobs;
-  }
+    return jobs.filter((jobs: Jobs) => jobs.company.name === selectedCompany);
+  }, [selectedCompany, data]);
 
   if (isPending) return <p>Loading jobs, please wait...</p>;
 
@@ -31,11 +30,12 @@ export function HomePage() {
 
   return (
     <>
-      <RenderJobs data={data ? data : []} />
+      <RenderJobs filteredJobs={filteredJobs} />
 
       <SelectJobsByCompany
-        data={data ? data : []}
-        onChange={handleCompanySelect}
+        filteredJobs={filteredJobs}
+        value={selectedCompany}
+        onChange={(e) => setSelectedCompany(e.target.value)}
       />
     </>
   );

@@ -1,25 +1,25 @@
 import type { SelectJobsByCompanyInterface } from "../../interfaces/SelectJobsByCompanyInterface/SelectJobsByCompanyInterface";
 
 export function SelectJobsByCompany({
-  data,
+  filteredJobs,
+  value,
   onChange,
 }: SelectJobsByCompanyInterface) {
+  const companyNamesSet = new Set(filteredJobs.map((job) => job.company.name));
+
+  const companyNamesArray = [...companyNamesSet];
+
   return (
     <>
       <label htmlFor="Companies"></label>
-      <select
-        onChange={onChange}
-        name="companies"
-        id="companies"
-        defaultValue={"All Companies"}
-      >
+      <select onChange={onChange} value={value} name="Companies" id="Companies">
         <optgroup label="Companies">
           <option value="All Companies" selected>
             All companies
           </option>
-          {data.map((companies) => (
-            <option key={companies.id} value={companies.company.name}>
-              {companies.company.name}
+          {companyNamesArray.map((companies) => (
+            <option key={companies} value={companies}>
+              {companies}
             </option>
           ))}
         </optgroup>

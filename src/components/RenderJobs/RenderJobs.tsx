@@ -2,10 +2,12 @@ import { Link } from "react-router";
 import type { RenderJobsInterface } from "../../interfaces/RenderJobsInterface/RenderJobsInterface";
 import styles from "./RenderJobs.module.css";
 
-export function RenderJobs({ data }: RenderJobsInterface) {
+export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
+  console.log(filteredJobs);
+
   return (
     <>
-      {data.map((jobs) => (
+      {filteredJobs.map((jobs) => (
         <div key={jobs.id}>
           <div className={styles.jobsContainer}>
             <Link to={`/jobs/${jobs.id}`}>
