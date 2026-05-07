@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
+import type { RenderJobsType } from "../../interfaces/RenderJobsType/RenderJobsType";
 import styles from "./RenderJobs.module.css";
 
-export function RenderJobs() {
-  const { isPending, isError, data, error } = useFetchJobs();
+export function RenderJobs({ data }: RenderJobsType) {
+  const { isPending, isError, error } = useFetchJobs();
 
   if (isPending) return <p>Loading jobs, please wait...</p>;
 

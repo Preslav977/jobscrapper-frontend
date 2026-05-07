@@ -19,5 +19,3 @@ export type Jobs = {
   company: Company;
   companyID: number;
 };
-
-export type CompanyJobs = Company[] | Jobs[];
