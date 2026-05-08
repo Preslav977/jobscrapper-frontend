@@ -15,7 +15,6 @@ export const routes = [
         element: <SignUpForm />,
       },
       {
-        index: true,
         path: "login",
         element: <LoginForm />,
       },

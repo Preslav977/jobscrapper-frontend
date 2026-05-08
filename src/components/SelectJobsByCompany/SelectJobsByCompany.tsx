@@ -11,12 +11,24 @@ export function SelectJobsByCompany({
 
   return (
     <>
-      <label htmlFor="Companies"></label>
-      <select onChange={onChange} value={value} name="Companies" id="Companies">
-        <optgroup label="Companies">
-          <option value="All Companies" selected>
-            All companies
+      <label htmlFor="companies"></label>
+      <select
+        onChange={onChange}
+        value={value}
+        name="companies"
+        id="companies"
+        defaultValue={companyNamesArray.length}
+      >
+        <optgroup label="companies">
+          <option
+            style={{
+              display: "none",
+            }}
+            value={companyNamesArray.length}
+          >
+            {companyNamesArray.length} companies
           </option>
+          <option value="All companies">All companies</option>
           {companyNamesArray.map((companies) => (
             <option key={companies} value={companies}>
               {companies}

@@ -11,7 +11,7 @@ export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
             <Link to={`/jobs/${jobs.id}`}>
               <img
                 className={styles.jobsCompanyLogo}
-                src={jobs.company.logo ? jobs.company.logo : ""}
+                src={jobs.company.logo ? jobs.company.logo : "Companies logos"}
                 alt="Company Logo"
               />
               <h2 className={styles.jobsTitle}>{jobs.title}</h2>

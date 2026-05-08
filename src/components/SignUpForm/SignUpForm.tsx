@@ -62,7 +62,7 @@ export function SignUpForm() {
     });
 
     if (response.status >= 400) {
-      const result = (await response.json()) as FormSignUpTakenError;
+      const result = (await response.json()) as FormSignUpTakenError[];
 
       setEmailTakenErr(result[0].msg);
     }

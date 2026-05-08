@@ -35,7 +35,7 @@ export function HomePage() {
         value={selectedCompany}
         onChange={handleCompanySelect}
       />
-      <RenderJobs filteredJobs={filteredJobs ? filteredJobs : allJobs} />
+      <RenderJobs filteredJobs={filteredJobs} />
     </>
   );
 }
