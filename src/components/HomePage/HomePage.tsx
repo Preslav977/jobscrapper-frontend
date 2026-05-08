@@ -5,24 +5,24 @@ import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
 
 export function HomePage() {
-  const { isPending, isError, data, error } = useFetchJobs();
+  const { isPending, isError, data: allJobs, error } = useFetchJobs();
 
   const [selectedCompany, setSelectedCompany] =
     useState<string>("All companies");
 
-  // function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
-  //   const companyName = e.currentTarget.value;
+  function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
+    const companyName = e.currentTarget.value;
 
-  //   setSelectedCompany(companyName);
-  // }
+    setSelectedCompany(companyName);
+  }
 
   const filteredJobs = useMemo(() => {
-    if (selectedCompany === "All companies") return data;
+    if (selectedCompany === "All companies") return allJobs;
 
-    const jobs = structuredClone(data);
-
-    return jobs.filter((jobs: Jobs) => jobs.company.name === selectedCompany);
-  }, [selectedCompany, data]);
+    return allJobs.filter((jobs: Jobs) =>
+      jobs.company.name.includes(selectedCompany),
+    );
+  }, [selectedCompany, allJobs]);
 
   if (isPending) return <p>Loading jobs, please wait...</p>;
 
@@ -30,13 +30,12 @@ export function HomePage() {
 
   return (
     <>
-      <RenderJobs filteredJobs={filteredJobs} />
-
       <SelectJobsByCompany
-        filteredJobs={filteredJobs}
+        filteredJobs={allJobs}
         value={selectedCompany}
-        onChange={(e) => setSelectedCompany(e.target.value)}
+        onChange={handleCompanySelect}
       />
+      <RenderJobs filteredJobs={filteredJobs ? filteredJobs : allJobs} />
     </>
   );
 }

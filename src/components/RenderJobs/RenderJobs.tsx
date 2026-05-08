@@ -3,8 +3,6 @@ import type { RenderJobsInterface } from "../../interfaces/RenderJobsInterface/R
 import styles from "./RenderJobs.module.css";
 
 export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
-  console.log(filteredJobs);
-
   return (
     <>
       {filteredJobs.map((jobs) => (
