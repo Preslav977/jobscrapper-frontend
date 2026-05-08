@@ -1,11 +1,19 @@
 import { useMemo, useState } from "react";
 import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
+import { useSearchJobs } from "../../api/useFetchJobs/useSearchJobs";
 import type { Jobs } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
+import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
 
 export function HomePage() {
   const { isPending, isError, data: allJobs, error } = useFetchJobs();
+
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const { data: searchJobs } = useSearchJobs(searchQuery);
+
+  console.log(searchJobs);
 
   const [selectedCompany, setSelectedCompany] =
     useState<string>("All companies");
@@ -14,6 +22,15 @@ export function HomePage() {
     const companyName = e.currentTarget.value;
 
     setSelectedCompany(companyName);
+  }
+
+  function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+    const formData = new FormData(e.currentTarget);
+    const query = formData.get("query") as string;
+
+    console.log("Search query:", query);
+
+    setSearchQuery(query);
   }
 
   const filteredJobs = useMemo(() => {
@@ -34,6 +51,11 @@ export function HomePage() {
         filteredJobs={allJobs}
         value={selectedCompany}
         onChange={handleCompanySelect}
+      />
+      <SearchJobsForm
+        value={searchQuery}
+        setValue={setSearchQuery}
+        onSubmit={handleSearchSubmit}
       />
       <RenderJobs filteredJobs={filteredJobs} />
     </>
