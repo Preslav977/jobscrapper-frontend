@@ -1,24 +1,20 @@
+import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
 import type { SelectJobsByCompanyInterface } from "../../interfaces/SelectJobsByCompanyInterface/SelectJobsByCompanyInterface";
 
 export function SelectJobsByCompany({
-  filteredJobs,
   value,
   onChange,
 }: SelectJobsByCompanyInterface) {
-  const companyNamesSet = new Set(filteredJobs.map((job) => job.company.name));
+  const { data: allJobs } = useFetchJobs();
+
+  const companyNamesSet = new Set(allJobs.map((job) => job.company.name));
 
   const companyNamesArray = [...companyNamesSet];
 
   return (
     <>
       <label htmlFor="companies"></label>
-      <select
-        onChange={onChange}
-        value={value}
-        name="companies"
-        id="companies"
-        defaultValue={companyNamesArray.length}
-      >
+      <select onChange={onChange} value={value} name="companies" id="companies">
         <optgroup label="companies">
           <option
             style={{

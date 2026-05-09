@@ -1,19 +1,19 @@
 import { useMemo, useState } from "react";
 import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
-import { useSearchJobs } from "../../api/useFetchJobs/useSearchJobs";
 import type { Jobs } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
 
 export function HomePage() {
-  const { isPending, isError, data: allJobs, error } = useFetchJobs();
-
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const { data: searchJobs } = useSearchJobs(searchQuery);
-
-  console.log(searchJobs);
+  const {
+    isPending,
+    isError,
+    data: allJobs,
+    error,
+  } = useFetchJobs(searchQuery);
 
   const [selectedCompany, setSelectedCompany] =
     useState<string>("All companies");
@@ -28,18 +28,20 @@ export function HomePage() {
     const formData = new FormData(e.currentTarget);
     const query = formData.get("query") as string;
 
-    console.log("Search query:", query);
-
     setSearchQuery(query);
   }
 
   const filteredJobs = useMemo(() => {
     if (selectedCompany === "All companies") return allJobs;
 
-    return allJobs.filter((jobs: Jobs) =>
-      jobs.company.name.includes(selectedCompany),
+    return allJobs.filter(
+      (jobs: Jobs) =>
+        jobs.company.name.includes(selectedCompany) ||
+        jobs.title === searchQuery ||
+        jobs.location === searchQuery ||
+        jobs.remoteOrHybrid === searchQuery,
     );
-  }, [selectedCompany, allJobs]);
+  }, [selectedCompany, allJobs, searchQuery]);
 
   if (isPending) return <p>Loading jobs, please wait...</p>;
 

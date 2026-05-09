@@ -15,8 +15,8 @@ export function SearchJobsForm({
       >
         <label htmlFor="query"></label>
         <input
-          value={value}
-          onChange={(e) => setValue(e.currentTarget.value)}
+          // value={value}
+          // onChange={(e) => setValue(e.currentTarget.value)}
           type="text"
           name="query"
           placeholder="Search jobs..."
