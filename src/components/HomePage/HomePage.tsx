@@ -50,15 +50,10 @@ export function HomePage() {
   return (
     <>
       <SelectJobsByCompany
-        filteredJobs={allJobs}
         value={selectedCompany}
         onChange={handleCompanySelect}
       />
-      <SearchJobsForm
-        value={searchQuery}
-        setValue={setSearchQuery}
-        onSubmit={handleSearchSubmit}
-      />
+      <SearchJobsForm onSubmit={handleSearchSubmit} />
       <RenderJobs filteredJobs={filteredJobs} />
     </>
   );

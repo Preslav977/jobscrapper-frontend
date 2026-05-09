@@ -1,10 +1,6 @@
 import type { SearchJobsFormInterface } from "../../interfaces/SearchJobsFormInterface/SearchJobsFormInterface";
 
-export function SearchJobsForm({
-  value,
-  setValue,
-  onSubmit,
-}: SearchJobsFormInterface) {
+export function SearchJobsForm({ onSubmit }: SearchJobsFormInterface) {
   return (
     <>
       <form
@@ -14,13 +10,7 @@ export function SearchJobsForm({
         }}
       >
         <label htmlFor="query"></label>
-        <input
-          // value={value}
-          // onChange={(e) => setValue(e.currentTarget.value)}
-          type="text"
-          name="query"
-          placeholder="Search jobs..."
-        />
+        <input type="text" name="query" placeholder="Search jobs..." />
         <button type="submit">Search</button>
       </form>
     </>

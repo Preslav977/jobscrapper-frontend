@@ -1,6 +1,4 @@
-import type { RenderJobsInterface } from "../RenderJobsInterface/RenderJobsInterface";
-
-export interface SelectJobsByCompanyInterface extends RenderJobsInterface {
+export interface SelectJobsByCompanyInterface {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
