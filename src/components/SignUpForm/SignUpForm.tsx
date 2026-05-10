@@ -9,20 +9,24 @@ import { Link } from "react-router-dom";
 
 import styles from "./SignUpForm.module.css";
 
-import { useSignUp } from "../../custom hooks/useJobSearch/useSignUp";
+import { useSigUpMutation } from "../../custom hooks/useSignUpMutation/userSignUpMutation";
+import type { FormSignUp } from "../../interfaces/FormInterface/FormTypes";
 
 export function SignUpForm() {
-  const { handleSignUp, emailTakenErr } = useSignUp();
+  const { mutate, error } = useSigUpMutation();
 
   const {
     register,
     getValues,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm({
     resolver: zodResolver(signUpSchema),
   });
+
+  const onSubmit = (data: FormSignUp) => {
+    mutate(data);
+  };
 
   return (
     <div className={styles.formWrapper}>
@@ -31,9 +35,7 @@ export function SignUpForm() {
         onSubmit={(event) => {
           event.preventDefault();
 
-          void handleSubmit(handleSignUp)(event);
-
-          reset();
+          void handleSubmit(onSubmit)(event);
         }}
       >
         <div className={styles.formHeaderContainer}>
@@ -54,9 +56,8 @@ export function SignUpForm() {
             aria-invalid={errors.email ? "true" : "false"}
           />
         </label>
-
         <span className={styles.formValidationError}>
-          {errors.email?.message || emailTakenErr}
+          {errors?.email?.message || error?.message}
         </span>
         <label className={styles.formLabel} htmlFor="password">
           Password

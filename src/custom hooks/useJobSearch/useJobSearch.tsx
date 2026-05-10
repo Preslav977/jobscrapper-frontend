@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
 import type { Jobs } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
+import { useFetchJobs } from "../useFetchJobs/useFetchJobs";
 
 export function useJobSearch() {
   const [searchQuery, setSearchQuery] = useState<string>("");

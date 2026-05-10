@@ -1,17 +1,21 @@
 import type {
   FormSignUp,
   FormSignUpTakenError,
-} from "../../../../interfaces/FormInterface/FormTypes";
-import { localhostURL } from "../../../../utility/localhostURL";
+} from "../../../interfaces/FormInterface/FormTypes";
+import { localhostURL } from "../../../utility/localhostURL";
 
 export async function signUp(data: FormSignUp): Promise<FormSignUp> {
+  const { email, password, confirmPassword } = data;
+
   const response = await fetch(`${localhostURL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      data,
+      email,
+      password,
+      confirmPassword,
     }),
   });
 

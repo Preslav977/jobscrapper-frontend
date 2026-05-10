@@ -1,4 +1,4 @@
-import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
+import { useFetchJobs } from "../../custom hooks/useFetchJobs/useFetchJobs";
 import type { SelectJobsByCompanyInterface } from "../../interfaces/SelectJobsByCompanyInterface/SelectJobsByCompanyInterface";
 
 export function SelectJobsByCompany({
