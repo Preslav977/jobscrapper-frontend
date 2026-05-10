@@ -1,0 +1,25 @@
+import type {
+  FormSignUp,
+  FormSignUpTakenError,
+} from "../../../../interfaces/FormInterface/FormTypes";
+import { localhostURL } from "../../../../utility/localhostURL";
+
+export async function signUp(data: FormSignUp): Promise<FormSignUp> {
+  const response = await fetch(`${localhostURL}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      data,
+    }),
+  });
+
+  if (response.status >= 400) {
+    const errorData = (await response.json()) as FormSignUpTakenError[];
+
+    throw new Error(errorData[0]?.msg);
+  }
+
+  return response.json() as Promise<FormSignUp>;
+}
