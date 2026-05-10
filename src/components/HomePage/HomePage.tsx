@@ -1,22 +1,17 @@
-import { useMemo, useState } from "react";
-import { useFetchJobs } from "../../api/useFetchJobs/useFetchJobs";
-import type { Jobs } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
+import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
 
 export function HomePage() {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
   const {
+    filteredJobs,
     isPending,
-    isError,
-    data: allJobs,
     error,
-  } = useFetchJobs(searchQuery);
-
-  const [selectedCompany, setSelectedCompany] =
-    useState<string>("All companies");
+    selectedCompany,
+    setSelectedCompany,
+    setSearchQuery,
+  } = useJobSearch();
 
   function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
     const companyName = e.currentTarget.value;
@@ -31,21 +26,9 @@ export function HomePage() {
     setSearchQuery(query);
   }
 
-  const filteredJobs = useMemo(() => {
-    if (selectedCompany === "All companies") return allJobs;
+  if (isPending) return <p>Loading...</p>;
 
-    return allJobs.filter(
-      (jobs: Jobs) =>
-        jobs.company.name.includes(selectedCompany) ||
-        jobs.title === searchQuery ||
-        jobs.location === searchQuery ||
-        jobs.remoteOrHybrid === searchQuery,
-    );
-  }, [selectedCompany, allJobs, searchQuery]);
-
-  if (isPending) return <p>Loading jobs, please wait...</p>;
-
-  if (isError) return <p>{error?.message}</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <>

@@ -19,7 +19,7 @@ export function ProtectRoutes({
   }
 
   if (requireAdmin && userDetails?.role !== "ADMIN") {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/login"} />;
   }
 
   return children;
