@@ -1,0 +1,30 @@
+.formWrapper {
+  max-width: 400px;
+  width: 100%;
+  margin: 0.5em;
+}
+
+.formContent {
+  display: flex;
+  gap: 0.5em;
+}
+
+.formContent input,
+.formContent button {
+  padding: 0.25em;
+  border-radius: 0.75em;
+  padding-inline: 0.5em;
+  margin-top: 0.25em;
+}
+
+.formContent input {
+  width: 100%;
+}
+
+.formContent button {
+  padding: 0 0.75em;
+  background-color: black;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
