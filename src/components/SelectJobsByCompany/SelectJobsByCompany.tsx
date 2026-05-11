@@ -40,7 +40,7 @@ export function SelectJobsByCompany({
           onClick={() => setIsOpen(!isOpen)}
         >
           {selectedCompany}
-          <span>▼</span>
+          <span>⌄</span>
         </div>
 
         {isOpen && (
@@ -50,7 +50,7 @@ export function SelectJobsByCompany({
               onMouseLeave={stopScrolling}
               className={styles.scrollArrowUp}
             >
-              ▲
+              ⌃
             </div>
 
             <ul ref={listRef} className={styles.optionsList}>
@@ -72,7 +72,7 @@ export function SelectJobsByCompany({
               onMouseEnter={() => startScrolling(1)}
               onMouseLeave={stopScrolling}
             >
-              ▼
+              ⌄
             </div>
           </div>
         )}
