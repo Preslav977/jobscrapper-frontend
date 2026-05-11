@@ -1,3 +1,9 @@
+.jobsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
 .jobsContainer {
   max-width: 400px;
   padding: 1em;

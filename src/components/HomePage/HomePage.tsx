@@ -2,6 +2,7 @@ import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
+import styles from "./HomePage.module.css";
 
 export function HomePage() {
   const {
@@ -12,12 +13,6 @@ export function HomePage() {
     setSelectedCompany,
     setSearchQuery,
   } = useJobSearch();
-
-  // function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
-  //   const companyName = e.currentTarget.value;
-
-  //   setSelectedCompany(companyName);
-  // }
 
   function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     const formData = new FormData(e.currentTarget);
@@ -31,13 +26,21 @@ export function HomePage() {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <>
-      <SelectJobsByCompany
-        selectedCompany={selectedCompany}
-        setSelectedCompany={setSelectedCompany}
-      />
-      <SearchJobsForm onSubmit={handleSearchSubmit} />
-      <RenderJobs filteredJobs={filteredJobs} />
-    </>
+    <div className={styles.homePageWrapper}>
+      <div className={styles.homePageContainer}>
+        <h2 className={styles.homePageHeader}>JobScraper</h2>
+        <p className={styles.homePagePara}>
+          Discover your future job. All in one place.
+        </p>
+        <SearchJobsForm onSubmit={handleSearchSubmit} />
+        <SelectJobsByCompany
+          selectedCompany={selectedCompany}
+          setSelectedCompany={setSelectedCompany}
+        />
+        <div>
+          <RenderJobs filteredJobs={filteredJobs} />
+        </div>
+      </div>
+    </div>
   );
 }

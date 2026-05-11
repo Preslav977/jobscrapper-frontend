@@ -1,0 +1,25 @@
+.homePageWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: 50px;
+}
+
+.homePageContainer {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.homePageHeader {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.homePagePara {
+  font-size: 1.25rem;
+}

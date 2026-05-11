@@ -4,7 +4,7 @@ import styles from "./RenderJobs.module.css";
 
 export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
   return (
-    <>
+    <div className={styles.jobsWrapper}>
       {filteredJobs.map((jobs) => (
         <div key={jobs.id}>
           <div className={styles.jobsContainer}>
@@ -24,6 +24,6 @@ export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }

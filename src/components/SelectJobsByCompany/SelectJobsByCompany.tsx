@@ -11,7 +11,7 @@ export function SelectJobsByCompany({
 
   const companyNamesSet = new Set(allJobs.map((job) => job.company.name));
 
-  const companyNamesArray = [...companyNamesSet];
+  const companyNamesArray = ["All companies", ...companyNamesSet];
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -71,7 +71,6 @@ export function SelectJobsByCompany({
               onMouseEnter={() => startScrolling(1)}
               onMouseLeave={stopScrolling}
             >
-              {" "}
               ▼
             </div>
           </div>
