@@ -4,6 +4,7 @@ import type { SelectJobsByCompanyInterface } from "../../interfaces/SelectJobsBy
 import styles from "./SelectJobsByCompany.module.css";
 
 export function SelectJobsByCompany({
+  filteredJobs,
   selectedCompany,
   setSelectedCompany,
 }: SelectJobsByCompanyInterface) {
@@ -32,7 +33,7 @@ export function SelectJobsByCompany({
   };
 
   return (
-    <>
+    <div className={styles.selectWrapper}>
       <div className={styles.selectContainer}>
         <div
           className={styles.selectTrigger}
@@ -76,6 +77,9 @@ export function SelectJobsByCompany({
           </div>
         )}
       </div>
-    </>
+      <div>
+        <p>{filteredJobs.length} jobs</p>
+      </div>
+    </div>
   );
 }

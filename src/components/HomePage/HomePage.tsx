@@ -34,12 +34,13 @@ export function HomePage() {
         </p>
         <SearchJobsForm onSubmit={handleSearchSubmit} />
         <SelectJobsByCompany
+          filteredJobs={filteredJobs}
           selectedCompany={selectedCompany}
           setSelectedCompany={setSelectedCompany}
         />
-        <div>
+        <>
           <RenderJobs filteredJobs={filteredJobs} />
-        </div>
+        </>
       </div>
     </div>
   );
