@@ -1,4 +1,6 @@
+import type { SetStateAction } from "react";
+
 export interface SelectJobsByCompanyInterface {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedCompany: string;
+  setSelectedCompany: React.Dispatch<SetStateAction<string>>;
 }

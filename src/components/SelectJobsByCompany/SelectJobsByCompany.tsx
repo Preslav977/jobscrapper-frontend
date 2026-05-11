@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
 import { useFetchJobs } from "../../custom hooks/useFetchJobs/useFetchJobs";
 import type { SelectJobsByCompanyInterface } from "../../interfaces/SelectJobsByCompanyInterface/SelectJobsByCompanyInterface";
+import styles from "./SelectJobsByCompany.module.css";
 
 export function SelectJobsByCompany({
-  value,
-  onChange,
+  selectedCompany,
+  setSelectedCompany,
 }: SelectJobsByCompanyInterface) {
   const { data: allJobs } = useFetchJobs();
 
@@ -32,26 +33,47 @@ export function SelectJobsByCompany({
 
   return (
     <>
-      <label htmlFor="companies"></label>
-      <select onChange={onChange} value={value} name="companies" id="companies">
-        <option>^</option>
-        <optgroup label="companies">
-          <option
-            style={{
-              display: "none",
-            }}
-            value={companyNamesArray.length}
-          >
-            {companyNamesArray.length} companies
-          </option>
-          <option value="All companies">All companies</option>
-          {companyNamesArray.map((companies) => (
-            <option key={companies} value={companies}>
-              {companies}
-            </option>
-          ))}
-        </optgroup>
-      </select>
+      <div className={styles.selectContainer}>
+        <div
+          className={styles.selectTrigger}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {selectedCompany}
+          <span>▼</span>
+        </div>
+
+        {!isOpen && (
+          <div className={styles.dropDownMenu}>
+            <div
+              onMouseEnter={() => startScrolling(-1)}
+              onMouseLeave={stopScrolling}
+              className={styles.scrollArrowUp}
+            >
+              ▲
+            </div>
+
+            <ul ref={listRef} className={styles.optionsList}>
+              {companyNamesArray.map((company) => (
+                <li
+                  key={company}
+                  onClick={() => {
+                    setSelectedCompany(company);
+                    setIsOpen(false);
+                  }}
+                >
+                  {company}
+                </li>
+              ))}
+            </ul>
+
+            <div
+              className={styles.scrollArrowDown}
+              onMouseEnter={() => startScrolling(1)}
+              onMouseLeave={stopScrolling}
+            ></div>
+          </div>
+        )}
+      </div>
     </>
   );
 }

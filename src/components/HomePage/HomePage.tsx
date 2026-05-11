@@ -13,11 +13,11 @@ export function HomePage() {
     setSearchQuery,
   } = useJobSearch();
 
-  function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
-    const companyName = e.currentTarget.value;
+  // function handleCompanySelect(e: React.ChangeEvent<HTMLSelectElement>) {
+  //   const companyName = e.currentTarget.value;
 
-    setSelectedCompany(companyName);
-  }
+  //   setSelectedCompany(companyName);
+  // }
 
   function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     const formData = new FormData(e.currentTarget);
@@ -33,8 +33,8 @@ export function HomePage() {
   return (
     <>
       <SelectJobsByCompany
-        value={selectedCompany}
-        onChange={handleCompanySelect}
+        selectedCompany={selectedCompany}
+        setSelectedCompany={setSelectedCompany}
       />
       <SearchJobsForm onSubmit={handleSearchSubmit} />
       <RenderJobs filteredJobs={filteredJobs} />
