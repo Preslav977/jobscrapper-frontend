@@ -42,7 +42,7 @@ export function SelectJobsByCompany({
           <span>▼</span>
         </div>
 
-        {!isOpen && (
+        {isOpen && (
           <div className={styles.dropDownMenu}>
             <div
               onMouseEnter={() => startScrolling(-1)}
@@ -70,7 +70,10 @@ export function SelectJobsByCompany({
               className={styles.scrollArrowDown}
               onMouseEnter={() => startScrolling(1)}
               onMouseLeave={stopScrolling}
-            ></div>
+            >
+              {" "}
+              ▼
+            </div>
           </div>
         )}
       </div>

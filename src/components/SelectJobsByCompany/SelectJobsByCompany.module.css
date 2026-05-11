@@ -1,0 +1,56 @@
+.selectContainer {
+  position: relative;
+  width: 200px;
+}
+
+.selectTrigger {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  background: white;
+}
+
+.dropDownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  text-align: center;
+}
+
+.optionsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.optionsList li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.optionsList li:hover {
+  background-color: #f0f0f0;
+}
+
+.scrollArrow {
+  text-align: center;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.scrollArrowHover {
+  background-color: #e0e0e0;
+}
