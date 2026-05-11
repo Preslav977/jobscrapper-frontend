@@ -1,8 +1,8 @@
-import { createContext } from "react";
+import { createContext, type SetStateAction } from "react";
 
 type isUserLoggedInContextType = {
   isUserLoggedIn: boolean;
-  setIsUserLoggedIn: (userLoggedIn: boolean) => void;
+  setIsUserLoggedIn: React.Dispatch<SetStateAction<boolean>>;
 };
 
 export const isUserLoggedInContext =

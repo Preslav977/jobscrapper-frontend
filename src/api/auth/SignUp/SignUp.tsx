@@ -1,7 +1,7 @@
 import type {
   FormSignUp,
   FormSignUpTakenError,
-} from "../../../interfaces/FormInterface/FormTypes";
+} from "../../../interfaces/FormInterface/FormInterfaces";
 import { localhostURL } from "../../../utility/localhostURL";
 
 export async function signUp(data: FormSignUp): Promise<FormSignUp> {

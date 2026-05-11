@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { useLoginMutation } from "../../custom hooks/useLoginMutation/useLoginMutation";
-import type { FormLogin } from "../../interfaces/FormInterface/FormTypes";
+import type { FormLogin } from "../../interfaces/FormInterface/FormInterfaces";
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
 import styles from "./LoginForm.module.css";
@@ -14,7 +14,6 @@ export function LoginForm() {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm({
     resolver: zodResolver(loginSchema),
   });

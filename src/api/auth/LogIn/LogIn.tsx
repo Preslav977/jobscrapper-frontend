@@ -2,7 +2,7 @@ import type {
   BearerToken,
   FormLogin,
   FormSignUp,
-} from "../../../interfaces/FormInterface/FormTypes";
+} from "../../../interfaces/FormInterface/FormInterfaces";
 import { localhostURL } from "../../../utility/localhostURL";
 
 export async function loginAndFetchUserDetails(credentials: FormLogin) {

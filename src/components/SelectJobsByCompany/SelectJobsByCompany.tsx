@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { useFetchJobs } from "../../custom hooks/useFetchJobs/useFetchJobs";
 import type { SelectJobsByCompanyInterface } from "../../interfaces/SelectJobsByCompanyInterface/SelectJobsByCompanyInterface";
 
@@ -11,10 +12,29 @@ export function SelectJobsByCompany({
 
   const companyNamesArray = [...companyNamesSet];
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const listRef = useRef<HTMLUListElement>(null);
+
+  const scrollInterval = useRef<number>(null);
+
+  const startScrolling = (direction: number) => {
+    scrollInterval.current = setInterval(() => {
+      if (listRef.current) {
+        listRef.current.scrollTop += direction * 5;
+      }
+    }, 10);
+  };
+
+  const stopScrolling = () => {
+    clearInterval(scrollInterval.current!);
+  };
+
   return (
     <>
       <label htmlFor="companies"></label>
       <select onChange={onChange} value={value} name="companies" id="companies">
+        <option>^</option>
         <optgroup label="companies">
           <option
             style={{

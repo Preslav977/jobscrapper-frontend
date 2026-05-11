@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import styles from "./SignUpForm.module.css";
 
 import { useSigUpMutation } from "../../custom hooks/useSignUpMutation/userSignUpMutation";
-import type { FormSignUp } from "../../interfaces/FormInterface/FormTypes";
+import type { FormSignUp } from "../../interfaces/FormInterface/FormInterfaces";
 
 export function SignUpForm() {
   const { mutate, error } = useSigUpMutation();
