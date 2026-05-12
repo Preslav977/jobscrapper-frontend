@@ -8,8 +8,8 @@
 
 .formContainer {
   width: 100%;
-  max-width: 400px;
-  max-height: 500px;
+  max-width: var(--main-max-width);
+  max-height: var(--main-max-height);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@
 
 .formHeader {
   margin-bottom: -0.2em;
-  font-size: 2.5rem;
+  font-size: var(--secondary-font-size);
   color: var(--main-color);
 }
 
@@ -50,7 +50,7 @@
   width: 90%;
   margin-top: 1em;
   background-color: var(--main-color);
-  color: white;
+  color: var(--tertiary-color);
   padding: 0.25em;
   border-radius: 0.45em;
 }
@@ -74,7 +74,7 @@
 }
 
 .formValidationError {
-  color: red;
+  color: var(--validation-error);
   width: 90%;
   font-size: 0.95rem;
   line-height: 1.2em;

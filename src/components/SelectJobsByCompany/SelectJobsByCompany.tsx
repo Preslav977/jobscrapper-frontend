@@ -78,7 +78,9 @@ export function SelectJobsByCompany({
         )}
       </div>
       <div>
-        <p>{filteredJobs.length} jobs</p>
+        <p className={styles.jobsLengthPara}>
+          {filteredJobs.length} <span>jobs</span>
+        </p>
       </div>
     </div>
   );

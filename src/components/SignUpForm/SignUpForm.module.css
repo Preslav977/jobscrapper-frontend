@@ -74,7 +74,7 @@
 }
 
 .formValidationError {
-  color: red;
+  color: var(--main-color);
   width: 90%;
   font-size: 0.95rem;
   line-height: 1.2em;

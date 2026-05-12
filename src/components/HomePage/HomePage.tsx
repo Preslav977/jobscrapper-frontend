@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
 import { Footer } from "../Footer/Footer";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
@@ -28,6 +29,17 @@ export function HomePage() {
 
   return (
     <div className={styles.homePageWrapper}>
+      <div className={styles.homePageButtonWrapper}>
+        <div className={styles.homePageButtonContainer}>
+          <Link className={styles.homePageAnchor} to={""}>
+            Explore <span className={styles.homePageAnchorArrowDown}>⌄</span>
+          </Link>
+
+          <Link className={styles.homePageAnchor} to={"/login"}>
+            Log In
+          </Link>
+        </div>
+      </div>
       <div className={styles.homePageContainer}>
         <h2 className={styles.homePageHeader}>JobScraper</h2>
         <p className={styles.homePagePara}>

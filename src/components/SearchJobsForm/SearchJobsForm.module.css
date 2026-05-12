@@ -1,5 +1,5 @@
 .formWrapper {
-  max-width: 400px;
+  max-width: var(--main-max-width);
   width: 100%;
   margin: 0.5em;
 }
@@ -19,12 +19,14 @@
 
 .formContent input {
   width: 100%;
+  border: 1px solid var(--secondary-color);
 }
 
 .formContent button {
-  padding: 0 0.75em;
-  background-color: black;
-  color: white;
+  padding: 0 1.25em;
+  background-color: var(--main-color);
+  color: var(--tertiary-color);
   border: 0;
   cursor: pointer;
+  font-weight: bold;
 }

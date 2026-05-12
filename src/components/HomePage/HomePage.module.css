@@ -14,10 +14,35 @@
 }
 
 .homePageHeader {
-  font-size: 2.5rem;
+  font-size: var(--main-font-size);
   line-height: 1;
 }
 
 .homePagePara {
-  font-size: 1.25rem;
+  font-size: var(--secondary-font-size);
+}
+
+.homePageButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.homePageButtonContainer {
+  max-width: var(--main-max-width);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.homePageAnchor {
+  border: 1px solid var(--secondary-color);
+  text-decoration: none;
+  color: var(--main-color);
+  margin-top: 1em;
+  padding: 0.25em;
+  padding-inline: 0.75em;
+  border-radius: 0.75em;
 }
