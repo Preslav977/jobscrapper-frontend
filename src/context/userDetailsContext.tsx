@@ -1,10 +1,10 @@
 import { createContext, type SetStateAction } from "react";
-import type { FormSignUp } from "../interfaces/FormInterface/FormInterfaces";
+import type { UserDetailsInterface } from "../interfaces/UserDetailsInterface/UserDetailsInterface";
 
-type userDetailsContext = {
-  userDetails: FormSignUp | null;
-  setUserDetails: React.Dispatch<SetStateAction<FormSignUp>>;
-};
+interface userDetailsContext {
+  userDetails: UserDetailsInterface | null;
+  setUserDetails: React.Dispatch<SetStateAction<UserDetailsInterface | null>>;
+}
 
 export const userDetailsContext = createContext<userDetailsContext | null>(
   null,

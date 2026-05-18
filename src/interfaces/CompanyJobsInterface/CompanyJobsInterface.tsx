@@ -8,6 +8,13 @@ export interface Company {
   jobs: Jobs[];
 }
 
+export type FormattedJobsType = {
+  responsibilities: string[];
+  requirements: string[];
+  benefits: string[];
+  other: string[];
+};
+
 export interface Jobs {
   id: number;
   title: string;
@@ -16,6 +23,8 @@ export interface Jobs {
   datePosted: string;
   description: string;
   anchorHref: string;
+  rawHTML: string;
+  formattedData: FormattedJobsType;
   company: Company;
   companyID: number;
 }

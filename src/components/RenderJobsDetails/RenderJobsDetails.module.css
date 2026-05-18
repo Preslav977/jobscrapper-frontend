@@ -1,0 +1,101 @@
+.jobDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5em;
+}
+
+.jobDetailsContainer {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.jobDetailsLogoHeaderContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.jobCompanyLogo {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.jobCompanyHeader {
+  font-size: 1.5rem;
+}
+
+.jobAnchorHrContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  margin-top: 1.5em;
+}
+
+.jobHomeAnchor {
+  display: flex;
+  gap: 0.5em;
+}
+
+.jobHomeAnchorImg {
+  width: 15px;
+}
+
+.jobAnchorHrContainer a {
+  text-decoration: none;
+  color: oklch(20.5% 0 0);
+}
+
+hr {
+  color: oklch(70.8% 0 0);
+  margin: 0.5em 0;
+}
+
+.jobUlHeader {
+  margin-top: 0.5em;
+}
+
+.jobUlHeader span {
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+
+.jobList {
+  list-style-position: inside;
+  text-align: justify;
+}
+
+.jobAnchorHrefContainer {
+  cursor: pointer;
+  background-color: oklch(20.5% 0 0);
+  text-align: center;
+  padding: 0.2em;
+  border-radius: 0.45em;
+  padding-inline: 0.5em;
+  margin-top: 0.25em;
+}
+
+.jobAnchorHrefContainer a {
+  color: oklch(98.5% 0 0);
+}
+
+.jobTitleHeader {
+  font-size: 1.5rem;
+}
+
+.jobDescriptionSpanContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.25em;
+}
+
+.jobDescriptionImgContainer {
+  display: flex;
+  gap: 0.5em;
+}

@@ -1,8 +1,8 @@
 import type {
   BearerToken,
   FormLogin,
-  FormSignUp,
 } from "../../../interfaces/FormInterface/FormInterfaces";
+import type { UserDetailsInterface } from "../../../interfaces/UserDetailsInterface/UserDetailsInterface";
 import { localhostURL } from "../../../utility/localhostURL";
 
 export async function loginAndFetchUserDetails(credentials: FormLogin) {
@@ -27,7 +27,7 @@ export async function loginAndFetchUserDetails(credentials: FormLogin) {
     headers: { Authorization: `Bearer ${token}` },
   });
 
-  const user = (await userResponse.json()) as FormSignUp;
+  const user = (await userResponse.json()) as UserDetailsInterface;
 
   return { token, user };
 }

@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
-import { Footer } from "../Footer/Footer";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
@@ -55,7 +54,6 @@ export function HomePage() {
           <RenderJobs filteredJobs={filteredJobs} />
         </>
       </div>
-      <Footer />
     </div>
   );
 }
