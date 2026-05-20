@@ -1,0 +1,50 @@
+.gridDashboardContainer {
+  display: grid;
+  grid-template-columns: 250px 1000px 1fr;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas:
+    "aside nav nav"
+    "aside section preview"
+    "footer section preview";
+  height: 100vh;
+  gap: 1em;
+}
+
+.asideDashboardContainer {
+  grid-area: aside;
+  background-color: red;
+  padding: 0 1em;
+}
+
+.navDashboardContainer {
+  grid-area: nav;
+  background-color: aqua;
+  height: 50px;
+  padding: 0 1em;
+}
+
+.sectionDashboardContainer {
+  grid-area: section;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 0 1em;
+}
+
+.previewDashboardContainer {
+  grid-area: preview;
+  background-color: blue;
+  margin-right: 1em;
+  padding: 0 1em;
+}
+
+.userProfilePhotoContainer {
+  outline: 2px solid red;
+  height: 100px;
+}
+
+.userProfileContainer {
+  outline: 2px solid black;
+  height: 100%;
+}

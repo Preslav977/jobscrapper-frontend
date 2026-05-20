@@ -5,7 +5,7 @@ import { userDetailsContext } from "../../context/userDetailsContext";
 
 export function ProtectRoutes({
   children,
-  requireAdmin = false,
+  requireAdmin,
 }: {
   children: ReactNode;
   requireAdmin: boolean;

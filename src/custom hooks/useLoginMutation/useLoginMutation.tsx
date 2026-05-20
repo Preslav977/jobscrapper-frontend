@@ -21,7 +21,7 @@ export function useLoginMutation() {
 
       setIsUserLoggedIn(true);
 
-      void navigate("/");
+      void navigate("/dashboard");
     },
   });
 }

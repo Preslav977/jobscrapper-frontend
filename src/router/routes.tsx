@@ -24,7 +24,7 @@ export const routes = [
       {
         path: "dashboard",
         element: (
-          <ProtectRoutes requireAdmin>
+          <ProtectRoutes requireAdmin={false}>
             <Dashboard />
           </ProtectRoutes>
         ),

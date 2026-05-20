@@ -36,7 +36,7 @@
 
 .formHeader {
   margin-bottom: -0.2em;
-  font-size: var(--secondary-font-size);
+  font-size: var(--main-font-size);
   color: var(--main-color);
 }
 
