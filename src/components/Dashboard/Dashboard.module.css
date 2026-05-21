@@ -4,15 +4,13 @@
   grid-template-rows: 50px 1fr;
   grid-template-areas:
     "aside nav nav"
-    "aside section preview"
-    "footer section preview";
+    "aside section preview";
   height: 100vh;
   gap: 1em;
 }
 
 .asideDashboardContainer {
   grid-area: aside;
-  background-color: red;
   padding: 0 1em;
 }
 
@@ -47,4 +45,46 @@
 .userProfileContainer {
   outline: 2px solid black;
   height: 100%;
+}
+
+.userProfileSpan {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: aqua;
+}
+
+.asideUserProfileWrapper {
+  display: flex;
+  gap: 0.25em;
+
+  line-height: 1.15;
+  align-items: center;
+  padding: 1em 0;
+}
+
+.userFlexedColumnWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userFlexedContainer {
+  display: flex;
+  gap: 0.5em;
+}
+
+.asideMenuFlexedContainer {
+  display: flex;
+  gap: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+.asideMenuSVG {
+  width: 20px;
+}
+
+.homeSpanContainer {
+  margin-bottom: 0.5em;
 }
