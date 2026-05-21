@@ -10,6 +10,8 @@
   --tertiary-color: oklch(98.5% 0 0);
   --main-max-width: 400px;
   --main-max-height: 500px;
+  --aside-main-background-color: oklch(97% 0 0);
+  --aside-main-color: oklch(55.6% 0 0);
 }
 
 *,
