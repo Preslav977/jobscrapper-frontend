@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { userDetailsContext } from "../../context/userDetailsContext";
 import { AsideContent } from "../AsideContent/AsideContent";
+import { NavContent } from "../NavContent/NavContent";
 import styles from "./Dashboard.module.css";
 
 export function Dashboard() {
@@ -12,7 +13,9 @@ export function Dashboard() {
         <AsideContent userDetails={userDetails!} />
       </aside>
 
-      <nav className={styles.navDashboardContainer}>Profile</nav>
+      <nav className={styles.navDashboardContainer}>
+        <NavContent userDetails={userDetails!} />
+      </nav>
       <section className={styles.sectionDashboardContainer}>
         <div className={styles.userProfilePhotoContainer}></div>
 

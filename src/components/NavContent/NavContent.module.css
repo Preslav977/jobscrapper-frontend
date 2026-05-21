@@ -1,0 +1,48 @@
+.navDashboardSVG {
+  width: 15px;
+}
+
+.navDashboardContent {
+  display: flex;
+  gap: 0.5em;
+}
+
+.userProfileSpan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--aside-main-background-color);
+  cursor: pointer;
+}
+
+.navDashboardDropDown {
+  position: absolute;
+  right: 20px;
+  width: 200px;
+  background-color: var(--tertiary-color);
+  padding: 0.35em 0.75em;
+  box-shadow: var(--main-box-shadow);
+}
+
+.navDashboardDropDown > .userEmail {
+  color: var(--aside-main-color);
+}
+
+.userProfilePara {
+  color: var(--main-color);
+  transition: background-color 0.5 seconds ease-in-out;
+}
+
+.userLogOutPara {
+  color: var(--validation-error);
+  transition: background-color 0.5 seconds ease-in-out;
+}
+
+.userProfilePara:hover,
+.userLogOutPara:hover {
+  background-color: var(--aside-main-background-color);
+  cursor: pointer;
+}

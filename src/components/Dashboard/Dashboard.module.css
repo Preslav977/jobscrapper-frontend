@@ -12,13 +12,17 @@
 .asideDashboardContainer {
   grid-area: aside;
   padding: 0 1em;
+  box-shadow: var(--main-box-shadow);
 }
 
 .navDashboardContainer {
   grid-area: nav;
-  background-color: aqua;
   height: 50px;
   padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--main-box-shadow);
 }
 
 .sectionDashboardContainer {
