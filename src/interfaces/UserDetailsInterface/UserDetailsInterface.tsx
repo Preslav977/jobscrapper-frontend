@@ -1,6 +1,7 @@
 export type Role = "USER" | "ADMIN";
 
 export interface UserDetailsInterface {
+  id: number;
   firstName: string;
   lastName: string;
   password: string;

@@ -1,11 +1,35 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { userDetailsContext } from "../../context/userDetailsContext";
+import { useUpdateUser } from "../../custom hooks/useUpdateUser/userUpdateUser";
 import { AsideContent } from "../AsideContent/AsideContent";
 import { NavContent } from "../NavContent/NavContent";
 import styles from "./Dashboard.module.css";
 
 export function Dashboard() {
   const { userDetails } = useContext(userDetailsContext)!;
+
+  const { mutate, error } = useUpdateUser();
+
+  const { register } = useForm();
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const formData = new FormData();
+
+      formData.append("file", file);
+
+      mutate({ formData, id: userDetails!.id });
+    }
+  };
+
+  const onSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    mutate({ formData: new FormData(event.target), id: userDetails!.id });
+  };
 
   return (
     <div className={styles.gridDashboardContainer}>
@@ -33,7 +57,14 @@ export function Dashboard() {
             </p>
           </div>
           <form className={styles.formUserProfilePicture}>
-            <input className={styles.userProfilePictureInput} type="file" />
+            <input
+              className={styles.userProfilePictureInput}
+              type="file"
+              {...(register("file"),
+              {
+                onChange: (e) => handleFileChange(e),
+              })}
+            />
             <span className={styles.userProfilePictureSpan}>
               <img
                 className={styles.userProfilePictureSVGSpan}
@@ -52,7 +83,7 @@ export function Dashboard() {
         </div>
 
         <div className={styles.userProfileFormContainer}>
-          <form className={styles.formContainer}>
+          <form onSubmit={onSubmit} className={styles.formContainer}>
             <div className={styles.formFlexedImgContainer}>
               <img
                 className={styles.userProfilePictureSVGSpan}
@@ -71,6 +102,7 @@ export function Dashboard() {
                 type="text"
                 id="firstName"
                 aria-label="firstName"
+                {...register("firstName")}
                 placeholder="First Name"
               />
             </label>

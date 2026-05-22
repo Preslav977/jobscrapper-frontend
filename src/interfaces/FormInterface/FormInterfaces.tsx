@@ -1,6 +1,7 @@
 export type Role = "USER" | "ADMIN";
 
 export interface FormSignUp {
+  id?: number;
   firstName?: string;
   lastName?: string;
   password: string;
@@ -29,3 +30,8 @@ export interface FormLogin {
 export interface BearerToken {
   token: string;
 }
+
+export type FormUpdateUser = Omit<
+  FormSignUp,
+  "email" | "password" | "confirmPassword"
+>;
