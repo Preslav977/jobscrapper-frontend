@@ -4,7 +4,7 @@
   grid-template-rows: 50px 1fr;
   grid-template-areas:
     "aside nav nav"
-    "aside section preview";
+    "aside profile preview";
   height: 100vh;
   gap: 1em;
 }
@@ -26,12 +26,28 @@
 }
 
 .sectionDashboardContainer {
-  grid-area: section;
-  background-color: bisque;
-  display: flex;
-  flex-direction: column;
+  grid-area: profile;
+  display: grid;
+  grid-template-areas:
+    "photo"
+    "details";
+  grid-template-rows: 130px;
   gap: 1em;
-  padding: 0 1em;
+}
+
+.userProfilePictureContainer {
+  grid-area: photo;
+  height: 130px;
+  outline: 1px solid black;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userProfileFormContainer {
+  grid-area: details;
+  background-color: aqua;
 }
 
 .previewDashboardContainer {
@@ -41,12 +57,70 @@
   padding: 0 1em;
 }
 
-.userProfilePhotoContainer {
-  outline: 2px solid red;
-  height: 100px;
+.userProfilePictureSVG {
+  width: 20px;
 }
 
-.userProfileContainer {
-  outline: 2px solid black;
-  height: 100%;
+.userProfilePictureFlexedWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.userProfilePictureFlexedContainer {
+  display: flex;
+  gap: 0.5em;
+}
+
+.userProfilePicturePara {
+  margin-top: 0.5em;
+  width: 70%;
+  line-height: 1.15;
+}
+
+.userProfilePictureSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--aside-main-background-color);
+  position: relative;
+}
+
+.userProfilePictureSVGSpan {
+  width: 25px;
+}
+
+.userProfilePictureInput {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.formUserProfilePicture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userProfilePicturePlusContainer {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform: translate(20px, 25px);
+  box-shadow: var(--main-box-shadow);
+}
+
+.userProfilePicturePlus {
+  width: 10px;
 }

@@ -17,9 +17,41 @@ export function Dashboard() {
         <NavContent userDetails={userDetails!} />
       </nav>
       <section className={styles.sectionDashboardContainer}>
-        <div className={styles.userProfilePhotoContainer}></div>
+        <div className={styles.userProfilePictureContainer}>
+          <div className={styles.userProfilePictureFlexedWrapper}>
+            <div className={styles.userProfilePictureFlexedContainer}>
+              <img
+                className={styles.userProfilePictureSVG}
+                src="./camera.svg"
+                alt="camera"
+              />
+              <p>Profile photo</p>
+            </div>
+            <p className={styles.userProfilePicturePara}>
+              Upload a profile picture so companies and recruiters can recognize
+              you more easily.
+            </p>
+          </div>
+          <form className={styles.formUserProfilePicture}>
+            <input className={styles.userProfilePictureInput} type="file" />
+            <span className={styles.userProfilePictureSpan}>
+              <img
+                className={styles.userProfilePictureSVGSpan}
+                src="./camera.svg"
+                alt="camera"
+              />
+            </span>
+            <div className={styles.userProfilePicturePlusContainer}>
+              <img
+                className={styles.userProfilePicturePlus}
+                src="./plus.svg"
+                alt="plus"
+              />
+            </div>
+          </form>
+        </div>
 
-        <div className={styles.userProfileContainer}></div>
+        <div className={styles.userProfileFormContainer}></div>
       </section>
 
       <div className={styles.previewDashboardContainer}></div>
