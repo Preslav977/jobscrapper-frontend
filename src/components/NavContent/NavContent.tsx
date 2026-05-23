@@ -55,7 +55,11 @@ export function NavContent({
             </div>
           </div>
         ) : (
-          <img src={userDetails.profilePicture} alt={"user profile picture"} />
+          <img
+            className={styles.userProfileSpan}
+            src={userDetails.profilePicture}
+            alt={"user profile picture"}
+          />
         )}
       </div>
     </>

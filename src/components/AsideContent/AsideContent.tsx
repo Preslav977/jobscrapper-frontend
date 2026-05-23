@@ -16,7 +16,11 @@ export function AsideContent({
         {!userDetails?.profilePicture ? (
           <span className={styles.userProfileSpan}></span>
         ) : (
-          <img src={userDetails.profilePicture} alt={"user profile picture"} />
+          <img
+            className={styles.userProfileSpan}
+            src={userDetails.profilePicture}
+            alt={"user profile picture"}
+          />
         )}
         <div className={styles.userFlexedColumnWrapper}>
           <div className={styles.userFlexedContainer}>

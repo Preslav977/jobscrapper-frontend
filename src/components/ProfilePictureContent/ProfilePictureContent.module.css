@@ -1,0 +1,67 @@
+.userProfilePictureFlexedWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.userProfilePictureFlexedContainer {
+  display: flex;
+  gap: 0.5em;
+}
+
+.userProfilePicturePara {
+  margin-top: 0.5em;
+  width: 70%;
+  line-height: 1.15;
+}
+
+.userProfilePictureSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--aside-main-background-color);
+  position: relative;
+}
+
+.userProfilePictureSVGSpan {
+  width: 20px;
+}
+
+.userProfilePictureInput {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.formUserProfilePicture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userProfilePicturePlusContainer {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform: translate(20px, 25px);
+  box-shadow: var(--main-box-shadow);
+}
+
+.userProfilePicturePlus {
+  width: 10px;
+}
+
+.userProfilePictureSVG {
+  width: 20px;
+}
