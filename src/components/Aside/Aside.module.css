@@ -1,0 +1,64 @@
+.asideWrapper {
+  display: flex;
+  gap: 0.25em;
+  line-height: 1.15;
+  align-items: center;
+  padding: 1em 0;
+}
+
+.userProfilePictureSpan {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--aside-main-background-color);
+}
+
+.asideFlexedContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.asideFlexedNamesContainer {
+  display: flex;
+  gap: 0.5em;
+  font-weight: bold;
+}
+
+.asideUserEmail {
+  color: var(--aside-main-color);
+}
+
+.asideMenuContainer {
+  display: flex;
+  gap: 0.5em;
+  padding-bottom: 0.25em;
+  border: 0;
+  background-color: var(--tertiary-color);
+  width: 100%;
+  padding-left: 0.5em;
+  border-radius: var(--main-border-radius);
+  text-decoration: none;
+  color: var(--main-color);
+  transition: background-color 0.5 seconds ease-in-out;
+}
+
+.asideMenuAnchors {
+  display: flex;
+  flex-direction: column;
+}
+
+.asideMenuContainer:hover {
+  background-color: var(--aside-main-background-color);
+  cursor: pointer;
+}
+
+.asideHomeSpan {
+  margin-bottom: 0.5em;
+  color: var(--aside-main-color);
+}
+
+.asideMenuSVG {
+  width: 20px;
+}

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { userDetailsContext } from "../../context/userDetailsContext";
-import { AsideContent } from "../AsideContent/AsideContent";
+import { Aside } from "../Aside/Aside";
 import { NavContent } from "../NavContent/NavContent";
 import { ProfileFormContent } from "../ProfileFormContent/ProfileFormContent";
 import { ProfilePictureContent } from "../ProfilePictureContent/ProfilePictureContent";
@@ -12,7 +12,7 @@ export function Dashboard() {
   return (
     <div className={styles.gridDashboardContainer}>
       <aside className={styles.asideDashboardContainer}>
-        <AsideContent userDetails={userDetails!} />
+        <Aside userDetails={userDetails!} />
       </aside>
 
       <nav className={styles.navDashboardContainer}>

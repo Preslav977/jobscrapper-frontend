@@ -1,39 +1,35 @@
 import { Link, useLocation } from "react-router";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
-import styles from "./AsideContent.module.css";
+import styles from "./Aside.module.css";
 
-export function AsideContent({
-  userDetails,
-}: {
-  userDetails: UserDetailsInterface;
-}) {
+export function Aside({ userDetails }: { userDetails: UserDetailsInterface }) {
   const location = useLocation();
 
   const { pathname } = location;
   return (
     <>
-      <div className={styles.asideUserProfileWrapper}>
+      <div className={styles.asideWrapper}>
         {!userDetails?.profilePicture ? (
-          <span className={styles.userProfileSpan}></span>
+          <span className={styles.userProfilePictureSpan}></span>
         ) : (
           <img
-            className={styles.userProfileSpan}
+            className={styles.userProfilePictureSpan}
             src={userDetails.profilePicture}
-            alt={"user profile picture"}
+            alt="user profile picture around span"
           />
         )}
-        <div className={styles.userFlexedColumnWrapper}>
-          <div className={styles.userFlexedContainer}>
+        <div className={styles.asideFlexedContainer}>
+          <div className={styles.asideFlexedNamesContainer}>
             <p>{!userDetails?.firstName ? "null" : userDetails?.firstName}</p>
             <p>{!userDetails?.lastName ? "null" : userDetails?.lastName}</p>
           </div>
-          <a className={styles.userDetailsEmail} href={userDetails.email}>
+          <a className={styles.asideUserEmail} href={userDetails.email}>
             {userDetails?.email}
           </a>
         </div>
       </div>
-      <div className={styles.asideMenuWrapper}>
-        <div className={styles.homeSpanContainer}>
+      <div>
+        <div className={styles.asideHomeSpan}>
           <span>Home</span>
         </div>
         <Link
@@ -41,17 +37,17 @@ export function AsideContent({
             backgroundColor: pathname === "/" ? "lightgray" : "",
           }}
           to={"/"}
-          className={styles.asideMenuFlexedContainer}
+          className={styles.asideMenuContainer}
         >
           <img className={styles.asideMenuSVG} src="./home.svg" alt="home" />
-          <span className={styles.homeSpan}>Home</span>
+          <span className={styles.asideHomeSpan}>Home</span>
         </Link>
         <Link
           style={{
             backgroundColor: pathname === "/dashboard" ? "lightgray" : "",
           }}
           to={"/dashboard"}
-          className={styles.asideMenuFlexedContainer}
+          className={styles.asideMenuContainer}
         >
           <img
             className={styles.asideMenuSVG}
