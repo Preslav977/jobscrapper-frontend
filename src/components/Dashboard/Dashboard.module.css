@@ -1,4 +1,4 @@
-.gridDashboardContainer {
+.gridWrapper {
   display: grid;
   grid-template-columns: 250px 1000px 1fr;
   grid-template-rows: 50px 1fr;
@@ -9,13 +9,13 @@
   gap: 1em;
 }
 
-.asideDashboardContainer {
+.asideContainer {
   grid-area: aside;
   padding: 0 1em;
   box-shadow: var(--main-box-shadow);
 }
 
-.navDashboardContainer {
+.navContainer {
   grid-area: nav;
   height: 50px;
   padding: 0 1em;
@@ -25,17 +25,17 @@
   box-shadow: var(--main-box-shadow);
 }
 
-.sectionDashboardContainer {
+.profilePictureAndFormSection {
   grid-area: profile;
   display: grid;
   grid-template-areas:
     "photo"
-    "details";
+    "form";
   grid-template-rows: 130px;
   gap: 1em;
 }
 
-.userProfilePictureContainer {
+.profilePictureContainer {
   grid-area: photo;
   height: 130px;
   outline: 1px solid black;
@@ -45,11 +45,11 @@
   align-items: center;
 }
 
-.userProfileFormContainer {
-  grid-area: details;
+.userProfileForm {
+  grid-area: form;
 }
 
-.previewDashboardContainer {
+.previewContainer {
   grid-area: preview;
   background-color: blue;
   margin-right: 1em;

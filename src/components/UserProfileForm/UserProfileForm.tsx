@@ -3,7 +3,7 @@ import { useUpdateUser } from "../../custom hooks/useUpdateUser/userUpdateUser";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
 import styles from "./ProfileFormContent.module.css";
 
-export function ProfileFormContent({
+export function UserProfileForm({
   userDetails,
 }: {
   userDetails: UserDetailsInterface;
@@ -20,20 +20,20 @@ export function ProfileFormContent({
 
   return (
     <>
-      <form onSubmit={onSubmit} className={styles.formContainer}>
-        <div className={styles.formFlexedImgContainer}>
+      <form onSubmit={onSubmit} className={styles.profileFormContainer}>
+        <div className={styles.profileFormUserContainer}>
           <img
-            className={styles.userProfilePictureSVGSpan}
+            className={styles.userProfilePictureSpan}
             src="./user.svg"
             alt="user"
           />
           <p>Your Profile</p>
         </div>
-        <p className={styles.formParaInfo}>
+        <p className={styles.paraInfo}>
           Fill in your basic info to complete your profile and help us tailor
           your experience.
         </p>
-        <label className={styles.formLabel} htmlFor="firstName">
+        <label className={styles.profileFormLabel} htmlFor="firstName">
           First Name
           <input
             type="text"
@@ -43,7 +43,7 @@ export function ProfileFormContent({
             placeholder="First Name"
           />
         </label>
-        <label className={styles.formLabel} htmlFor="lastName">
+        <label className={styles.profileFormLabel} htmlFor="lastName">
           Last Name
           <input
             type="text"
@@ -54,7 +54,7 @@ export function ProfileFormContent({
           />
         </label>
 
-        <label className={styles.formLabel} htmlFor="location">
+        <label className={styles.profileFormLabel} htmlFor="location">
           Last Name
           <input
             type="text"
@@ -65,7 +65,7 @@ export function ProfileFormContent({
           />
         </label>
 
-        <label className={styles.formLabel} htmlFor="phoneNumber">
+        <label className={styles.profileFormLabel} htmlFor="phoneNumber">
           Phone
           <input
             type="tel"
@@ -76,7 +76,7 @@ export function ProfileFormContent({
           />
         </label>
 
-        <label className={styles.formLabel} htmlFor="linkedInURL">
+        <label className={styles.profileFormLabel} htmlFor="linkedInURL">
           LinkedIn URL
           <input
             type="text"
@@ -87,7 +87,7 @@ export function ProfileFormContent({
           />
         </label>
 
-        <label className={styles.formLabel} htmlFor="githubURL">
+        <label className={styles.profileFormLabel} htmlFor="githubURL">
           GitHub URL
           <input
             type="text"
@@ -98,7 +98,7 @@ export function ProfileFormContent({
           />
         </label>
 
-        <label className={styles.formLabel} htmlFor="portfolioURL">
+        <label className={styles.profileFormLabel} htmlFor="portfolioURL">
           Portfolio URL
           <input
             type="text"
@@ -109,7 +109,7 @@ export function ProfileFormContent({
           />
         </label>
 
-        <button className={styles.submitButton} type="submit">
+        <button className={styles.profileFormSubmitBtn} type="submit">
           Save
         </button>
       </form>

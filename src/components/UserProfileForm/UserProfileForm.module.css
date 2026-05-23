@@ -1,0 +1,46 @@
+.profileFormContainer {
+  border-radius: var(--main-border-radius);
+  outline: 1px solid var(--main-color);
+  padding: 1em;
+}
+
+.profileFormUserContainer {
+  display: flex;
+  gap: 0.5em;
+}
+
+.userProfilePictureSpan {
+  width: 20px;
+}
+
+.paraInfo {
+  width: 50%;
+  margin-top: 0.5em;
+  margin-bottom: 0.8em;
+}
+
+.profileFormLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+}
+
+.profileFormContainer input {
+  padding: 0.2em;
+  border-radius: 0.45em;
+  padding-inline: 0.5em;
+  margin-top: 0.25em;
+}
+
+.profileFormSubmitBtn {
+  width: 100%;
+  margin-top: 1em;
+  background-color: var(--main-color);
+  color: var(--tertiary-color);
+  padding: 0.25em;
+  border-radius: 0.45em;
+}
+
+.profileFormSubmitBtn:hover {
+  cursor: pointer;
+}
