@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useUpdateUser } from "../../custom hooks/useUpdateUser/userUpdateUser";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
-import styles from "./ProfilePictureContent.module.css";
+import styles from "./UserProfilePicture.module.css";
 
-export function ProfilePictureContent({
+export function UserProfilePicture({
   userDetails,
 }: {
   userDetails: UserDetailsInterface;
@@ -26,23 +26,23 @@ export function ProfilePictureContent({
 
   return (
     <>
-      <div className={styles.userProfilePictureFlexedWrapper}>
-        <div className={styles.userProfilePictureFlexedContainer}>
+      <div className={styles.profilePictureWrapper}>
+        <div className={styles.profilePictureContainer}>
           <img
-            className={styles.userProfilePictureSVG}
+            className={styles.profilePictureSVG}
             src="./camera.svg"
             alt="camera"
           />
           <p>Profile photo</p>
         </div>
-        <p className={styles.userProfilePicturePara}>
+        <p className={styles.profilePicturePara}>
           Upload a profile picture so companies and recruiters can recognize you
           more easily.
         </p>
       </div>
-      <form className={styles.formUserProfilePicture}>
+      <form className={styles.formUploadingProfilePicture}>
         <input
-          className={styles.userProfilePictureInput}
+          className={styles.inputChangingProfilePicture}
           type="file"
           {...(register("file"),
           {
@@ -51,14 +51,14 @@ export function ProfilePictureContent({
         />
         <span className={styles.userProfilePictureSpan}>
           <img
-            className={styles.userProfilePictureSVGSpan}
+            className={styles.profilePictureSVG}
             src="./camera.svg"
             alt="camera"
           />
         </span>
-        <div className={styles.userProfilePicturePlusContainer}>
+        <div className={styles.profilePictureAbsoluteContainer}>
           <img
-            className={styles.userProfilePicturePlus}
+            className={styles.profilePicturePluSVG}
             src="./plus.svg"
             alt="plus"
           />

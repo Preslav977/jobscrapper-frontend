@@ -3,7 +3,7 @@ import { userDetailsContext } from "../../context/userDetailsContext";
 import { Aside } from "../Aside/Aside";
 import { Nav } from "../Nav/Nav";
 import { ProfileFormContent } from "../ProfileFormContent/ProfileFormContent";
-import { ProfilePictureContent } from "../ProfilePictureContent/ProfilePictureContent";
+import { UserProfilePicture } from "../UserProfilePicture/UserProfilePicture";
 import styles from "./Dashboard.module.css";
 
 export function Dashboard() {
@@ -20,7 +20,7 @@ export function Dashboard() {
       </nav>
       <section className={styles.sectionDashboardContainer}>
         <div className={styles.userProfilePictureContainer}>
-          <ProfilePictureContent userDetails={userDetails!} />
+          <UserProfilePicture userDetails={userDetails!} />
         </div>
 
         <div className={styles.userProfileFormContainer}>

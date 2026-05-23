@@ -1,17 +1,37 @@
-.userProfilePictureFlexedWrapper {
+.profilePictureWrapper {
   display: flex;
   flex-direction: column;
 }
 
-.userProfilePictureFlexedContainer {
+.profilePictureContainer {
   display: flex;
   gap: 0.5em;
 }
 
-.userProfilePicturePara {
+.profilePictureSVG {
+  width: 20px;
+}
+
+.profilePicturePara {
   margin-top: 0.5em;
   width: 70%;
   line-height: 1.15;
+}
+
+.formUploadingProfilePicture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputChangingProfilePicture {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .userProfilePictureSpan {
@@ -25,27 +45,7 @@
   position: relative;
 }
 
-.userProfilePictureSVGSpan {
-  width: 20px;
-}
-
-.userProfilePictureInput {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  z-index: 1;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.formUserProfilePicture {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.userProfilePicturePlusContainer {
+.profilePictureAbsoluteContainer {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -58,10 +58,6 @@
   box-shadow: var(--main-box-shadow);
 }
 
-.userProfilePicturePlus {
+.profilePicturePluSVG {
   width: 10px;
-}
-
-.userProfilePictureSVG {
-  width: 20px;
 }
