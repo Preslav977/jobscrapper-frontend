@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
-import styles from "./NavContent.module.css";
+import styles from "./Nav.module.css";
 
-export function NavContent({
-  userDetails,
-}: {
-  userDetails: UserDetailsInterface;
-}) {
+export function Nav({ userDetails }: { userDetails: UserDetailsInterface }) {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -24,39 +20,46 @@ export function NavContent({
 
   return (
     <>
-      <div className={styles.navDashboardContent}>
+      <div className={styles.navContainer}>
         <img
-          className={styles.navDashboardSVG}
+          className={styles.navProfilePictureSVG}
           src="/user.svg"
           alt="user profile"
         />
         <p>Profile</p>
       </div>
-      <div className={styles.navDashboardContent}>
-        <img className={styles.navDashboardSVG} src="/bell.svg" alt="bell" />
+      <div className={styles.navContainer}>
+        <img
+          className={styles.navProfilePictureSVG}
+          src="/bell.svg"
+          alt="bell"
+        />
         {!userDetails?.profilePicture ? (
           <div>
-            <span onClick={onClickDropDown} className={styles.userProfileSpan}>
+            <span
+              onClick={onClickDropDown}
+              className={styles.navUserProfilePictureSpan}
+            >
               U
             </span>
             <div
               style={{
                 display: !showDropDown ? "none" : "block",
               }}
-              className={styles.navDashboardDropDown}
+              className={styles.navDropdown}
             >
               <p className={styles.userEmail}>{userDetails?.email}</p>
               <hr />
-              <p className={styles.userProfilePara}>Profile</p>
+              <p className={styles.profilePara}>Profile</p>
               <hr />
-              <p onClick={logOut} className={styles.userLogOutPara}>
+              <p onClick={logOut} className={styles.logoutPara}>
                 Log out
               </p>
             </div>
           </div>
         ) : (
           <img
-            className={styles.userProfileSpan}
+            className={styles.navUserProfilePictureSpan}
             src={userDetails.profilePicture}
             alt={"user profile picture"}
           />

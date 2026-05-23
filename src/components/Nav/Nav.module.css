@@ -1,13 +1,13 @@
-.navDashboardSVG {
-  width: 15px;
-}
-
-.navDashboardContent {
+.navContainer {
   display: flex;
   gap: 0.5em;
 }
 
-.userProfileSpan {
+.navProfilePictureSVG {
+  width: 20px;
+}
+
+.navUserProfilePictureSpan {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-.navDashboardDropDown {
+.navDropdown {
   position: absolute;
   right: 20px;
   width: 200px;
@@ -27,16 +27,16 @@
   box-shadow: var(--main-box-shadow);
 }
 
-.navDashboardDropDown > .userEmail {
+.navDropdown > .userEmail {
   color: var(--aside-main-color);
 }
 
-.userProfilePara {
+.profilePara {
   color: var(--main-color);
   transition: background-color 0.5 seconds ease-in-out;
 }
 
-.userLogOutPara {
+.logoutPara {
   color: var(--validation-error);
   transition: background-color 0.5 seconds ease-in-out;
 }

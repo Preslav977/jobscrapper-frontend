@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { userDetailsContext } from "../../context/userDetailsContext";
 import { Aside } from "../Aside/Aside";
-import { NavContent } from "../NavContent/NavContent";
+import { Nav } from "../Nav/Nav";
 import { ProfileFormContent } from "../ProfileFormContent/ProfileFormContent";
 import { ProfilePictureContent } from "../ProfilePictureContent/ProfilePictureContent";
 import styles from "./Dashboard.module.css";
@@ -16,7 +16,7 @@ export function Dashboard() {
       </aside>
 
       <nav className={styles.navDashboardContainer}>
-        <NavContent userDetails={userDetails!} />
+        <Nav userDetails={userDetails!} />
       </nav>
       <section className={styles.sectionDashboardContainer}>
         <div className={styles.userProfilePictureContainer}>
