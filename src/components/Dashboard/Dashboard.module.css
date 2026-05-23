@@ -50,8 +50,8 @@
 }
 
 .previewContainer {
+  outline: 1px solid black;
   grid-area: preview;
-  background-color: blue;
   margin-right: 1em;
   padding: 0 1em;
 }

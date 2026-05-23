@@ -2,61 +2,67 @@ import { Link, useLocation } from "react-router";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
 import styles from "./Aside.module.css";
 
-export function Aside({ userDetails }: { userDetails: UserDetailsInterface }) {
+export function Aside({
+  userDetails,
+}: {
+  userDetails: UserDetailsInterface | null;
+}) {
   const location = useLocation();
 
   const { pathname } = location;
-  return (
-    <>
-      <div className={styles.asideWrapper}>
-        {!userDetails?.profilePicture ? (
-          <span className={styles.userProfilePictureSpan}></span>
-        ) : (
-          <img
-            className={styles.userProfilePictureSpan}
-            src={userDetails.profilePicture}
-            alt="user profile picture around span"
-          />
-        )}
-        <div className={styles.asideFlexedContainer}>
-          <div className={styles.asideFlexedNamesContainer}>
-            <p>{!userDetails?.firstName ? "null" : userDetails?.firstName}</p>
-            <p>{!userDetails?.lastName ? "null" : userDetails?.lastName}</p>
+
+  if (userDetails)
+    return (
+      <>
+        <div className={styles.asideWrapper}>
+          {!userDetails.profilePicture ? (
+            <span className={styles.userProfilePictureSpan}></span>
+          ) : (
+            <img
+              className={styles.userProfilePictureSpan}
+              src={userDetails.profilePicture}
+              alt="user profile picture around span"
+            />
+          )}
+          <div className={styles.asideFlexedContainer}>
+            <div className={styles.asideFlexedNamesContainer}>
+              <p>{!userDetails.firstName ? "null" : userDetails.firstName}</p>
+              <p>{!userDetails.lastName ? "null" : userDetails.lastName}</p>
+            </div>
+            <a className={styles.asideUserEmail} href={userDetails.email}>
+              {userDetails.email}
+            </a>
           </div>
-          <a className={styles.asideUserEmail} href={userDetails.email}>
-            {userDetails?.email}
-          </a>
         </div>
-      </div>
-      <div>
-        <div className={styles.asideHomeSpan}>
-          <span>Home</span>
+        <div>
+          <div className={styles.asideHomeSpan}>
+            <span>Home</span>
+          </div>
+          <Link
+            style={{
+              backgroundColor: pathname === "/" ? "lightgray" : "",
+            }}
+            to={"/"}
+            className={styles.asideMenuContainer}
+          >
+            <img className={styles.asideMenuSVG} src="./home.svg" alt="home" />
+            <span className={styles.asideHomeSpan}>Home</span>
+          </Link>
+          <Link
+            style={{
+              backgroundColor: pathname === "/dashboard" ? "lightgray" : "",
+            }}
+            to={"/dashboard"}
+            className={styles.asideMenuContainer}
+          >
+            <img
+              className={styles.asideMenuSVG}
+              src="./user.svg"
+              alt="user profile"
+            />
+            <p>Profile</p>
+          </Link>
         </div>
-        <Link
-          style={{
-            backgroundColor: pathname === "/" ? "lightgray" : "",
-          }}
-          to={"/"}
-          className={styles.asideMenuContainer}
-        >
-          <img className={styles.asideMenuSVG} src="./home.svg" alt="home" />
-          <span className={styles.asideHomeSpan}>Home</span>
-        </Link>
-        <Link
-          style={{
-            backgroundColor: pathname === "/dashboard" ? "lightgray" : "",
-          }}
-          to={"/dashboard"}
-          className={styles.asideMenuContainer}
-        >
-          <img
-            className={styles.asideMenuSVG}
-            src="./user.svg"
-            alt="user profile"
-          />
-          <p>Profile</p>
-        </Link>
-      </div>
-    </>
-  );
+      </>
+    );
 }

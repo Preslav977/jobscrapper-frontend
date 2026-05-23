@@ -1,0 +1,45 @@
+.previewFlexedContainer {
+  display: flex;
+  gap: 0.5em;
+  padding-top: 1.5em;
+}
+
+.previewSVG {
+  width: 20px;
+}
+
+.previewParaInfo {
+  width: 70%;
+  margin: 1em 0;
+}
+
+.previewUserProfilePictureSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--aside-main-background-color);
+}
+
+.previewUserInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  gap: 0.5em;
+  box-shadow: var(--main-box-shadow);
+}
+
+.previewFlexUserInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.previewUserEmail {
+  font-weight: bold;
+  margin-bottom: 1em;
+}

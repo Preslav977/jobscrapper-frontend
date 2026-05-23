@@ -45,6 +45,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  object-fit: contain;
   background-color: var(--aside-main-background-color);
   position: relative;
 }

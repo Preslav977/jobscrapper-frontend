@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link } from "react-router";
+import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
 import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
@@ -14,6 +16,8 @@ export function HomePage() {
     setSelectedCompany,
     setSearchQuery,
   } = useJobSearch();
+
+  const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
 
   function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     const formData = new FormData(e.currentTarget);
@@ -34,9 +38,15 @@ export function HomePage() {
             Explore <span className={styles.homePageAnchorArrowDown}>⌄</span>
           </Link>
 
-          <Link className={styles.homePageAnchor} to={"/login"}>
-            Log In
-          </Link>
+          {!isUserLoggedIn ? (
+            <Link className={styles.homePageAnchor} to={"/login"}>
+              Log In
+            </Link>
+          ) : (
+            <Link className={styles.homePageAnchor} to={"/dashboard"}>
+              Dashboard
+            </Link>
+          )}
         </div>
       </div>
       <div className={styles.homePageContainer}>

@@ -6,7 +6,7 @@ import styles from "./UserProfilePicture.module.css";
 export function UserProfilePicture({
   userDetails,
 }: {
-  userDetails: UserDetailsInterface;
+  userDetails: UserDetailsInterface | null;
 }) {
   const { register } = useForm();
 
@@ -20,62 +20,63 @@ export function UserProfilePicture({
 
       formData.append("file", file);
 
-      mutate({ formData, id: userDetails.id });
+      mutate({ formData, id: userDetails ? userDetails.id : 0 });
     }
   };
 
-  return (
-    <>
-      <div className={styles.profilePictureWrapper}>
-        <div className={styles.profilePictureContainer}>
-          <img
-            className={styles.defaultProfilePictureSVG}
-            src="./camera.svg"
-            alt="default profile picture"
-          />
-          <p>Profile photo</p>
-        </div>
-        <p className={styles.profilePicturePara}>
-          Upload a profile picture so companies and recruiters can recognize you
-          more easily.
-        </p>
-      </div>
-      <form className={styles.formUploadingProfilePicture}>
-        <input
-          className={styles.inputChangingProfilePicture}
-          type="file"
-          {...(register("file"),
-          {
-            onChange: (e) => handleFileChange(e),
-          })}
-        />
-        <span className={styles.userProfilePictureSpan}>
-          {!userDetails.profilePicture ? (
+  if (userDetails)
+    return (
+      <>
+        <div className={styles.profilePictureWrapper}>
+          <div className={styles.profilePictureContainer}>
             <img
               className={styles.defaultProfilePictureSVG}
               src="./camera.svg"
               alt="default profile picture"
             />
-          ) : (
-            <img
-              className={styles.profilePictureSVG}
-              src={userDetails.profilePicture}
-              alt="user profile picture"
-            />
-          )}
-        </span>
-        <div className={styles.profilePictureAbsoluteContainer}>
-          {!userDetails.profilePicture ? (
-            <img
-              className={styles.profilePicturePluSVG}
-              src="./plus.svg"
-              alt="click to upload image"
-            />
-          ) : (
-            <img src="./pencil.svg" alt="click to change image" />
-          )}
+            <p>Profile photo</p>
+          </div>
+          <p className={styles.profilePicturePara}>
+            Upload a profile picture so companies and recruiters can recognize
+            you more easily.
+          </p>
         </div>
-      </form>
-    </>
-  );
+        <form className={styles.formUploadingProfilePicture}>
+          <input
+            className={styles.inputChangingProfilePicture}
+            type="file"
+            {...(register("file"),
+            {
+              onChange: (e) => handleFileChange(e),
+            })}
+          />
+          <span className={styles.userProfilePictureSpan}>
+            {!userDetails.profilePicture ? (
+              <img
+                className={styles.defaultProfilePictureSVG}
+                src="./camera.svg"
+                alt="default profile picture"
+              />
+            ) : (
+              <img
+                className={styles.profilePictureSVG}
+                src={userDetails.profilePicture}
+                alt="user profile picture"
+              />
+            )}
+          </span>
+          <div className={styles.profilePictureAbsoluteContainer}>
+            {!userDetails.profilePicture ? (
+              <img
+                className={styles.profilePicturePluSVG}
+                src="./plus.svg"
+                alt="click to upload image"
+              />
+            ) : (
+              <img src="./pencil.svg" alt="click to change image" />
+            )}
+          </div>
+        </form>
+      </>
+    );
 }
