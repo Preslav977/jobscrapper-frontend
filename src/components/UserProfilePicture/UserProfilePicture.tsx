@@ -29,9 +29,9 @@ export function UserProfilePicture({
       <div className={styles.profilePictureWrapper}>
         <div className={styles.profilePictureContainer}>
           <img
-            className={styles.profilePictureSVG}
+            className={styles.defaultProfilePictureSVG}
             src="./camera.svg"
-            alt="camera"
+            alt="default profile picture"
           />
           <p>Profile photo</p>
         </div>
@@ -50,18 +50,30 @@ export function UserProfilePicture({
           })}
         />
         <span className={styles.userProfilePictureSpan}>
-          <img
-            className={styles.profilePictureSVG}
-            src="./camera.svg"
-            alt="camera"
-          />
+          {!userDetails.profilePicture ? (
+            <img
+              className={styles.defaultProfilePictureSVG}
+              src="./camera.svg"
+              alt="default profile picture"
+            />
+          ) : (
+            <img
+              className={styles.profilePictureSVG}
+              src={userDetails.profilePicture}
+              alt="user profile picture"
+            />
+          )}
         </span>
         <div className={styles.profilePictureAbsoluteContainer}>
-          <img
-            className={styles.profilePicturePluSVG}
-            src="./plus.svg"
-            alt="plus"
-          />
+          {!userDetails.profilePicture ? (
+            <img
+              className={styles.profilePicturePluSVG}
+              src="./plus.svg"
+              alt="click to upload image"
+            />
+          ) : (
+            <img src="./pencil.svg" alt="click to change image" />
+          )}
         </div>
       </form>
     </>

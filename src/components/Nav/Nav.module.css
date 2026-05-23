@@ -41,8 +41,8 @@
   transition: background-color 0.5 seconds ease-in-out;
 }
 
-.userProfilePara:hover,
-.userLogOutPara:hover {
+.profilePara:hover,
+.logoutPara:hover {
   background-color: var(--aside-main-background-color);
   cursor: pointer;
 }

@@ -34,36 +34,37 @@ export function Nav({ userDetails }: { userDetails: UserDetailsInterface }) {
           src="/bell.svg"
           alt="bell"
         />
-        {!userDetails?.profilePicture ? (
-          <div>
-            <span
-              onClick={onClickDropDown}
-              className={styles.navUserProfilePictureSpan}
-            >
-              U
-            </span>
-            <div
-              style={{
-                display: !showDropDown ? "none" : "block",
-              }}
-              className={styles.navDropdown}
-            >
-              <p className={styles.userEmail}>{userDetails?.email}</p>
-              <hr />
-              <p className={styles.profilePara}>Profile</p>
-              <hr />
-              <p onClick={logOut} className={styles.logoutPara}>
-                Log out
-              </p>
-            </div>
-          </div>
-        ) : (
-          <img
+
+        <div>
+          <span
+            onClick={onClickDropDown}
             className={styles.navUserProfilePictureSpan}
-            src={userDetails.profilePicture}
-            alt={"user profile picture"}
-          />
-        )}
+          >
+            {!userDetails.profilePicture ? (
+              "U"
+            ) : (
+              <img
+                className={styles.navUserProfilePictureSpan}
+                src={userDetails.profilePicture}
+                alt={"user profile picture"}
+              />
+            )}
+          </span>
+          <div
+            style={{
+              display: !showDropDown ? "none" : "block",
+            }}
+            className={styles.navDropdown}
+          >
+            <p className={styles.userEmail}>{userDetails?.email}</p>
+            <hr />
+            <p className={styles.profilePara}>Profile</p>
+            <hr />
+            <p onClick={logOut} className={styles.logoutPara}>
+              Log out
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );

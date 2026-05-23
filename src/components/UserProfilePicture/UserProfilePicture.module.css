@@ -8,8 +8,12 @@
   gap: 0.5em;
 }
 
-.profilePictureSVG {
+.defaultProfilePictureSVG {
   width: 20px;
+}
+
+.profilePictureSVG {
+  width: 70px;
 }
 
 .profilePicturePara {

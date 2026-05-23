@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useUpdateUser } from "../../custom hooks/useUpdateUser/userUpdateUser";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
-import styles from "./ProfileFormContent.module.css";
+import styles from "./UserProfileForm.module.css";
 
 export function UserProfileForm({
   userDetails,
@@ -55,13 +55,24 @@ export function UserProfileForm({
         </label>
 
         <label className={styles.profileFormLabel} htmlFor="location">
-          Last Name
+          Location
           <input
             type="text"
             id="location"
             aria-label="location"
             {...register("location")}
             placeholder="City, Country"
+          />
+        </label>
+
+        <label className={styles.profileFormLabel} htmlFor="email">
+          Email
+          <input
+            type="email"
+            id="email"
+            aria-label="email"
+            placeholder={userDetails.email}
+            disabled
           />
         </label>
 
