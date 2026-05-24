@@ -1,3 +1,6 @@
+import type { Instructions } from "../CompanyInstructionsInterface/CompanyInstructionsInterface";
+import type { Steps } from "../CompanyStepsInterface/CompanyStepsInterface";
+
 type ScrapeMode = "NAVIGATION | DIRECT";
 
 export interface Company {
@@ -6,6 +9,8 @@ export interface Company {
   logo?: string | null;
   scrapMode: ScrapeMode;
   jobs: Jobs[];
+  instructions: Instructions[];
+  steps: Steps[];
 }
 
 export type FormattedJobsType = {

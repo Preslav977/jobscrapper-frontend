@@ -1,4 +1,5 @@
 import { App } from "../App";
+import { CreateCompany } from "../components/CreateCompany/CreateCompany";
 import { Dashboard } from "../components/Dashboard/Dashboard";
 import { HomePage } from "../components/HomePage/HomePage";
 import { LoginForm } from "../components/LoginForm/LoginForm";
@@ -26,6 +27,14 @@ export const routes = [
         element: (
           <ProtectRoutes requireAdmin={false}>
             <Dashboard />
+          </ProtectRoutes>
+        ),
+      },
+      {
+        path: "/createCompany",
+        element: (
+          <ProtectRoutes requireAdmin={false}>
+            <CreateCompany />
           </ProtectRoutes>
         ),
       },

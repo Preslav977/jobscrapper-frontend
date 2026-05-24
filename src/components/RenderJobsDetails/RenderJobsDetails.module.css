@@ -68,7 +68,7 @@ hr {
 
 .jobList {
   list-style-position: inside;
-  text-align: justify;
+  /* text-align: justify; */
 }
 
 .jobAnchorHrefContainer {

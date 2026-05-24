@@ -24,6 +24,15 @@ export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
           </div>
         </div>
       ))}
+      {filteredJobs.length === 0 && (
+        <div className={styles.noJobsContainer}>
+          <p className={styles.noJobsFoundPara}>No jobs found</p>
+          <p className={styles.noJobsFoundExplainingPara}>
+            We couldn't find any jobs that match your search. Try adjusting your
+            filters or check back later.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
