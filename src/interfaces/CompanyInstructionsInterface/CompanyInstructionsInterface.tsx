@@ -1,6 +1,6 @@
 import type { Company } from "../CompanyJobsInterface/CompanyJobsInterface";
 
-export type ExtractInstructions = {
+export type extractInstructions = {
   container: { extractType: string; selector?: string; attr?: string };
   title: { extractType: string; selector?: string; attr?: string };
   location: { extractType: string; selector?: string; attr?: string };
@@ -15,7 +15,7 @@ export type ExtractInstructions = {
 };
 
 export interface Instructions {
-  instructions: ExtractInstructions[];
+  instructions: extractInstructions;
   company: Company;
-  companyId: number;
+  companyID: number;
 }
