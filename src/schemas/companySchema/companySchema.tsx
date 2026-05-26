@@ -65,7 +65,7 @@ export const companySchema = z.object({
     z.object({
       order: z.number(),
       action: z.string(),
-      select: z.string().optional(),
+      selector: z.string().optional(),
       selectOption: z.string().optional(),
       url: z.string().optional(),
     }),

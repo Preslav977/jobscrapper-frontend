@@ -8,7 +8,7 @@ import styles from "./CreateCompany.module.css";
 export function CreateCompany() {
   const { mutate, error } = useCreateCompany();
 
-  const { register, control, handleSubmit } = useForm({
+  const { register, control, handleSubmit, reset } = useForm({
     resolver: zodResolver(companySchema),
     defaultValues: {
       name: "",
@@ -43,16 +43,18 @@ export function CreateCompany() {
       steps: data.steps,
     };
 
-    console.log(formPayload);
-
     formData.append("companyDetails", JSON.stringify(formPayload));
 
     mutate({ formData });
+
+    reset();
   };
 
-  const onInvalid = (errors: any) => {
-    console.error("Form Validation Failed! Fields causing trouble:", errors);
-  };
+  //uncomment if onSubmit has any issues
+
+  // const onInvalid = (errors: any) => {
+  //   console.error("Form Validation Failed! Fields causing trouble:", errors);
+  // };
 
   const extractionFields = [
     { id: 0, key: "container", label: "Container" },
@@ -75,8 +77,10 @@ export function CreateCompany() {
           void handleSubmit(onSubmit)(event);
         }}
       >
-        <fieldset>
-          <legend>Company (Name, URL, Logo, scrapMode):</legend>
+        <fieldset className={styles.formFieldset}>
+          <legend className={styles.formLegend}>
+            Company (Name, URL, Logo, scrapMode):
+          </legend>
           <label className={styles.formLabel} htmlFor="name">
             Name
             <input
@@ -95,10 +99,11 @@ export function CreateCompany() {
               id="URL"
             />
           </label>
-          Logo
-          <input type="file" {...register("file")} id="file" />
-          <label className={styles.formLabel} htmlFor="scrapMode">
-            ScrapMode
+          <label className={styles.formLabel} htmlFor="file">
+            <input type="file" {...register("file")} id="file" />
+          </label>
+          <label className={styles.formLabelNoFullWidth} htmlFor="scrapMode">
+            ScrapMode:
             <select {...register("scrapMode")}>
               <option value="DIRECT">Direct</option>
               <option value="NAVIGATION">NAVIGATION</option>
@@ -107,8 +112,10 @@ export function CreateCompany() {
             </select>
           </label>
         </fieldset>
-        <fieldset>
-          <legend>Scrap Instructions (Choose Class or Attribute):</legend>
+        <fieldset className={styles.formFieldset}>
+          <legend className={styles.formLegend}>
+            Scrap Instructions (Choose Class or Attribute):
+          </legend>
           {extractionFields.map((field) => (
             <div key={field.id}>
               <label htmlFor={field.key} className={styles.formLabel}>
@@ -123,7 +130,10 @@ export function CreateCompany() {
                 />
               </label>
 
-              <label className={styles.formLabel} htmlFor={field.key}>
+              <label
+                className={styles.formLabelNoFullWidth}
+                htmlFor={field.key}
+              >
                 <select
                   {...register(
                     `instructions.0.extractionInstructions.${field.key}.extractType`,
@@ -134,7 +144,7 @@ export function CreateCompany() {
                 </select>
               </label>
 
-              {/* <label className={styles.formLabel} htmlFor="attribute">
+              <label className={styles.formLabel} htmlFor="attribute">
                 <input
                   type="text"
                   placeholder="CSS attribute [attribute]"
@@ -142,12 +152,12 @@ export function CreateCompany() {
                     `instructions.0.extractionInstructions.${field.key}.attr`,
                   )}
                 />
-              </label> */}
+              </label>
             </div>
           ))}
         </fieldset>
-        {/* <fieldset>
-          <legend>
+        <fieldset className={styles.formFieldset}>
+          <legend className={styles.formLegend}>
             Scrap Steps (Order, Action, Select, Select Option, URL):
           </legend>
           {fields.map((field, index) => (
@@ -170,7 +180,7 @@ export function CreateCompany() {
                 <input
                   type="text"
                   placeholder="Select CSS .className"
-                  {...register(`steps.${index}.select`)}
+                  {...register(`steps.${index}.selector`)}
                 />
               </label>
 
@@ -189,27 +199,29 @@ export function CreateCompany() {
                 />
               </label>
 
-              <button type="button" onClick={() => remove(index)}>
-                Remove Step
-              </button>
+              <div className={styles.stepButtons}>
+                <button type="button" onClick={() => remove(index)}>
+                  Remove Step
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    append({
+                      order: fields.length + 1,
+                      action: "",
+                      selector: "",
+                      selectOption: "",
+                      url: "",
+                    })
+                  }
+                >
+                  Add Step
+                </button>
+              </div>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={() =>
-              append({
-                order: fields.length + 1,
-                action: "",
-                select: "",
-                selectOption: "",
-                url: "",
-                companyID: 0,
-              })
-            }
-          >
-            Add Step
-          </button>
-        </fieldset> */}
+        </fieldset>
 
         <button type="submit">Save</button>
       </form>
