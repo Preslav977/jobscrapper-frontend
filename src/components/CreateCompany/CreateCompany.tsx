@@ -1,17 +1,20 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useCreateCompany } from "../../custom hooks/useCreateCompany/useCreateCompany";
+import type { Company } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
 import { companySchema } from "../../schemas/companySchema/companySchema";
+import styles from "./CreateCompany.module.css";
 
 export function CreateCompany() {
   const { mutate, error } = useCreateCompany();
 
-  const { register, control } = useForm({
+  const { register, control, handleSubmit } = useForm({
     resolver: zodResolver(companySchema),
     defaultValues: {
       name: "",
       URL: "",
-      scrapMode: "",
+      logo: null,
+      jobs: [],
       steps: [],
     },
   });
@@ -21,113 +24,196 @@ export function CreateCompany() {
     name: "steps",
   });
 
-  const onSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmitt = (data: Omit<Company, "jobs">) => {
+    const formData = new FormData();
 
-    mutate({
-      formData: new FormData(event.target),
-    });
+    if (data.file) {
+      formData.append("file", data.file);
+      console.log(data.file);
+      console.log(formData);
+    }
+
+    const formPayload = {
+      name: data.name,
+      logo: null,
+      URL: data.URL,
+      scrapMode: data.scrapMode,
+      // instructions: data.instructions,
+      // jobs: [],
+      // steps: data.steps,
+      // companyID: data.id,
+    };
+
+    formData.append("companyDetails", JSON.stringify(formPayload));
+
+    // console.log(formData);
+
+    mutate({ formData });
+  };
+
+  const onInvalid = (errors: any) => {
+    console.error(`Form Validation Failed! Fields causing trouble:`, errors);
   };
 
   const extractionFields = [
-    { key: "container", label: "Container" },
-    { key: "title", label: "Title" },
-    { key: "location", label: "Location" },
-    { key: "remoteOrHybrid", label: "Remote/Hybrid" },
-    { key: "datePosted", label: "Date Posted" },
-    { key: "description", label: "Job Description" },
-    { key: "anchorHref", label: "Anchor Href" },
+    { id: 0, key: "container", label: "Container" },
+    { id: 1, key: "title", label: "Title" },
+    { id: 2, key: "location", label: "Location" },
+    { id: 3, key: "remoteOrHybrid", label: "Remote/Hybrid" },
+    { id: 4, key: "datePosted", label: "Date Posted" },
+    { id: 5, key: "description", label: "Job Description" },
+    { id: 6, key: "anchorHref", label: "Anchor Href" },
   ] as const;
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="name">
-          Name
-          <input type="text" id="name" {...register("name")} />
-        </label>
-        <label htmlFor="URL">
-          URL
-          <input type="text" {...register("URL")} id="URL" />
-        </label>
-        <label htmlFor="file">
+    <div className={styles.formWrapper}>
+      <form
+        encType="multipart/form-data"
+        className={styles.formContainer}
+        onSubmit={(event) => {
+          event.preventDefault();
+
+          void handleSubmit(onSubmitt, onInvalid)(event);
+
+          // console.log("submit");
+        }}
+      >
+        <fieldset>
+          <legend>Company (Name, URL, Logo, scrapMode):</legend>
+          <label className={styles.formLabel} htmlFor="name">
+            Name
+            <input
+              placeholder="Company"
+              type="text"
+              id="name"
+              {...register("name")}
+            />
+          </label>
+          <label className={styles.formLabel} htmlFor="URL">
+            URL
+            <input
+              placeholder="https://www.example.com"
+              type="text"
+              {...register("URL")}
+              id="URL"
+            />
+          </label>
           Logo
           <input type="file" {...register("file")} id="file" />
-        </label>
-        <label htmlFor="scrapMode">
-          ScrapMode
-          <input type="text" {...register("scrapMode")} id="scrapMode" />
-        </label>
-        Instructions
-        <>
+          <label className={styles.formLabel} htmlFor="scrapMode">
+            ScrapMode
+            <select {...register("scrapMode")}>
+              <option value="DIRECT">Direct</option>
+              <option value="NAVIGATION">NAVIGATION</option>
+              <option value="FETCH">Fetch</option>
+              <option value="JSON">JSON</option>
+            </select>
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Scrap Instructions (Choose Class or Attribute):</legend>
           {extractionFields.map((field) => (
-            <div key={field.key}>
-              <label htmlFor={field.key}>{field.label}</label>
+            <div key={field.id}>
+              <label htmlFor={field.key} className={styles.formLabel}>
+                {field.label}:
+                <input
+                  type="text"
+                  {...register(
+                    `instructions.0.extractionInstructions.${field.key}.selector`,
+                  )}
+                  id={field.key}
+                  placeholder="CSS selector .className"
+                />
+              </label>
 
-              <input
-                {...register(
-                  `instructions.0.extractInstructions.${field.key}.selector`,
-                )}
-              ></input>
+              <label className={styles.formLabel} htmlFor={field.key}>
+                <select
+                  {...register(
+                    `instructions.0.extractionInstructions.${field.key}.extractType`,
+                  )}
+                >
+                  <option value="text">Text</option>
+                  <option value="elementAttribute">Attribute</option>
+                </select>
+              </label>
 
-              <input
-                {...register(
-                  `instructions.0.extractInstructions.${field.key}.selector`,
-                )}
-              ></input>
-
-              <select
-                {...register(
-                  `instructions.0.extractInstructions.${field.key}.extractType`,
-                )}
-              >
-                <option value="text">Text</option>
-                <option value="elementAttribute">Attribute</option>
-              </select>
-
-              <input
-                placeholder="Attribute (e.g., href)"
-                {...register(
-                  `instructions.0.extractInstructions.${field.key}.attr`,
-                )}
-              />
+              {/* <label className={styles.formLabel} htmlFor="attribute">
+                <input
+                  type="text"
+                  placeholder="CSS attribute [attribute]"
+                  {...register(
+                    `instructions.0.extractionInstructions.${field.key}.attr`,
+                  )}
+                />
+              </label> */}
             </div>
           ))}
-        </>
-        {fields.map((field, index) => (
-          <div key={field.id}>
-            <input
-              type="hidden"
-              {...register(`steps.${index}.order`)}
-              value={index + 1}
-            />
+        </fieldset>
+        {/* <fieldset>
+          <legend>
+            Scrap Steps (Order, Action, Select, Select Option, URL):
+          </legend>
+          {fields.map((field, index) => (
+            <div key={field.id}>
+              <input
+                type="hidden"
+                {...register(`steps.${index}.order`)}
+                value={index + 1}
+              />
 
-            <input type="text" {...register(`steps.${index}.action`)} />
+              <label className={styles.formLabel} htmlFor="action">
+                <input
+                  placeholder="click, clickEvaluate, clickMore, Fetch"
+                  type="text"
+                  {...register(`steps.${index}.action`)}
+                />
+              </label>
 
-            <input type="text" {...register(`steps.${index}.select`)} />
+              <label className={styles.formLabel} htmlFor="select">
+                <input
+                  type="text"
+                  placeholder="Select CSS .className"
+                  {...register(`steps.${index}.select`)}
+                />
+              </label>
 
-            <input type="text" {...register(`steps.${index}.selectOption`)} />
+              <label htmlFor="Select CSS option" className={styles.formLabel}>
+                <input
+                  type="text"
+                  placeholder="Select option (Bulgaria)"
+                  {...register(`steps.${index}.selectOption`)}
+                />
+              </label>
+              <label className={styles.formLabel} htmlFor="URL">
+                <input
+                  placeholder="Fetch URL (https://www.example.com/careers)"
+                  type="text"
+                  {...register(`steps.${index}.url`)}
+                />
+              </label>
 
-            <input type="text" {...register(`steps.${index}.url`)} />
+              <button type="button" onClick={() => remove(index)}>
+                Remove Step
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() =>
+              append({
+                order: fields.length + 1,
+                action: "",
+                select: "",
+                selectOption: "",
+                url: "",
+                companyID: 0,
+              })
+            }
+          >
+            Add Step
+          </button>
+        </fieldset> */}
 
-            <button type="button" onClick={() => remove(index)}>
-              Remove Step
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() =>
-            append({
-              order: fields.length + 1,
-              action: "",
-              select: "",
-              selectOption: "",
-              url: "",
-              companyID: 0,
-            })
-          }
-        ></button>
         <button type="submit">Save</button>
       </form>
     </div>

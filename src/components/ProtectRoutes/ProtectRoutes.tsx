@@ -14,8 +14,6 @@ export function ProtectRoutes({
 
   const { userDetails } = useContext(userDetailsContext)!;
 
-  console.log("User Details", userDetails);
-
   if (!isUserLoggedIn) {
     return <Navigate to={"/login"} />;
   }

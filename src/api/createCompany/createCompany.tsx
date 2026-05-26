@@ -6,7 +6,7 @@ export async function createCompany({
 }: {
   formData: FormData;
 }): Promise<Company> {
-  const response = await fetch(`${localhostURL}/company/relations`, {
+  const response = await fetch(`${localhostURL}/companies/relations`, {
     method: "POST",
     headers: {
       Authorization: sessionStorage.getItem("token")!,

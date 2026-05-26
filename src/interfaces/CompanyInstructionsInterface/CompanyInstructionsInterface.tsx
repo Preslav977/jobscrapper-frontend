@@ -15,7 +15,7 @@ export type extractInstructions = {
 };
 
 export interface Instructions {
-  instructions: extractInstructions;
-  company: Company;
-  companyID: number;
+  extractionInstructions: extractInstructions;
+  company?: Company;
+  companyID?: number;
 }
