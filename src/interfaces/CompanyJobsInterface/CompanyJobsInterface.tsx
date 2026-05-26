@@ -8,7 +8,7 @@ export interface Company {
   name: string;
   URL: string;
   logo?: string | null;
-  file?: File;
+  file: File | null;
   scrapMode: string;
   jobs: Jobs[];
   instructions: Instructions[];

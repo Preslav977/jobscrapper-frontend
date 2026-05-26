@@ -7,17 +7,16 @@ export const companySchema = z.object({
   name: z.string(),
   URL: z.string(),
   file: z
-    .any()
-    .refine(
-      (files) => files instanceof FileList,
-      "Expected a file upload container",
-    )
-    .transform((files) => files[0] as File)
-    .refine((file) => file.size <= MAX_SIZE, "File size must be less than 5MB")
-    .refine(
-      (file) => ACCEPTED_TYPES.includes(file.type),
-      "Invalid file type. Only JPEG, PNG, and WebP are allowed",
-    ),
+    .custom<FileList>((val) => val instanceof FileList, "Expected file upload")
+    .transform((files) => (files && files.length > 0 ? files[0] : null))
+    .refine((file) => {
+      if (!file) return true;
+      return file.size <= MAX_SIZE;
+    }, "File must be less than 5MB")
+    .refine((file) => {
+      if (!file) return true;
+      return ACCEPTED_TYPES.includes(file.type);
+    }, "Invalid file type. Only JPEG, PNG are allowed"),
   logo: z.nullish(z.string().optional()),
   scrapMode: z.string(),
   jobs: z.array(z.object()),

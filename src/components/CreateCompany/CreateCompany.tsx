@@ -24,13 +24,13 @@ export function CreateCompany() {
     name: "steps",
   });
 
-  const onSubmitt = (data: Omit<Company, "jobs">) => {
+  const onSubmit = (data: Omit<Company, "jobs">) => {
+    console.log(data);
+
     const formData = new FormData();
 
     if (data.file) {
       formData.append("file", data.file);
-      console.log(data.file);
-      console.log(formData);
     }
 
     const formPayload = {
@@ -38,21 +38,19 @@ export function CreateCompany() {
       logo: null,
       URL: data.URL,
       scrapMode: data.scrapMode,
-      // instructions: data.instructions,
-      // jobs: [],
+      instructions: data.instructions,
       // steps: data.steps,
-      // companyID: data.id,
     };
 
-    formData.append("companyDetails", JSON.stringify(formPayload));
+    console.log(formPayload);
 
-    // console.log(formData);
+    formData.append("companyDetails", JSON.stringify(formPayload));
 
     mutate({ formData });
   };
 
   const onInvalid = (errors: any) => {
-    console.error(`Form Validation Failed! Fields causing trouble:`, errors);
+    console.error("Form Validation Failed! Fields causing trouble:", errors);
   };
 
   const extractionFields = [
@@ -73,9 +71,7 @@ export function CreateCompany() {
         onSubmit={(event) => {
           event.preventDefault();
 
-          void handleSubmit(onSubmitt, onInvalid)(event);
-
-          // console.log("submit");
+          void handleSubmit(onSubmit, onInvalid)(event);
         }}
       >
         <fieldset>
