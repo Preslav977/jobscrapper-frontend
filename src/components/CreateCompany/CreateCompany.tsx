@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
+import type z from "zod";
 import { useCreateCompany } from "../../custom hooks/useCreateCompany/useCreateCompany";
-import type { Company } from "../../interfaces/CompanyJobsInterface/CompanyJobsInterface";
 import { companySchema } from "../../schemas/companySchema/companySchema";
 import styles from "./CreateCompany.module.css";
 
@@ -13,8 +13,11 @@ export function CreateCompany() {
     defaultValues: {
       name: "",
       URL: "",
+      scrapMode: "NAVIGATION",
+      file: undefined,
       logo: null,
       jobs: [],
+      instructions: [],
       steps: [],
     },
   });
@@ -24,9 +27,7 @@ export function CreateCompany() {
     name: "steps",
   });
 
-  const onSubmit = (data: Omit<Company, "jobs">) => {
-    console.log(data);
-
+  const onSubmit = (data: z.output<typeof companySchema>) => {
     const formData = new FormData();
 
     if (data.file) {
@@ -35,11 +36,11 @@ export function CreateCompany() {
 
     const formPayload = {
       name: data.name,
-      logo: null,
       URL: data.URL,
       scrapMode: data.scrapMode,
+      jobs: data.jobs,
       instructions: data.instructions,
-      // steps: data.steps,
+      steps: data.steps,
     };
 
     console.log(formPayload);
@@ -71,7 +72,7 @@ export function CreateCompany() {
         onSubmit={(event) => {
           event.preventDefault();
 
-          void handleSubmit(onSubmit, onInvalid)(event);
+          void handleSubmit(onSubmit)(event);
         }}
       >
         <fieldset>

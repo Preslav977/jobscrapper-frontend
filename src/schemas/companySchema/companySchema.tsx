@@ -58,7 +58,6 @@ export const companySchema = z.object({
           selector: z.string().optional(),
           attr: z.string().optional(),
         }),
-        // companyID: z.number(),
       }),
     }),
   ),
@@ -69,7 +68,6 @@ export const companySchema = z.object({
       select: z.string().optional(),
       selectOption: z.string().optional(),
       url: z.string().optional(),
-      companyID: z.number(),
     }),
   ),
 });

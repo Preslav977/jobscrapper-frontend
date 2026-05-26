@@ -1,14 +1,12 @@
 import type { Instructions } from "../CompanyInstructionsInterface/CompanyInstructionsInterface";
 import type { Steps } from "../CompanyStepsInterface/CompanyStepsInterface";
 
-// type ScrapeMode = "NAVIGATION | DIRECT";
-
 export interface Company {
   id?: number;
   name: string;
   URL: string;
   logo?: string | null;
-  file: File | null;
+  file: FileList | null;
   scrapMode: string;
   jobs: Jobs[];
   instructions: Instructions[];
