@@ -1,4 +1,4 @@
-import type { Company } from "../CompanyJobsInterface/CompanyJobsInterface";
+import type { Company } from "../CompanyInterface/CompanyInterface";
 
 export type extractInstructions = {
   container: { extractType: string; selector?: string; attr?: string };

@@ -1,17 +1,4 @@
-import type { Instructions } from "../CompanyInstructionsInterface/CompanyInstructionsInterface";
-import type { Steps } from "../CompanyStepsInterface/CompanyStepsInterface";
-
-export interface Company {
-  id?: number;
-  name: string;
-  URL: string;
-  logo?: string | null;
-  file: FileList | null;
-  scrapMode: string;
-  jobs: Jobs[];
-  instructions: Instructions[];
-  steps: Steps[];
-}
+import type { Company } from "../CompanyInterface/CompanyInterface";
 
 export type FormattedJobsType = {
   responsibilities: string[];

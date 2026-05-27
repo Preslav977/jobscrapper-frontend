@@ -1,5 +1,5 @@
 import type { SetStateAction } from "react";
-import type { Jobs } from "../CompanyJobsInterface/CompanyJobsInterface";
+import type { Jobs } from "../JobsInterface/JobsInterface";
 
 export interface SelectJobsByCompanyInterface {
   filteredJobs: Jobs[];

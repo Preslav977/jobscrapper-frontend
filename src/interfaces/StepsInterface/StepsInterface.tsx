@@ -1,4 +1,4 @@
-import type { Company } from "../CompanyJobsInterface/CompanyJobsInterface";
+import type { Company } from "../CompanyInterface/CompanyInterface";
 
 export interface Steps {
   id?: number;
