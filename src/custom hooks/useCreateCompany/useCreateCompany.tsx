@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { createCompany } from "../../api/createCompany/createCompany";
+import { CreateCompany } from "../../api/CreateCompany/CreateCompany";
 
 const handleCreateCompany = ({ formData }: { formData: FormData }) =>
-  createCompany({ formData });
+  CreateCompany({ formData });
 
 export function useCreateCompany() {
   return useMutation({

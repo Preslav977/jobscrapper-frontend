@@ -1,7 +1,7 @@
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
 import { localhostURL } from "../../utility/localhostURL";
 
-export async function updateUser({
+export async function UpdateUser({
   formData,
   id,
 }: {

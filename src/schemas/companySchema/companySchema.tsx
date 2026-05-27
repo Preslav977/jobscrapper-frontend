@@ -4,7 +4,7 @@ const MAX_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/png", "image/jpeg"];
 
 export const companySchema = z.object({
-  name: z.string(),
+  name: z.string().min(1, "Company name should be at least 1 character"),
   URL: z.string(),
   file: z
     .custom<FileList>((val) => val instanceof FileList, "Expected file upload")

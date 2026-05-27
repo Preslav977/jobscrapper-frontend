@@ -3,12 +3,18 @@ import { useFieldArray, useForm } from "react-hook-form";
 import type z from "zod";
 import { useCreateCompany } from "../../custom hooks/useCreateCompany/useCreateCompany";
 import { companySchema } from "../../schemas/companySchema/companySchema";
-import styles from "./CreateCompany.module.css";
+import styles from "./CreateCompanyForm.module.css";
 
-export function CreateCompany() {
+export function CreateCompanyForm() {
   const { mutate, error } = useCreateCompany();
 
-  const { register, control, handleSubmit, reset } = useForm({
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(companySchema),
     defaultValues: {
       name: "",
@@ -44,6 +50,8 @@ export function CreateCompany() {
     };
 
     formData.append("companyDetails", JSON.stringify(formPayload));
+
+    console.log(formData);
 
     mutate({ formData });
 
@@ -87,8 +95,15 @@ export function CreateCompany() {
               placeholder="Company"
               type="text"
               id="name"
-              {...register("name")}
+              {...register("name", {
+                required: true,
+                min: 1,
+              })}
+              aria-invalid={errors.name ? "true" : "false"}
             />
+            <span className={styles.formValidationError}>
+              {errors.name?.message || error?.message}
+            </span>
           </label>
           <label className={styles.formLabel} htmlFor="URL">
             URL
@@ -101,6 +116,9 @@ export function CreateCompany() {
           </label>
           <label className={styles.formLabel} htmlFor="file">
             <input type="file" {...register("file")} id="file" />
+            <span className={styles.formValidationError}>
+              {errors.file?.message}
+            </span>
           </label>
           <label className={styles.formLabelNoFullWidth} htmlFor="scrapMode">
             ScrapMode:
@@ -140,7 +158,8 @@ export function CreateCompany() {
                   )}
                 >
                   <option value="text">Text</option>
-                  <option value="elementAttribute">Attribute</option>
+                  <option value="element">Element</option>
+                  <option value="elementAttribute">ElementAttribute</option>
                 </select>
               </label>
 
@@ -176,7 +195,7 @@ export function CreateCompany() {
                 />
               </label>
 
-              <label className={styles.formLabel} htmlFor="select">
+              <label className={styles.formLabel} htmlFor="selector">
                 <input
                   type="text"
                   placeholder="Select CSS .className"
@@ -184,43 +203,43 @@ export function CreateCompany() {
                 />
               </label>
 
-              <label htmlFor="Select CSS option" className={styles.formLabel}>
+              <label htmlFor="selectOption" className={styles.formLabel}>
                 <input
                   type="text"
                   placeholder="Select option (Bulgaria)"
                   {...register(`steps.${index}.selectOption`)}
                 />
               </label>
-              <label className={styles.formLabel} htmlFor="URL">
+              <label className={styles.formLabel} htmlFor="url">
                 <input
                   placeholder="Fetch URL (https://www.example.com/careers)"
                   type="text"
                   {...register(`steps.${index}.url`)}
                 />
               </label>
-
               <div className={styles.stepButtons}>
                 <button type="button" onClick={() => remove(index)}>
                   Remove Step
                 </button>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    append({
-                      order: fields.length + 1,
-                      action: "",
-                      selector: "",
-                      selectOption: "",
-                      url: "",
-                    })
-                  }
-                >
-                  Add Step
-                </button>
               </div>
             </div>
           ))}
+          <div className={styles.stepButtons}>
+            <button
+              type="button"
+              onClick={() =>
+                append({
+                  order: fields.length + 1,
+                  action: "",
+                  selector: "",
+                  selectOption: "",
+                  url: "",
+                })
+              }
+            >
+              Add Step
+            </button>
+          </div>
         </fieldset>
 
         <button type="submit">Save</button>

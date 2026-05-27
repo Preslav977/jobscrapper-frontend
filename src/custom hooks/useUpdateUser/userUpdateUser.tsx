@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useContext } from "react";
-import { updateUser } from "../../api/updateUser/updateUser";
+import { UpdateUser } from "../../api/UpdateUser/UpdateUser";
 import { userDetailsContext } from "../../context/userDetailsContext";
 
 const handleUpdateUser = ({
@@ -9,7 +9,7 @@ const handleUpdateUser = ({
 }: {
   formData: FormData;
   id: number;
-}) => updateUser({ formData, id });
+}) => UpdateUser({ formData, id });
 
 export function useUpdateUser() {
   const { setUserDetails } = useContext(userDetailsContext)!;
