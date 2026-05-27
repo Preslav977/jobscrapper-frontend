@@ -8,6 +8,7 @@ export const companySchema = z.object({
   URL: z.string(),
   file: z
     .custom<FileList>((val) => val instanceof FileList, "Expected file upload")
+    .optional()
     .transform((files) => (files && files.length > 0 ? files[0] : null))
     .refine((file) => {
       if (!file) return true;

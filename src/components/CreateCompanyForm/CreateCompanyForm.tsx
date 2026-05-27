@@ -1,68 +1,28 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
-import type z from "zod";
-import { useCreateCompany } from "../../custom hooks/useCreateCompany/useCreateCompany";
+import type { CompanyFormProps } from "../../interfaces/CompanyFormProps/CompanyFormProps";
 import { companySchema } from "../../schemas/companySchema/companySchema";
 import styles from "./CreateCompanyForm.module.css";
 
-export function CreateCompanyForm() {
-  const { mutate, error } = useCreateCompany();
-
+export function CreateCompanyForm({
+  defaultValues,
+  onSubmit,
+  isLoading,
+}: CompanyFormProps) {
   const {
     register,
     control,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(companySchema),
-    defaultValues: {
-      name: "",
-      URL: "",
-      scrapMode: "NAVIGATION",
-      file: undefined,
-      logo: null,
-      jobs: [],
-      instructions: [],
-      steps: [],
-    },
+    defaultValues,
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "steps",
   });
-
-  const onSubmit = (data: z.output<typeof companySchema>) => {
-    const formData = new FormData();
-
-    if (data.file) {
-      formData.append("file", data.file);
-    }
-
-    const formPayload = {
-      name: data.name,
-      URL: data.URL,
-      scrapMode: data.scrapMode,
-      jobs: data.jobs,
-      instructions: data.instructions,
-      steps: data.steps,
-    };
-
-    formData.append("companyDetails", JSON.stringify(formPayload));
-
-    console.log(formData);
-
-    mutate({ formData });
-
-    reset();
-  };
-
-  //uncomment if onSubmit has any issues
-
-  // const onInvalid = (errors: any) => {
-  //   console.error("Form Validation Failed! Fields causing trouble:", errors);
-  // };
 
   const extractionFields = [
     { id: 0, key: "container", label: "Container" },
@@ -101,9 +61,9 @@ export function CreateCompanyForm() {
               })}
               aria-invalid={errors.name ? "true" : "false"}
             />
-            <span className={styles.formValidationError}>
+            {/* <span className={styles.formValidationError}>
               {errors.name?.message || error?.message}
-            </span>
+            </span> */}
           </label>
           <label className={styles.formLabel} htmlFor="URL">
             URL
