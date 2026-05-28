@@ -25,8 +25,6 @@ export function CreateCompanyForm({
     name: "steps",
   });
 
-  console.log(error);
-
   const extractionFields = [
     { id: 0, key: "container", label: "Container" },
     { id: 1, key: "title", label: "Title" },
@@ -123,7 +121,7 @@ export function CreateCompanyForm({
                   )}
                 >
                   <option value="text">Text</option>
-                  <option value="element">Element</option>
+                  <option value="attribute">Attribute</option>
                   <option value="elementAttribute">ElementAttribute</option>
                 </select>
               </label>

@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { jobsSchema } from "../jobsSchema.tsx/jobsSchema";
 
 const MAX_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/png", "image/jpeg"];
@@ -20,7 +21,7 @@ export const companySchema = z.object({
     }, "Invalid file type. Only JPEG, PNG are allowed"),
   logo: z.nullish(z.string().optional()),
   scrapMode: z.string(),
-  jobs: z.array(z.object()),
+  jobs: z.array(jobsSchema),
   instructions: z.array(
     z.object({
       extractionInstructions: z.object({

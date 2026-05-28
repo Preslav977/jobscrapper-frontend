@@ -4,18 +4,23 @@ import { localhostURL } from "../../utility/localhostURL";
 
 export async function UpdateCompany({
   id,
+  companyID,
   formData,
 }: {
   id: number;
+  companyID: number;
   formData: FormData;
 }): Promise<Company> {
-  const response = await fetch(`${localhostURL}/companies/relations/${id}`, {
-    method: "PUT",
-    headers: {
-      Authorization: sessionStorage.getItem("token")!,
+  const response = await fetch(
+    `${localhostURL}/companies/${id}/relations/${companyID}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: sessionStorage.getItem("token")!,
+      },
+      body: formData,
     },
-    body: formData,
-  });
+  );
 
   if (response.status >= 400) {
     const errorData = (await response.json()) as CreateCompanyError[];

@@ -7,24 +7,39 @@ import type { companySchema } from "../../schemas/companySchema/companySchema";
 import { CreateCompanyForm } from "../CreateCompanyForm/CreateCompanyForm";
 
 export function UpdateCompanyPage() {
-  const { id } = useParams();
+  const { id, companyID } = useParams();
 
-  const companyId = Number(id);
+  const Id = Number(id);
 
-  const { data: company, isPending, error } = useFetchCompanyDetails(companyId);
+  const companyId = Number(companyID);
+
+  const { data: company, isPending, error } = useFetchCompanyDetails(Id);
   const { mutate: updateCompany } = useUpdateCompany();
 
   if (isPending) return <p>Loading...</p>;
 
+  const initialFormValues: z.input<typeof companySchema> = {
+    name: company!.name,
+    URL: company!.URL,
+    scrapMode: company!.scrapMode,
+    file: undefined,
+    logo: company!.logo || null,
+    jobs: company!.jobs || [],
+    instructions: company!.instructions || [],
+    steps: company!.steps || [],
+  };
+
   const handleUpdate = (data: z.output<typeof companySchema>) => {
     const formData = serializeFormData(data);
 
-    updateCompany({ id: companyId, formData });
+    console.log(formData);
+
+    updateCompany({ id: Id, companyID: companyId, formData });
   };
 
   return (
     <CreateCompanyForm
-      defaultValues={company!}
+      defaultValues={initialFormValues}
       onSubmit={handleUpdate}
       error={error}
     />

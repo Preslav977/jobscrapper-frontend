@@ -40,7 +40,7 @@ export const routes = [
         ),
       },
       {
-        path: "/updateCompany/:id",
+        path: "/updateCompany/:id/details/:companyID",
         element: (
           <ProtectRoutes requireAdmin={false}>
             <UpdateCompanyPage />
