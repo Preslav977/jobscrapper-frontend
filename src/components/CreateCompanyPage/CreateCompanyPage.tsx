@@ -5,7 +5,7 @@ import type { companySchema } from "../../schemas/companySchema/companySchema";
 import { CreateCompanyForm } from "../CreateCompanyForm/CreateCompanyForm";
 
 export function CreateCompanyPage() {
-  const { mutate } = useCreateCompany();
+  const { mutate, error } = useCreateCompany();
 
   const emptyValues: z.input<typeof companySchema> = {
     name: "",
@@ -25,6 +25,10 @@ export function CreateCompanyPage() {
   };
 
   return (
-    <CreateCompanyForm defaultValues={emptyValues} onSubmit={handleCreate} />
+    <CreateCompanyForm
+      defaultValues={emptyValues}
+      onSubmit={handleCreate}
+      error={error}
+    />
   );
 }

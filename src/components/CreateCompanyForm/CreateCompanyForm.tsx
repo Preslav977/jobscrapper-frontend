@@ -8,6 +8,7 @@ export function CreateCompanyForm({
   defaultValues,
   onSubmit,
   isLoading,
+  error,
 }: CompanyFormProps) {
   const {
     register,
@@ -24,6 +25,8 @@ export function CreateCompanyForm({
     name: "steps",
   });
 
+  console.log(error);
+
   const extractionFields = [
     { id: 0, key: "container", label: "Container" },
     { id: 1, key: "title", label: "Title" },
@@ -33,6 +36,8 @@ export function CreateCompanyForm({
     { id: 5, key: "description", label: "Job Description" },
     { id: 6, key: "anchorHref", label: "Anchor Href" },
   ] as const;
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className={styles.formWrapper}>
@@ -61,9 +66,9 @@ export function CreateCompanyForm({
               })}
               aria-invalid={errors.name ? "true" : "false"}
             />
-            {/* <span className={styles.formValidationError}>
+            <span className={styles.formValidationError}>
               {errors.name?.message || error?.message}
-            </span> */}
+            </span>
           </label>
           <label className={styles.formLabel} htmlFor="URL">
             URL

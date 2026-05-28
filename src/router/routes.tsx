@@ -1,5 +1,5 @@
 import { App } from "../App";
-import { CreateCompanyForm } from "../components/CreateCompanyForm/CreateCompanyForm";
+import { CreateCompanyPage } from "../components/CreateCompanyPage/CreateCompanyPage";
 import { Dashboard } from "../components/Dashboard/Dashboard";
 import { HomePage } from "../components/HomePage/HomePage";
 import { LoginForm } from "../components/LoginForm/LoginForm";
@@ -34,7 +34,7 @@ export const routes = [
         path: "/createCompany",
         element: (
           <ProtectRoutes requireAdmin={false}>
-            <CreateCompanyForm />
+            <CreateCompanyPage />
           </ProtectRoutes>
         ),
       },

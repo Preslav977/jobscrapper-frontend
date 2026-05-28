@@ -3,7 +3,7 @@ import type { Jobs } from "../JobsInterface/JobsInterface";
 import type { Steps } from "../StepsInterface/StepsInterface";
 
 export interface Company {
-  id?: number;
+  id: number;
   name: string;
   URL: string;
   logo?: string | null;
