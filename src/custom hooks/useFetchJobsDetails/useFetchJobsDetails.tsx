@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Jobs } from "../../interfaces/CompanyInterface/CompanyInterface";
+import type { Jobs } from "../../interfaces/JobsInterface/JobsInterface";
 import { localhostURL } from "../../utility/localhostURL";
 
 async function fetchJobsDetails(id: number): Promise<Jobs> {

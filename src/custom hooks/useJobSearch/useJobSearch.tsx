@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import type { Jobs } from "../../interfaces/CompanyInterface/CompanyInterface";
+import type { Jobs } from "../../interfaces/JobsInterface/JobsInterface";
 import { useFetchJobs } from "../useFetchJobs/useFetchJobs";
 
 export function useJobSearch() {

@@ -6,6 +6,7 @@ import { LoginForm } from "../components/LoginForm/LoginForm";
 import { ProtectRoutes } from "../components/ProtectRoutes/ProtectRoutes";
 import { RenderJobsDetails } from "../components/RenderJobsDetails/RenderJobsDetails";
 import { SignUpForm } from "../components/SignUpForm/SignUpForm";
+import { UpdateCompanyPage } from "../components/UpdateCompanyPage/UpdateCompanyPage";
 
 export const routes = [
   {
@@ -35,6 +36,14 @@ export const routes = [
         element: (
           <ProtectRoutes requireAdmin={false}>
             <CreateCompanyPage />
+          </ProtectRoutes>
+        ),
+      },
+      {
+        path: "/updateCompany/:id",
+        element: (
+          <ProtectRoutes requireAdmin={false}>
+            <UpdateCompanyPage />
           </ProtectRoutes>
         ),
       },
