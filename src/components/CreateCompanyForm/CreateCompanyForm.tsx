@@ -192,11 +192,13 @@ export function CreateCompanyForm({
               type="button"
               onClick={() =>
                 append({
+                  id: undefined,
                   order: fields.length + 1,
                   action: "",
                   selector: "",
                   selectOption: "",
                   url: "",
+                  companyID: undefined,
                 })
               }
             >

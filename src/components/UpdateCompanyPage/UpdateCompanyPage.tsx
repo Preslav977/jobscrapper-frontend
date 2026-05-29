@@ -13,6 +13,8 @@ export function UpdateCompanyPage() {
 
   const companyId = Number(companyID);
 
+  console.log(id, companyId);
+
   const { data: company, isPending, error } = useFetchCompanyDetails(Id);
   const { mutate: updateCompany } = useUpdateCompany();
 
@@ -31,8 +33,6 @@ export function UpdateCompanyPage() {
 
   const handleUpdate = (data: z.output<typeof companySchema>) => {
     const formData = serializeFormData(data);
-
-    console.log(formData);
 
     updateCompany({ id: Id, companyID: companyId, formData });
   };

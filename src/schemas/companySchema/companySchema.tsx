@@ -1,5 +1,7 @@
 import * as z from "zod";
+import { instructionsSchema } from "../intrusctionsSchema/InstructionsSchema";
 import { jobsSchema } from "../jobsSchema.tsx/jobsSchema";
+import { stepsSchema } from "../stepsSchema/stepsSchema";
 
 const MAX_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/png", "image/jpeg"];
@@ -22,54 +24,6 @@ export const companySchema = z.object({
   logo: z.nullish(z.string().optional()),
   scrapMode: z.string(),
   jobs: z.array(jobsSchema),
-  instructions: z.array(
-    z.object({
-      extractionInstructions: z.object({
-        container: z.object({
-          extractType: z.string(),
-          selector: z.string().optional(),
-          attr: z.string().optional(),
-        }),
-        title: z.object({
-          extractType: z.string(),
-          selector: z.string().optional(),
-          attr: z.string().optional(),
-        }),
-        location: z.object({
-          extractType: z.string(),
-          selector: z.string().optional(),
-          attr: z.string().optional(),
-        }),
-        remoteOrHybrid: z.object({
-          extractType: z.string(),
-          selector: z.string().optional(),
-          attr: z.string().optional(),
-        }),
-        datePosted: z.object({
-          extractType: z.string(),
-          selector: z.string().optional(),
-          attr: z.string().optional(),
-        }),
-        description: z.object({
-          extractType: z.string(),
-          selector: z.string().optional(),
-          attr: z.string().optional(),
-        }),
-        anchorHref: z.object({
-          extractType: z.string(),
-          selector: z.string().optional(),
-          attr: z.string().optional(),
-        }),
-      }),
-    }),
-  ),
-  steps: z.array(
-    z.object({
-      order: z.number(),
-      action: z.string(),
-      selector: z.string().optional(),
-      selectOption: z.string().optional(),
-      url: z.string().optional(),
-    }),
-  ),
+  instructions: z.array(instructionsSchema),
+  steps: z.array(stepsSchema),
 });
