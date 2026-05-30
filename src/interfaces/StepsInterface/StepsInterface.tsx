@@ -1,7 +1,7 @@
 import type { Company } from "../CompanyInterface/CompanyInterface";
 
 export interface Steps {
-  id?: number;
+  id: number;
   order: number;
   action: string;
   selector?: string;

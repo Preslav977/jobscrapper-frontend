@@ -16,12 +16,6 @@ export interface FormSignUp {
   role?: Role;
 }
 
-export interface FormSignUpTakenError {
-  type: string;
-  value: string;
-  msg: string;
-}
-
 export interface FormLogin {
   password: string;
   email: string;

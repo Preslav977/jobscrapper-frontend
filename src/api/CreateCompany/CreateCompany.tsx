@@ -1,5 +1,5 @@
 import type { Company } from "../../interfaces/CompanyInterface/CompanyInterface";
-import type { CreateCompanyError } from "../../interfaces/CreateCompanyError/CreateCompanyError";
+import type { GenericArrayErrorInterfaces } from "../../interfaces/GenericErrorInterface/GenericErrorInterface";
 import { localhostURL } from "../../utility/localhostURL";
 
 export async function CreateCompany({
@@ -16,7 +16,7 @@ export async function CreateCompany({
   });
 
   if (response.status >= 400) {
-    const errorData = (await response.json()) as CreateCompanyError[];
+    const errorData = (await response.json()) as GenericArrayErrorInterfaces[];
 
     throw new Error(errorData[0].msg || "Token has expired. Login again!");
   }

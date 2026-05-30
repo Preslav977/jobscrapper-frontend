@@ -1,7 +1,5 @@
-import type {
-  FormSignUp,
-  FormSignUpTakenError,
-} from "../../../interfaces/FormInterface/FormInterfaces";
+import type { FormSignUp } from "../../../interfaces/FormInterface/FormInterfaces";
+import type { GenericArrayErrorInterfaces } from "../../../interfaces/GenericErrorInterface/GenericErrorInterface";
 import { localhostURL } from "../../../utility/localhostURL";
 
 export async function signUp(data: FormSignUp): Promise<FormSignUp> {
@@ -20,7 +18,7 @@ export async function signUp(data: FormSignUp): Promise<FormSignUp> {
   });
 
   if (response.status >= 400) {
-    const errorData = (await response.json()) as FormSignUpTakenError[];
+    const errorData = (await response.json()) as GenericArrayErrorInterfaces[];
 
     throw new Error(errorData[0]?.msg);
   }

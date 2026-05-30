@@ -21,11 +21,6 @@ export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
                 <p>{jobs.datePosted}</p>
               </div>
             </Link>
-            <Link
-              to={`/updateCompany/${jobs.company.id}/details/${jobs.companyID}`}
-            >
-              Edit
-            </Link>
           </div>
         </div>
       ))}

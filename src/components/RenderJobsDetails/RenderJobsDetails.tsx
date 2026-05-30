@@ -23,6 +23,12 @@ export function RenderJobsDetails() {
           <h4 className={styles.jobCompanyHeader}>{data?.company.name}</h4>
         </div>
 
+        <Link
+          to={`/updateCompany/${data?.company.id}/details/${data?.companyID}`}
+        >
+          Edit Company
+        </Link>
+
         <div className={styles.jobAnchorHrContainer}>
           <Link className={styles.jobHomeAnchor} to={"/"}>
             {" "}
