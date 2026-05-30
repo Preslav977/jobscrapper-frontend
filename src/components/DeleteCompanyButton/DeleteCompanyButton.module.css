@@ -1,0 +1,7 @@
+.deleteCompanyButton {
+  cursor: pointer;
+  text-align: center;
+  padding: 0.2em;
+  border-radius: 0.45em;
+  padding-inline: 0.5em;
+}

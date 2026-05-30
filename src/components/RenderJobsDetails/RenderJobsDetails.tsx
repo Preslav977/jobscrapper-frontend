@@ -1,11 +1,19 @@
+import { useContext } from "react";
 import { Link, useParams } from "react-router";
+import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
+import { userDetailsContext } from "../../context/userDetailsContext";
 import { useFetchJobsDetails } from "../../custom hooks/useFetchJobsDetails/useFetchJobsDetails";
+import { DeleteCompanyButton } from "../DeleteCompanyButton/DeleteCompanyButton";
 import styles from "./RenderJobsDetails.module.css";
 
 export function RenderJobsDetails() {
   const { id } = useParams();
 
   const { isPending, isError, data, error } = useFetchJobsDetails(Number(id));
+
+  const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
+
+  const { userDetails } = useContext(userDetailsContext)!;
 
   if (isPending) return <p>Loading...</p>;
 
@@ -23,11 +31,20 @@ export function RenderJobsDetails() {
           <h4 className={styles.jobCompanyHeader}>{data?.company.name}</h4>
         </div>
 
-        <Link
-          to={`/updateCompany/${data?.company.id}/details/${data?.companyID}`}
-        >
-          Edit Company
-        </Link>
+        {isUserLoggedIn && userDetails?.role === "ADMIN" ? (
+          <div className={styles.jobCompanyButtons}>
+            <Link
+              className={styles.jobCompanyEditLink}
+              to={`/updateCompany/${data?.company.id}/details/${data?.companyID}`}
+            >
+              Edit Company
+            </Link>
+
+            <DeleteCompanyButton id={data!.company.id} />
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className={styles.jobAnchorHrContainer}>
           <Link className={styles.jobHomeAnchor} to={"/"}>

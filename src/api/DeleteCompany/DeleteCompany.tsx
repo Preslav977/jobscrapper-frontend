@@ -3,7 +3,7 @@ import { localhostURL } from "../../utility/localhostURL";
 
 export async function DeleteCompany({ id }: { id: number }) {
   const response = await fetch(`${localhostURL}/companies/${id}`, {
-    method: "PUT",
+    method: "DELETE",
     headers: {
       Authorization: sessionStorage.getItem("token")!,
     },

@@ -68,7 +68,6 @@ hr {
 
 .jobList {
   list-style-position: inside;
-  /* text-align: justify; */
 }
 
 .jobAnchorHrefContainer {
@@ -98,4 +97,19 @@ hr {
 .jobDescriptionImgContainer {
   display: flex;
   gap: 0.5em;
+}
+
+.jobCompanyButtons {
+  display: flex;
+  gap: 0.5em;
+  margin: 0.5em;
+}
+
+.jobCompanyEditLink {
+  padding: 0.2em;
+  border-radius: 0.45em;
+  padding-inline: 0.5em;
+  text-decoration: none;
+  border: 2px solid black;
+  color: black;
 }
