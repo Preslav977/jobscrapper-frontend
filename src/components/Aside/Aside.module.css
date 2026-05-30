@@ -38,7 +38,7 @@
   border: 0;
   background-color: var(--tertiary-color);
   width: 100%;
-  padding-left: 0.5em;
+  padding-left: 0.25em;
   border-radius: var(--main-border-radius);
   text-decoration: none;
   color: var(--main-color);
@@ -55,8 +55,9 @@
   cursor: pointer;
 }
 
-.asideHomeSpan {
-  margin-bottom: 0.5em;
+.asideHomeSpan,
+.asideCreateSpan {
+  margin: 0.25em 0;
   color: var(--aside-main-color);
 }
 

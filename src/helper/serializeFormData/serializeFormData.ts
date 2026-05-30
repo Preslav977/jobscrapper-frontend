@@ -19,7 +19,5 @@ export function serializeFormData(data: z.output<typeof companySchema>) {
 
   formData.append("companyDetails", JSON.stringify(formPayload));
 
-  console.log(formPayload);
-
   return formData;
 }

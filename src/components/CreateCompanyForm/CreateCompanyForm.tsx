@@ -31,7 +31,7 @@ export function CreateCompanyForm({
     { id: 2, key: "location", label: "Location" },
     { id: 3, key: "remoteOrHybrid", label: "Remote/Hybrid" },
     { id: 4, key: "datePosted", label: "Date Posted" },
-    { id: 5, key: "description", label: "Job Description" },
+    { id: 5, key: "description", label: "Description" },
     { id: 6, key: "anchorHref", label: "Anchor Href" },
   ] as const;
 

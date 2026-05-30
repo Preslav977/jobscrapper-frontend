@@ -7,9 +7,7 @@ export function useSigUpMutation() {
 
   return useMutation({
     mutationFn: signUp,
-    onSuccess: (data) => {
-      console.log(data);
-
+    onSuccess: () => {
       void navigate("/login");
     },
     onError: (error: Error) => {

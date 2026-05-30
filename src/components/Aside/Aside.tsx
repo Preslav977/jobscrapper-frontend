@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link, useLocation } from "react-router";
+import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
 import styles from "./Aside.module.css";
 
@@ -10,6 +12,8 @@ export function Aside({
   const location = useLocation();
 
   const { pathname } = location;
+
+  const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
 
   if (userDetails)
     return (
@@ -62,6 +66,30 @@ export function Aside({
             />
             <p>Profile</p>
           </Link>
+          {isUserLoggedIn && userDetails.role === "ADMIN" ? (
+            <>
+              <div className={styles.asideCreateSpan}>
+                <span>Create</span>
+              </div>
+              <Link
+                style={{
+                  backgroundColor:
+                    pathname === "/createCompany" ? "lightgray" : "",
+                }}
+                to={"/createCompany"}
+                className={styles.asideMenuContainer}
+              >
+                <img
+                  className={styles.asideMenuSVG}
+                  src="./plus.svg"
+                  alt="plus"
+                />
+                <span className={styles.asideCreateSpan}>Create Company</span>
+              </Link>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </>
     );

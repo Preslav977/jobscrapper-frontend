@@ -13,8 +13,6 @@ export function UpdateCompanyPage() {
 
   const companyId = Number(companyID);
 
-  console.log(id, companyId);
-
   const { data: company, isPending, error } = useFetchCompanyDetails(Id);
   const { mutate: updateCompany } = useUpdateCompany();
 
