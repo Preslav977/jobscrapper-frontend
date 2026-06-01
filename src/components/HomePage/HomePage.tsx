@@ -17,6 +17,8 @@ export function HomePage() {
     setSearchQuery,
   } = useJobSearch();
 
+  console.log(filteredJobs);
+
   const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
 
   function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {

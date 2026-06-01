@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import type { Jobs } from "../../interfaces/JobsInterface/JobsInterface";
 import { useFetchJobs } from "../useFetchJobs/useFetchJobs";
 
 export function useJobSearch() {
@@ -11,15 +10,26 @@ export function useJobSearch() {
     useState<string>("All companies");
 
   const filteredJobs = useMemo(() => {
-    if (selectedCompany === "All companies") return allJobs;
+    let jobs = allJobs;
 
-    return allJobs.filter(
-      (jobs: Jobs) =>
-        jobs.company.name.includes(selectedCompany) ||
-        jobs.title === searchQuery ||
-        jobs.location === searchQuery ||
-        jobs.remoteOrHybrid === searchQuery,
-    );
+    if (selectedCompany !== "All companies") {
+      jobs = jobs.filter((jobs) => jobs.company.name.includes(selectedCompany));
+    } else {
+      return allJobs;
+    }
+
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+
+      jobs = jobs.filter(
+        (jobs) =>
+          jobs.title.toLowerCase().includes(query) ||
+          jobs.location.toLowerCase().includes(query) ||
+          jobs.remoteOrHybrid.toLowerCase().includes(query),
+      );
+    }
+
+    return jobs;
   }, [selectedCompany, allJobs, searchQuery]);
 
   return {
