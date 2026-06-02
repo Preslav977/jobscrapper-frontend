@@ -1,8 +1,8 @@
 import type z from "zod";
+import { CreateCompanyForm } from "../../components/CreateCompanyForm/CreateCompanyForm";
 import { useCreateCompany } from "../../custom hooks/useCreateCompany/useCreateCompany";
 import { serializeFormData } from "../../helper/serializeFormData/serializeFormData";
 import type { companySchema } from "../../schemas/companySchema/companySchema";
-import { CreateCompanyForm } from "../CreateCompanyForm/CreateCompanyForm";
 
 export function CreateCompanyPage() {
   const { mutate, error } = useCreateCompany();

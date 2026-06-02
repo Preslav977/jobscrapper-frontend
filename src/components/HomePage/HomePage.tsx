@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { Link } from "react-router";
-import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
+import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
@@ -17,9 +16,7 @@ export function HomePage() {
     setSearchQuery,
   } = useJobSearch();
 
-  console.log(filteredJobs);
-
-  const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
+  const { isUserLoggedIn } = useIsUserLoggedIn();
 
   function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     const formData = new FormData(e.currentTarget);

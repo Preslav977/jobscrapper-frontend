@@ -1,10 +1,10 @@
 import { useContext } from "react";
+import { Aside } from "../../components/Aside/Aside";
+import { Nav } from "../../components/Nav/Nav";
+import { UserPreview } from "../../components/UserPreview/UserPreview";
+import { UserProfileForm } from "../../components/UserProfileForm/UserProfileForm";
+import { UserProfilePicture } from "../../components/UserProfilePicture/UserProfilePicture";
 import { userDetailsContext } from "../../context/userDetailsContext";
-import { Aside } from "../Aside/Aside";
-import { Nav } from "../Nav/Nav";
-import { UserPreview } from "../UserPreview/UserPreview";
-import { UserProfileForm } from "../UserProfileForm/UserProfileForm";
-import { UserProfilePicture } from "../UserProfilePicture/UserProfilePicture";
 import styles from "./Dashboard.module.css";
 
 export function Dashboard() {

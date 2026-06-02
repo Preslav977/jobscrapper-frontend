@@ -10,8 +10,6 @@ export function SelectJobsByCompany({
 }: SelectJobsByCompanyInterface) {
   const { data: allJobs } = useFetchJobs();
 
-  console.log(selectedCompany);
-
   const companyNamesSet = new Set(allJobs.map((job) => job.company.name));
 
   const companyNamesArray = ["All companies", ...companyNamesSet];

@@ -1,10 +1,10 @@
 import { useParams } from "react-router";
 import type z from "zod";
+import { CreateCompanyForm } from "../../components/CreateCompanyForm/CreateCompanyForm";
 import { useFetchCompanyDetails } from "../../custom hooks/useFetchCompanyDetails/useFetchCompanyDetails";
 import { useUpdateCompany } from "../../custom hooks/useUpdateCompany/useUpdateCompany";
 import { serializeFormData } from "../../helper/serializeFormData/serializeFormData";
 import type { companySchema } from "../../schemas/companySchema/companySchema";
-import { CreateCompanyForm } from "../CreateCompanyForm/CreateCompanyForm";
 
 export function UpdateCompanyPage() {
   const { id, companyID } = useParams();

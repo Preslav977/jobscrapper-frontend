@@ -1,12 +1,12 @@
 import { App } from "../App";
-import { CreateCompanyPage } from "../components/CreateCompanyPage/CreateCompanyPage";
-import { Dashboard } from "../components/Dashboard/Dashboard";
 import { HomePage } from "../components/HomePage/HomePage";
 import { LoginForm } from "../components/LoginForm/LoginForm";
 import { ProtectRoutes } from "../components/ProtectRoutes/ProtectRoutes";
 import { RenderJobsDetails } from "../components/RenderJobsDetails/RenderJobsDetails";
 import { SignUpForm } from "../components/SignUpForm/SignUpForm";
-import { UpdateCompanyPage } from "../components/UpdateCompanyPage/UpdateCompanyPage";
+import { CreateCompanyPage } from "../pages/CreateCompanyPage/CreateCompanyPage";
+import { Dashboard } from "../pages/Dashboard/Dashboard";
+import { UpdateCompanyPage } from "../pages/UpdateCompanyPage/UpdateCompanyPage";
 
 export const routes = [
   {

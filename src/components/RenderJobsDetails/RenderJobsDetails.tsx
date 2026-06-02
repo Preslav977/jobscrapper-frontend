@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, useParams } from "react-router";
-import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
+import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import { userDetailsContext } from "../../context/userDetailsContext";
 import { useFetchJobsDetails } from "../../custom hooks/useFetchJobsDetails/useFetchJobsDetails";
 import { DeleteCompanyButton } from "../DeleteCompanyButton/DeleteCompanyButton";
@@ -11,7 +11,7 @@ export function RenderJobsDetails() {
 
   const { isPending, isError, data, error } = useFetchJobsDetails(Number(id));
 
-  const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
+  const { isUserLoggedIn } = useIsUserLoggedIn();
 
   const { userDetails } = useContext(userDetailsContext)!;
 
