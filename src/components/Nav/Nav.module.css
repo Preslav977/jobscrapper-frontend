@@ -15,7 +15,7 @@
   height: 40px;
   border-radius: 50%;
   object-fit: contain;
-  background-color: var(--aside-main-background-color);
+  background-color: var(--aside-bg);
   cursor: pointer;
 }
 
@@ -23,27 +23,27 @@
   position: absolute;
   right: 20px;
   width: 200px;
-  background-color: var(--tertiary-color);
+  background-color: var(--color-bg-main);
   padding: 0.35em 0.75em;
-  box-shadow: var(--main-box-shadow);
+  box-shadow: var(--shadow-md);
 }
 
 .navDropdown > .userEmail {
-  color: var(--aside-main-color);
+  color: var(--color-text-muted);
 }
 
 .profilePara {
-  color: var(--main-color);
+  color: var(--color-text-primary);
   transition: background-color 0.5 seconds ease-in-out;
 }
 
 .logoutPara {
-  color: var(--validation-error);
+  color: var(--color-status-error);
   transition: background-color 0.5 seconds ease-in-out;
 }
 
 .profilePara:hover,
 .logoutPara:hover {
-  background-color: var(--aside-main-background-color);
+  background-color: var(--aside-bg);
   cursor: pointer;
 }

@@ -1,5 +1,5 @@
 .formWrapper {
-  height: var(--main-height);
+  height: var(--viewport-height);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,8 +16,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.25em;
-  border-radius: var(--main-border-radius);
-  box-shadow: var(--main-box-shadow);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }
 
 .formHeaderContainer {
@@ -31,13 +31,13 @@
 }
 
 .formHeaderContainer > p {
-  color: var(--secondary-color);
+  color: var(--color-text-muted);
 }
 
 .formHeader {
   margin-bottom: -0.2em;
   font-size: 2.5rem;
-  color: var(--main-color);
+  color: var(--color-text-primary);
 }
 
 .formLabel {
@@ -49,7 +49,7 @@
 .submitButton {
   width: 90%;
   margin-top: 1em;
-  background-color: var(--main-color);
+  background-color: var(--color-text-primary);
   color: white;
   padding: 0.25em;
   border-radius: 0.45em;
@@ -61,12 +61,12 @@
 
 .anchorPara {
   margin: 0.5em 0;
-  color: var(--secondary-color);
+  color: var(--color-text-muted);
 }
 
 .anchorPara > a {
   text-decoration: none;
-  color: var(--main-color);
+  color: var(--color-text-primary);
 }
 
 .anchorPara > a:hover {
@@ -74,7 +74,7 @@
 }
 
 .formValidationError {
-  color: var(--validation-error);
+  color: var(--color-status-error);
   width: 90%;
   font-size: 0.95rem;
   line-height: 1.2em;

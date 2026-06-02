@@ -12,7 +12,7 @@
   height: 40px;
   border-radius: 50%;
   object-fit: contain;
-  background-color: var(--aside-main-background-color);
+  background-color: var(--aside-bg);
 }
 
 .asideFlexedContainer {
@@ -28,7 +28,7 @@
 }
 
 .asideUserEmail {
-  color: var(--aside-main-color);
+  color: var(--aside-text);
 }
 
 .asideMenuContainer {
@@ -36,12 +36,12 @@
   gap: 0.5em;
   padding-bottom: 0.25em;
   border: 0;
-  background-color: var(--tertiary-color);
+  background-color: var(--color-bg-main);
   width: 100%;
   padding-left: 0.25em;
   border-radius: var(--main-border-radius);
   text-decoration: none;
-  color: var(--main-color);
+  color: var(--aside-text);
   transition: background-color 0.5 seconds ease-in-out;
 }
 
@@ -51,14 +51,14 @@
 }
 
 .asideMenuContainer:hover {
-  background-color: var(--aside-main-background-color);
+  background-color: var(--aside-bg);
   cursor: pointer;
 }
 
 .asideHomeSpan,
 .asideCreateSpan {
   margin: 0.25em 0;
-  color: var(--aside-main-color);
+  color: var(--color-text-primary);
 }
 
 .asideMenuSVG {

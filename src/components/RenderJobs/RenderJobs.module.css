@@ -2,20 +2,20 @@
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  max-width: var(--main-max-width);
+  max-width: var(--form-max-width);
   width: 100%;
 }
 
 .jobsContainer {
   padding: 1em;
   display: flex;
-  border-radius: var(--main-border-radius);
-  box-shadow: var(--main-box-shadow);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }
 
 .jobsContainer a {
   text-decoration: none;
-  color: var(--main-color);
+  color: var(--color-text-primary);
 }
 
 .jobsCompanyLogo {

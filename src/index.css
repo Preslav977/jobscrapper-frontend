@@ -1,24 +1,24 @@
 #root {
-  --main-height: 100vh;
-  --main-box-shadow: 0em 0em 0.5em 0em gray;
-  --main-border-radius: 0.5em;
-  --main-color: oklch(20.5% 0 0);
-  --secondary-color: oklch(70.8% 0 0);
-  --validation-error: red;
-  --main-font-size: 2.5rem;
-  --secondary-font-size: 1.25rem;
-  --tertiary-color: oklch(98.5% 0 0);
-  --main-max-width: 400px;
-  --main-max-height: 500px;
-  --aside-main-background-color: oklch(97% 0 0);
-  --aside-main-color: oklch(55.6% 0 0);
+  --viewport-height: 100vh;
+  --shadow-md: 0em 0em 0.5em 0em gray;
+  --radius-md: 0.5em;
+  --color-text-primary: oklch(20.5% 0 0);
+  --color-text-muted: oklch(70.8% 0 0);
+  --color-bg-main: oklch(98.5% 0 0);
+  --color-status-error: red;
+  --font-size-xl: 2.5rem;
+  --font-size-base: 1.25rem;
+  --form-max-width: 400px;
+  --form-max-height: 500px;
+  --aside-bg: oklch(97% 0 0);
+  --aside-text: oklch(55.6% 0 0);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  border-radius: var(--main-border-radius);
+  border-radius: var(--radius-md);
 }
 
 *:not(dialog) {

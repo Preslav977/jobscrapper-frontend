@@ -19,7 +19,7 @@ export function Nav({
   function logOut() {
     sessionStorage.clear();
 
-    void navigate("/");
+    void navigate("/login");
   }
 
   if (userDetails)
