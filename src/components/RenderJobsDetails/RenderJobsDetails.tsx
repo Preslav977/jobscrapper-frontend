@@ -3,6 +3,7 @@ import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import { useUserDetails } from "../../context/userDetailsContext";
 import { useFetchJobsDetails } from "../../custom hooks/useFetchJobsDetails/useFetchJobsDetails";
 import { DeleteCompanyButton } from "../DeleteCompanyButton/DeleteCompanyButton";
+import { ErrorComponent } from "../ErrorComponent/ErrorComponen";
 import styles from "./RenderJobsDetails.module.css";
 
 export function RenderJobsDetails() {
@@ -16,7 +17,7 @@ export function RenderJobsDetails() {
 
   if (isPending) return <p>Loading...</p>;
 
-  if (isError) return <p>{error?.message}</p>;
+  if (isError) return <ErrorComponent error={error} />;
 
   return (
     <div className={styles.jobDetailsWrapper}>

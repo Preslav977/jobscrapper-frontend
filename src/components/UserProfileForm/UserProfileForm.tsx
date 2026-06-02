@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useUpdateUser } from "../../custom hooks/useUpdateUser/userUpdateUser";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
+import { ErrorComponent } from "../ErrorComponent/ErrorComponen";
 import styles from "./UserProfileForm.module.css";
 
 export function UserProfileForm({
@@ -20,6 +21,8 @@ export function UserProfileForm({
       id: userDetails ? userDetails.id : 0,
     });
   };
+
+  if (error) return <ErrorComponent error={error} />;
 
   if (userDetails)
     return (
