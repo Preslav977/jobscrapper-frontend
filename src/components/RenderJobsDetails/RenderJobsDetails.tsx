@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { Link, useParams } from "react-router";
 import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
-import { userDetailsContext } from "../../context/userDetailsContext";
+import { useUserDetails } from "../../context/userDetailsContext";
 import { useFetchJobsDetails } from "../../custom hooks/useFetchJobsDetails/useFetchJobsDetails";
 import { DeleteCompanyButton } from "../DeleteCompanyButton/DeleteCompanyButton";
 import styles from "./RenderJobsDetails.module.css";
@@ -13,7 +12,7 @@ export function RenderJobsDetails() {
 
   const { isUserLoggedIn } = useIsUserLoggedIn();
 
-  const { userDetails } = useContext(userDetailsContext)!;
+  const { userDetails } = useUserDetails();
 
   if (isPending) return <p>Loading...</p>;
 

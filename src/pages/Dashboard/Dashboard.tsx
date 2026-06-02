@@ -1,14 +1,13 @@
-import { useContext } from "react";
 import { Aside } from "../../components/Aside/Aside";
 import { Nav } from "../../components/Nav/Nav";
 import { UserPreview } from "../../components/UserPreview/UserPreview";
 import { UserProfileForm } from "../../components/UserProfileForm/UserProfileForm";
 import { UserProfilePicture } from "../../components/UserProfilePicture/UserProfilePicture";
-import { userDetailsContext } from "../../context/userDetailsContext";
+import { useUserDetails } from "../../context/userDetailsContext";
 import styles from "./Dashboard.module.css";
 
 export function Dashboard() {
-  const { userDetails } = useContext(userDetailsContext)!;
+  const { userDetails } = useUserDetails();
   return (
     <div className={styles.gridWrapper}>
       <aside className={styles.asideContainer}>

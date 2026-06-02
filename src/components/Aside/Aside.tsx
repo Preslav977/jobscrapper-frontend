@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { Link, useLocation } from "react-router";
-import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
+import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
 import styles from "./Aside.module.css";
 
@@ -13,7 +12,7 @@ export function Aside({
 
   const { pathname } = location;
 
-  const { isUserLoggedIn } = useContext(isUserLoggedInContext)!;
+  const { isUserLoggedIn } = useIsUserLoggedIn();
 
   if (userDetails)
     return (

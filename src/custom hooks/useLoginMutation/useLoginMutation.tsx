@@ -1,16 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
-import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { loginAndFetchUserDetails } from "../../api/auth/LogIn/LogIn";
-import { isUserLoggedInContext } from "../../context/isUserLoggedInContext";
-import { userDetailsContext } from "../../context/userDetailsContext";
+import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
+import { useUserDetails } from "../../context/userDetailsContext";
 
 export function useLoginMutation() {
   const navigate = useNavigate();
 
-  const { setIsUserLoggedIn } = useContext(isUserLoggedInContext)!;
+  const { setIsUserLoggedIn } = useIsUserLoggedIn();
 
-  const { setUserDetails } = useContext(userDetailsContext)!;
+  const { setUserDetails } = useUserDetails();
 
   return useMutation({
     mutationFn: loginAndFetchUserDetails,

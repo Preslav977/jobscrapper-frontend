@@ -1,4 +1,4 @@
-import { createContext, type SetStateAction } from "react";
+import { createContext, use, type SetStateAction } from "react";
 import type { UserDetailsInterface } from "../interfaces/UserDetailsInterface/UserDetailsInterface";
 
 interface userDetailsContext {
@@ -9,3 +9,13 @@ interface userDetailsContext {
 export const userDetailsContext = createContext<userDetailsContext | null>(
   null,
 );
+
+export const useUserDetails = () => {
+  const userDetails = use(userDetailsContext);
+
+  if (!userDetails) {
+    throw new Error("userDetails has to used within <userDetailsContext>");
+  }
+
+  return userDetails;
+};

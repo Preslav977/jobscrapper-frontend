@@ -1,7 +1,7 @@
-import { useContext, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Navigate } from "react-router";
 import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
-import { userDetailsContext } from "../../context/userDetailsContext";
+import { useUserDetails } from "../../context/userDetailsContext";
 
 export function ProtectRoutes({
   children,
@@ -12,7 +12,7 @@ export function ProtectRoutes({
 }) {
   const { isUserLoggedIn } = useIsUserLoggedIn();
 
-  const { userDetails } = useContext(userDetailsContext)!;
+  const { userDetails } = useUserDetails();
 
   if (!isUserLoggedIn) {
     return <Navigate to={"/login"} />;
