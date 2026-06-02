@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { CompanyFormProps } from "../../interfaces/CompanyFormProps/CompanyFormProps";
 import { companySchema } from "../../schemas/companySchema/companySchema";
+import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
 import styles from "./CreateCompanyForm.module.css";
 
 export function CreateCompanyForm({
@@ -35,7 +36,7 @@ export function CreateCompanyForm({
     { id: 6, key: "anchorHref", label: "Anchor Href" },
   ] as const;
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingComponent loading={"Loading ..."} />;
 
   return (
     <div className={styles.formWrapper}>

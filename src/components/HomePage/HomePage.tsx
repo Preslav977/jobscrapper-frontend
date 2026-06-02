@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
 import { ErrorComponent } from "../ErrorComponent/ErrorComponen";
+import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
@@ -26,7 +27,7 @@ export function HomePage() {
     setSearchQuery(query);
   }
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending) return <LoadingComponent loading={"Loading..."} />;
 
   if (error) return <ErrorComponent error={error} />;
 

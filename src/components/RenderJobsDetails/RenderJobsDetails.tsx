@@ -4,6 +4,7 @@ import { useUserDetails } from "../../context/userDetailsContext";
 import { useFetchJobsDetails } from "../../custom hooks/useFetchJobsDetails/useFetchJobsDetails";
 import { DeleteCompanyButton } from "../DeleteCompanyButton/DeleteCompanyButton";
 import { ErrorComponent } from "../ErrorComponent/ErrorComponen";
+import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
 import styles from "./RenderJobsDetails.module.css";
 
 export function RenderJobsDetails() {
@@ -15,7 +16,7 @@ export function RenderJobsDetails() {
 
   const { userDetails } = useUserDetails();
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending) return <LoadingComponent loading={"Loading..."} />;
 
   if (isError) return <ErrorComponent error={error} />;
 
