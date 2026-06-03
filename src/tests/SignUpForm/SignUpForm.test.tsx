@@ -1,8 +1,10 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
 import { localhostURL } from "../../utility/localhostURL";
+import { server } from "../mocks/server";
 
 describe("render SignUpForm", () => {
   it("render the SignUp form", () => {
@@ -119,5 +121,50 @@ describe("render SignUpForm", () => {
     );
 
     expect(screen.queryByText("Sign up")?.textContent).toMatch(/sign up/i);
+  });
+
+  it("should render error if the email already exist", async () => {
+    renderRouter({ initialEntries: ["/signup"] });
+
+    const user = userEvent.setup();
+
+    server.use(
+      http.post(`${localhostURL}/signup`, () => {
+        return HttpResponse.json(
+          [
+            {
+              msg: "Email is already taken!",
+            },
+          ],
+          { status: 400 },
+        );
+      }),
+    );
+
+    const response = await fetch(`${localhostURL}/signup`, {
+      method: "POST",
+    });
+
+    await expect(response.json()).resolves.toEqual([
+      {
+        msg: "Email is already taken!",
+      },
+    ]);
+
+    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    await user.type(screen.queryByLabelText("confirmPassword")!, "12345678BG");
+
+    const signUpButton = screen.queryByRole("button", { name: "Sign Up" });
+
+    await user.click(signUpButton!);
+
+    // screen.debug();
+
+    expect(screen.queryByText("Email is already taken!")?.textContent).toMatch(
+      /email is already taken!/i,
+    );
   });
 });
