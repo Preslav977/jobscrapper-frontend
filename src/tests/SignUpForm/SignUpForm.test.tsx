@@ -167,4 +167,36 @@ describe("render SignUpForm", () => {
       /email is already taken!/i,
     );
   });
+
+  it("should render login form when anchor is clicked", async () => {
+    renderRouter({ initialEntries: ["/signup"] });
+
+    const user = userEvent.setup();
+
+    const logInButton = screen.queryByText("Log in");
+
+    await user.click(logInButton!);
+
+    // screen.debug();
+
+    expect(screen.queryByText("JobScraper")?.textContent).toMatch(
+      /jobscraper/i,
+    );
+
+    expect(screen.queryByText("Welcome back! Sign in")?.textContent).toMatch(
+      /welcome back! sign in/i,
+    );
+
+    expect(screen.queryByText("Email")?.textContent).toMatch(/email/i);
+
+    expect(screen.queryByText("Password")?.textContent).toMatch(/password/i);
+
+    expect(screen.queryByRole("button", { name: "Log in" })).toBeDefined();
+
+    expect(screen.queryByText("Not registered yet?")?.textContent).toMatch(
+      /not registered yet?/i,
+    );
+
+    expect(screen.queryByText("Sign up")?.textContent).toMatch(/sign up/i);
+  });
 });
