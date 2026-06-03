@@ -21,4 +21,14 @@ export const handlers = [
       { status: 200 },
     );
   }),
+
+  http.post(`${localhostURL}/login`, () => {
+    return HttpResponse.json(
+      {
+        email: "testing@abv.bg",
+        password: "12345678BG",
+      },
+      { status: 200 },
+    );
+  }),
 ];
