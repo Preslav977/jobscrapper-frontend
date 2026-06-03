@@ -5,7 +5,7 @@ import {
   signUpSchema,
 } from "../../schemas/signUpSchema/signUpSchema";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import styles from "./SignUpForm.module.css";
 
