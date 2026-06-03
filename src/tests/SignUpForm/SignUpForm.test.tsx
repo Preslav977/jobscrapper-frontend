@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
+import { localhostURL } from "../../utility/localhostURL";
 
 describe("render SignUpForm", () => {
   it("render the SignUp form", () => {
@@ -61,5 +62,62 @@ describe("render SignUpForm", () => {
     expect(screen.queryByText("Passwords must match!")?.textContent).toMatch(
       /passwords must match!/i,
     );
+  });
+
+  it("should redirect to log in form if sign up was successful", async () => {
+    renderRouter({ initialEntries: ["/signup", "/login"], initialIndex: 0 });
+
+    const user = userEvent.setup();
+
+    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    await user.type(screen.queryByLabelText("confirmPassword")!, "12345678BG");
+
+    const signUpButton = screen.queryByRole("button", { name: "Sign Up" });
+
+    await user.click(signUpButton!);
+
+    // screen.debug();
+
+    const response = await fetch(`${localhostURL}/signup`, {
+      method: "POST",
+    });
+
+    await expect(response.json()).resolves.toEqual({
+      id: 1,
+      firstName: "",
+      lastName: "",
+      password: "12345678BG",
+      confirmPassword: "12345678BG",
+      location: "",
+      email: "testing@abv.bg",
+      phoneNumber: null,
+      linkedInURL: "",
+      githubURL: "",
+      portfolioURL: "",
+      role: "USER",
+    });
+
+    expect(screen.queryByText("JobScraper")?.textContent).toMatch(
+      /jobscraper/i,
+    );
+
+    expect(screen.queryByText("Welcome back! Sign in")?.textContent).toMatch(
+      /welcome back! sign in/i,
+    );
+
+    expect(screen.queryByText("Email")?.textContent).toMatch(/email/i);
+
+    expect(screen.queryByText("Password")?.textContent).toMatch(/password/i);
+
+    expect(screen.queryByRole("button", { name: "Log in" })).toBeDefined();
+
+    expect(screen.queryByText("Not registered yet?")?.textContent).toMatch(
+      /not registered yet?/i,
+    );
+
+    expect(screen.queryByText("Sign up")?.textContent).toMatch(/sign up/i);
   });
 });

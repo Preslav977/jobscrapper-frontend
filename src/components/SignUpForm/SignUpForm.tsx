@@ -81,6 +81,7 @@ export function SignUpForm() {
           <input
             type="password"
             id="confirmPassword"
+            aria-label="confirmPassword"
             {...register("confirmPassword", {
               required: true,
               min: 8,
