@@ -4,7 +4,9 @@ import { renderRouter } from "../../router/renderRouter";
 
 describe("render HomePage", () => {
   it("render the HomePage", () => {
-    renderRouter();
+    renderRouter({ initialEntries: ["/"] });
+
+    screen.debug();
 
     expect(screen.queryByText("Explore")?.textContent).toMatch(/explore/i);
 
@@ -40,7 +42,68 @@ describe("render HomePage", () => {
     ).toMatch(
       /we couldn't find any jobs that match your search. Try adjusting your filters or check back later./i,
     );
+  });
+
+  it("render jobs details in HomePage", () => {
+    renderRouter({ initialEntries: ["/"] });
 
     // screen.debug();
+
+    expect(screen.queryByText("Explore")?.textContent).toMatch(/explore/i);
+
+    expect(screen.queryByText("Log In")?.textContent).toMatch(/log in/i);
+
+    expect(screen.queryByText("JobScraper")?.textContent).toMatch(
+      /jobscraper/i,
+    );
+
+    expect(
+      screen.queryByText("Discover your future job. All in one place.")
+        ?.textContent,
+    ).toMatch(/discover your future job. All in one place./i);
+
+    expect(screen.queryByRole("button", { name: "Search" })).toBeDefined();
+
+    expect(screen.queryByText("All companies")?.textContent).toMatch(
+      /all companies/i,
+    );
+
+    expect(screen.queryByText("Explore")?.textContent).toMatch(/explore/i);
+
+    expect(screen.queryByText("Log In")?.textContent).toMatch(/log in/i);
+
+    expect(screen.queryByRole("button", { name: "Search" })).toBeDefined();
+
+    expect(screen.queryByText("All companies")?.textContent).toMatch(
+      /all companies/i,
+    );
+
+    expect(screen.queryByText("2")?.textContent).toMatch(/2/i);
+
+    expect(screen.queryByText("jobs")?.textContent).toMatch(/jobs/i);
+
+    expect(screen.queryByText("JavaScript Developer")?.textContent).toMatch(
+      /javascript developer/i,
+    );
+
+    expect(screen.queryByText("Sofia")?.textContent).toMatch(/sofia/i);
+
+    expect(screen.queryByText("Remote")?.textContent).toMatch(/remote/i);
+
+    expect(screen.queryByText("Posted 10 days ago")?.textContent).toMatch(
+      /posted 10 days ago/i,
+    );
+
+    expect(screen.queryByText("React Developer")?.textContent).toMatch(
+      /react developer/i,
+    );
+
+    expect(screen.queryByText("Plovdiv")?.textContent).toMatch(/plovdiv/i);
+
+    expect(screen.queryByText("On-site")?.textContent).toMatch(/on-site/i);
+
+    expect(screen.queryByText("Posted 1 day ago")?.textContent).toMatch(
+      /posted 1 day ago/i,
+    );
   });
 });

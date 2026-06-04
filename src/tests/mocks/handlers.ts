@@ -73,6 +73,23 @@ export const handlers = [
             scrapMode: "NAVIGATION",
           },
         },
+        {
+          id: 2,
+          title: "React Developer",
+          location: "Plovdiv",
+          remoteOrHybrid: "On-site",
+          datePosted: "Posted 1 day ago",
+          description: "",
+          anchorHref: "react-developer/1",
+          companyID: 2,
+          company: {
+            id: 2,
+            name: "Company",
+            logo: null,
+            URL: "example.com",
+            scrapMode: "NAVIGATION",
+          },
+        },
       ],
       { status: 200 },
     );
