@@ -53,7 +53,7 @@ export const handlers = [
     );
   }),
 
-  http.get(`${localhostURL}/companies/get/jobs`, async () => {
+  http.get(`${localhostURL}/companies/get/jobs`, () => {
     return HttpResponse.json(
       [
         {
