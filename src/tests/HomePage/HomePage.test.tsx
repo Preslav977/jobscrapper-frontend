@@ -137,6 +137,38 @@ describe("render HomePage", () => {
       /posted 10 days ago/i,
     );
 
-    screen.debug();
+    // screen.debug();
+  });
+
+  it("should render one job for company B if you selected it from the dropdown", async () => {
+    renderRouter({ initialEntries: ["/"] });
+
+    const user = userEvent.setup();
+
+    const allCompanies = screen.queryByText("All companies");
+
+    await user.click(allCompanies!);
+
+    await user.click(screen.queryByText("Company B")!);
+
+    expect(screen.queryByText("Company B")?.textContent).toMatch(/company b/i);
+
+    expect(screen.queryByText("1")?.textContent).toMatch(/1/i);
+
+    expect(screen.queryByText("jobs")?.textContent).toMatch(/jobs/i);
+
+    expect(screen.queryByText("React Developer")?.textContent).toMatch(
+      /react developer/i,
+    );
+
+    expect(screen.queryByText("Plovdiv")?.textContent).toMatch(/plovdiv/i);
+
+    expect(screen.queryByText("On-site")?.textContent).toMatch(/on-site/i);
+
+    expect(screen.queryByText("Posted 1 day ago")?.textContent).toMatch(
+      /posted 1 day ago/i,
+    );
+
+    // screen.debug();
   });
 });
