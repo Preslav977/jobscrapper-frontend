@@ -45,14 +45,17 @@ export function UserProfilePicture({
           </p>
         </div>
         <form className={styles.formUploadingProfilePicture}>
-          <input
-            className={styles.inputChangingProfilePicture}
-            type="file"
-            {...(register("file"),
-            {
-              onChange: (e) => handleFileChange(e),
-            })}
-          />
+          <label htmlFor="file">
+            <input
+              className={styles.inputChangingProfilePicture}
+              type="file"
+              aria-label="file"
+              {...(register("file"),
+              {
+                onChange: (e) => handleFileChange(e),
+              })}
+            />
+          </label>
           <span className={styles.userProfilePictureSpan}>
             {!userDetails.profilePicture ? (
               <img

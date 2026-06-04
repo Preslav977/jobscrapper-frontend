@@ -308,6 +308,8 @@ describe("render HomePage", () => {
 
     await user.click(screen.queryByText("Dashboard")!);
 
+    // screen.debug();
+
     expect(screen.queryAllByText("null")[0]?.textContent).toMatch(/null/i);
 
     expect(screen.queryAllByText("testing@abv.bg")[0]?.textContent).toMatch(
@@ -383,5 +385,42 @@ describe("render HomePage", () => {
     ).toMatch(
       /this is how your profile will appear to companies and recruiters. Make sure all information is accurate and up-to-date to create a strong impression/i,
     );
+  });
+
+  it("should render user photo when it is uploaded on dashboard", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/dashboard"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.queryByText("Log In")!);
+
+    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    const logInButton = screen.queryByRole("button", { name: "Log in" });
+
+    await user.click(logInButton!);
+
+    await user.click(screen.queryByText("Dashboard")!);
+
+    const input = screen.queryByLabelText("file") as HTMLInputElement;
+
+    const file = new File(["image"], "user.png", { type: "image/png" });
+
+    await user.upload(input, file);
+
+    expect(input.files).not.toBe(null);
+
+    expect(input.files).toHaveLength(1);
+
+    expect(input.files![0]).toBe(file);
+
+    expect(screen.queryByText("U")).toBeNull();
+
+    // screen.debug();
   });
 });

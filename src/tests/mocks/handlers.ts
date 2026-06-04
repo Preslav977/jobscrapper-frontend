@@ -156,4 +156,25 @@ export const handlers = [
       }
     }
   }),
+
+  http.put(`${localhostURL}/users/1`, () => {
+    return HttpResponse.json(
+      {
+        id: 1,
+        firstName: "",
+        lastName: "",
+        password: "12345678BG",
+        confirmPassword: "12345678BG",
+        profilePicture: "image.png",
+        location: "",
+        email: "testing@abv.bg",
+        phoneNumber: null,
+        linkedInURL: "",
+        githubURL: "",
+        portfolioURL: "",
+        role: "USER",
+      },
+      { status: 200 },
+    );
+  }),
 ];
