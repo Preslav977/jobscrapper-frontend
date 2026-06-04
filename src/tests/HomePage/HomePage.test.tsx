@@ -235,4 +235,36 @@ describe("render HomePage", () => {
       /posted 1 day ago/i,
     );
   });
+
+  it("should render no jobs if you search for it and haven't found any", async () => {
+    renderRouter({ initialEntries: ["/"] });
+
+    const user = userEvent.setup();
+
+    await user.type(screen.queryByLabelText("query")!, "typescript");
+
+    await user.click(screen.queryByRole("button", { name: "Search" })!);
+
+    screen.debug();
+
+    expect(screen.queryByText("All companies")?.textContent).toMatch(
+      /all companies/i,
+    );
+
+    expect(screen.queryByText("0")?.textContent).toMatch(/0/i);
+
+    expect(screen.queryByText("jobs")?.textContent).toMatch(/jobs/i);
+
+    expect(screen.queryByText("No jobs found")?.textContent).toMatch(
+      /no jobs found/i,
+    );
+
+    expect(
+      screen.queryByText(
+        "We couldn't find any jobs that match your search. Try adjusting your filters or check back later.",
+      )?.textContent,
+    ).toMatch(
+      /we couldn't find any jobs that match your search. Try adjusting your filters or check back later./i,
+    );
+  });
 });

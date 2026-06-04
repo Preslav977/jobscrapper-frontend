@@ -151,8 +151,9 @@ export const handlers = [
         );
       }
 
-      default:
-        break;
+      default: {
+        return HttpResponse.json([]);
+      }
     }
   }),
 ];
