@@ -51,4 +51,44 @@ describe("render LoginForm", () => {
       /password must be minimum 8 characters, and contain at least one letter, and one number/i,
     );
   });
+
+  it("should redirect to homepage if credentials are correct", async () => {
+    renderRouter({ initialEntries: ["/login", "/"], initialIndex: 0 });
+
+    const user = userEvent.setup();
+
+    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    const logInButton = screen.queryByRole("button", { name: "Log in" });
+
+    await user.click(logInButton!);
+
+    expect(await screen.findByText("JavaScript Developer")).toBeDefined();
+
+    expect(screen.queryByText("Explore")?.textContent).toMatch(/explore/i);
+
+    expect(screen.queryByText("Dashboard")?.textContent).toMatch(/dashboard/i);
+
+    expect(screen.queryByRole("button", { name: "Search" })).toBeDefined();
+
+    expect(screen.queryByText("All companies")?.textContent).toMatch(
+      /all companies/i,
+    );
+
+    expect(screen.queryByText("1")?.textContent).toMatch(/1/i);
+
+    expect(screen.queryByText("jobs")?.textContent).toMatch(/jobs/i);
+
+    expect(screen.queryByText("Sofia")?.textContent).toMatch(/sofia/i);
+
+    expect(screen.queryByText("Remote")?.textContent).toMatch(/remote/i);
+
+    expect(screen.queryByText("Posted 10 days ago")?.textContent).toMatch(
+      /posted 10 days ago/i,
+    );
+
+    screen.debug();
+  });
 });

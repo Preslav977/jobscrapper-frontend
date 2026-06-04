@@ -1,8 +1,18 @@
 import { Link } from "react-router";
 import type { RenderJobsInterface } from "../../interfaces/RenderJobsInterface/RenderJobsInterface";
 import styles from "./RenderJobs.module.css";
+import { ErrorComponent } from "../ErrorComponent/ErrorComponen";
+import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
 
-export function RenderJobs({ filteredJobs }: RenderJobsInterface) {
+export function RenderJobs({
+  filteredJobs,
+  isPending,
+  error,
+}: RenderJobsInterface) {
+  if (isPending) return <LoadingComponent loading={"Loading..."} />;
+
+  if (error) return <ErrorComponent error={error} />;
+
   return (
     <div className={styles.jobsWrapper}>
       {filteredJobs.map((jobs) => (
