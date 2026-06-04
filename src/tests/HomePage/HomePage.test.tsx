@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
 
@@ -6,7 +7,7 @@ describe("render HomePage", () => {
   it("render the HomePage", () => {
     renderRouter({ initialEntries: ["/"] });
 
-    screen.debug();
+    // screen.debug();
 
     expect(screen.queryByText("Explore")?.textContent).toMatch(/explore/i);
 
@@ -105,5 +106,37 @@ describe("render HomePage", () => {
     expect(screen.queryByText("Posted 1 day ago")?.textContent).toMatch(
       /posted 1 day ago/i,
     );
+  });
+
+  it("should render one job for company A if you selected it from the dropdown", async () => {
+    renderRouter({ initialEntries: ["/"] });
+
+    const user = userEvent.setup();
+
+    const allCompanies = screen.queryByText("All companies");
+
+    await user.click(allCompanies!);
+
+    await user.click(screen.queryByText("Company A")!);
+
+    expect(screen.queryByText("Company A")?.textContent).toMatch(/company a/i);
+
+    expect(screen.queryByText("1")?.textContent).toMatch(/1/i);
+
+    expect(screen.queryByText("jobs")?.textContent).toMatch(/jobs/i);
+
+    expect(screen.queryByText("JavaScript Developer")?.textContent).toMatch(
+      /javascript developer/i,
+    );
+
+    expect(screen.queryByText("Sofia")?.textContent).toMatch(/sofia/i);
+
+    expect(screen.queryByText("Remote")?.textContent).toMatch(/remote/i);
+
+    expect(screen.queryByText("Posted 10 days ago")?.textContent).toMatch(
+      /posted 10 days ago/i,
+    );
+
+    screen.debug();
   });
 });

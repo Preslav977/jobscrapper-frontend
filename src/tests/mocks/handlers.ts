@@ -67,7 +67,7 @@ export const handlers = [
           companyID: 1,
           company: {
             id: 1,
-            name: "Company",
+            name: "Company A",
             logo: null,
             URL: "example.com",
             scrapMode: "NAVIGATION",
@@ -84,7 +84,7 @@ export const handlers = [
           companyID: 2,
           company: {
             id: 2,
-            name: "Company",
+            name: "Company B",
             logo: null,
             URL: "example.com",
             scrapMode: "NAVIGATION",
