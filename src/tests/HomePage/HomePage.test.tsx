@@ -268,7 +268,7 @@ describe("render HomePage", () => {
     );
   });
 
-  it("should render dashboard when you click on anchor and login", async () => {
+  it("should render dashboard anchor when you click on anchor and login", async () => {
     renderRouter({ initialEntries: ["/", "/login"], initialIndex: 0 });
 
     const user = userEvent.setup();
@@ -285,6 +285,103 @@ describe("render HomePage", () => {
 
     expect(screen.queryByText("Dashboard")).toBeDefined();
 
-    screen.debug();
+    // screen.debug();
+  });
+
+  it("should render dashboard component when you click on anchor and login", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/dashboard"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.queryByText("Log In")!);
+
+    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    const logInButton = screen.queryByRole("button", { name: "Log in" });
+
+    await user.click(logInButton!);
+
+    await user.click(screen.queryByText("Dashboard")!);
+
+    expect(screen.queryAllByText("null")[0]?.textContent).toMatch(/null/i);
+
+    expect(screen.queryAllByText("testing@abv.bg")[0]?.textContent).toMatch(
+      /testing@abv.bg/i,
+    );
+
+    expect(screen.queryAllByText("Home")[0]?.textContent).toMatch(/home/i);
+
+    expect(screen.queryAllByText("Profile")[0]?.textContent).toMatch(
+      /profile/i,
+    );
+
+    expect(screen.queryByText("U")?.textContent).toMatch(/u/i);
+
+    expect(screen.queryByText("Log out")?.textContent).toMatch(/log out/i);
+
+    expect(screen.queryByText("Profile photo")?.textContent).toMatch(
+      /profile photo/i,
+    );
+
+    expect(
+      screen.queryByText(
+        "Upload a profile picture so companies and recruiters can recognize you more easily.",
+      )?.textContent,
+    ).toMatch(
+      /upload a profile picture so companies and recruiters can recognize you more easily./i,
+    );
+
+    expect(screen.queryByText("Your Profile")?.textContent).toMatch(
+      /your profile/i,
+    );
+
+    expect(
+      screen.queryByText(
+        "Fill in your basic info to complete your profile and help us tailor your experience.",
+      )?.textContent,
+    ).toMatch(
+      /fill in your basic info to complete your profile and help us tailor your experience./i,
+    );
+
+    expect(screen.queryByText("First Name")?.textContent).toMatch(
+      /first name/i,
+    );
+
+    expect(screen.queryByText("Last Name")?.textContent).toMatch(/last name/i);
+
+    expect(screen.queryByText("Location")?.textContent).toMatch(/location/i);
+
+    expect(screen.queryByText("Email")?.textContent).toMatch(/email/i);
+
+    expect(screen.queryByText("Phone")?.textContent).toMatch(/phone/i);
+
+    expect(screen.queryByText("LinkedIn URL")?.textContent).toMatch(
+      /linkedin url/i,
+    );
+
+    expect(screen.queryByText("GitHub URL")?.textContent).toMatch(
+      /github url/i,
+    );
+
+    expect(screen.queryByText("Portfolio URL")?.textContent).toMatch(
+      /portfolio url/i,
+    );
+
+    expect(screen.queryByRole("button", { name: "Save" })).toBeDefined();
+
+    expect(screen.queryByText("Preview")?.textContent).toMatch(/preview/i);
+
+    expect(
+      screen.queryByText(
+        "This is how your profile will appear to companies and recruiters. Make sure all information is accurate and up-to-date to create a strong impression",
+      )?.textContent,
+    ).toMatch(
+      /this is how your profile will appear to companies and recruiters. Make sure all information is accurate and up-to-date to create a strong impression/i,
+    );
   });
 });
