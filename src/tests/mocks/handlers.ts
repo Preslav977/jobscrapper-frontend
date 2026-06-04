@@ -1,4 +1,4 @@
-import { delay, http, HttpResponse } from "msw";
+import { http, HttpResponse } from "msw";
 import { localhostURL } from "../../utility/localhostURL";
 
 export const handlers = [
@@ -54,8 +54,6 @@ export const handlers = [
   }),
 
   http.get(`${localhostURL}/companies/get/jobs`, async () => {
-    await delay(150);
-
     return HttpResponse.json(
       [
         {

@@ -1,7 +1,10 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
+import { localhostURL } from "../../utility/localhostURL";
+import { server } from "../mocks/server";
 
 describe("render LoginForm", () => {
   it("render the Login form", () => {
@@ -52,6 +55,37 @@ describe("render LoginForm", () => {
     );
   });
 
+  it("should render errors if credentials are wrong", async () => {
+    renderRouter({ initialEntries: ["/login"], initialIndex: 0 });
+
+    server.use(
+      http.post(`${localhostURL}/login`, () => {
+        return HttpResponse.json(
+          {
+            message: "Email or Password is incorrect!!",
+          },
+          { status: 401 },
+        );
+      }),
+    );
+
+    const user = userEvent.setup();
+
+    await user.type(screen.queryByLabelText("email")!, "test@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    const logInButton = screen.queryByRole("button", { name: "Log in" });
+
+    await user.click(logInButton!);
+
+    // screen.debug();
+
+    expect(
+      screen.queryByText("Email or Password is incorrect!")?.textContent,
+    ).toMatch(/email or password is incorrect!/i);
+  });
+
   it("should redirect to homepage if credentials are correct", async () => {
     renderRouter({ initialEntries: ["/login", "/"], initialIndex: 0 });
 
@@ -89,6 +123,6 @@ describe("render LoginForm", () => {
       /posted 10 days ago/i,
     );
 
-    screen.debug();
+    // screen.debug();
   });
 });

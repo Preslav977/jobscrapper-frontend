@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
-import { http, HttpResponse } from "msw";
 import { localhostURL } from "../../utility/localhostURL";
 import { server } from "../mocks/server";
 
@@ -83,25 +83,6 @@ describe("render SignUpForm", () => {
 
     // screen.debug();
 
-    // const response = await fetch(`${localhostURL}/signup`, {
-    //   method: "POST",
-    // });
-
-    // await expect(response.json()).resolves.toEqual({
-    //   id: 1,
-    //   firstName: "",
-    //   lastName: "",
-    //   password: "12345678BG",
-    //   confirmPassword: "12345678BG",
-    //   location: "",
-    //   email: "testing@abv.bg",
-    //   phoneNumber: null,
-    //   linkedInURL: "",
-    //   githubURL: "",
-    //   portfolioURL: "",
-    //   role: "USER",
-    // });
-
     expect(screen.queryByText("JobScraper")?.textContent).toMatch(
       /jobscraper/i,
     );
@@ -141,16 +122,6 @@ describe("render SignUpForm", () => {
       }),
     );
 
-    // const response = await fetch(`${localhostURL}/signup`, {
-    //   method: "POST",
-    // });
-
-    // await expect(response.json()).resolves.toEqual([
-    //   {
-    //     msg: "Email is already taken!",
-    //   },
-    // ]);
-
     await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
 
     await user.type(screen.queryByLabelText("password")!, "12345678BG");
@@ -161,7 +132,7 @@ describe("render SignUpForm", () => {
 
     await user.click(signUpButton!);
 
-    screen.debug();
+    // screen.debug();
 
     expect(screen.queryByText("Email is already taken!")?.textContent).toMatch(
       /email is already taken!/i,
