@@ -94,4 +94,65 @@ export const handlers = [
       { status: 200 },
     );
   }),
+
+  http.get(`${localhostURL}/companies/get/jobs/search`, ({ request }) => {
+    const url = new URL(request.url);
+
+    const query = url.searchParams.get("query");
+
+    switch (query) {
+      case "javascript": {
+        return HttpResponse.json(
+          [
+            {
+              id: 1,
+              title: "JavaScript Developer",
+              location: "Sofia",
+              remoteOrHybrid: "Remote",
+              datePosted: "Posted 10 days ago",
+              description: "",
+              anchorHref: "developer/1",
+              companyID: 1,
+              company: {
+                id: 1,
+                name: "Company A",
+                logo: null,
+                URL: "example.com",
+                scrapMode: "NAVIGATION",
+              },
+            },
+          ],
+          { status: 200 },
+        );
+      }
+
+      case "react": {
+        return HttpResponse.json(
+          [
+            {
+              id: 2,
+              title: "React Developer",
+              location: "Plovdiv",
+              remoteOrHybrid: "On-site",
+              datePosted: "Posted 1 day ago",
+              description: "",
+              anchorHref: "react-developer/1",
+              companyID: 1,
+              company: {
+                id: 1,
+                name: "Company B",
+                logo: null,
+                URL: "example.com",
+                scrapMode: "NAVIGATION",
+              },
+            },
+          ],
+          { status: 200 },
+        );
+      }
+
+      default:
+        break;
+    }
+  }),
 ];

@@ -171,4 +171,68 @@ describe("render HomePage", () => {
 
     // screen.debug();
   });
+
+  it("should render one job for company A if you search for it", async () => {
+    renderRouter({ initialEntries: ["/"] });
+
+    const user = userEvent.setup();
+
+    await user.type(screen.queryByLabelText("query")!, "javascript");
+
+    await user.click(screen.queryByRole("button", { name: "Search" })!);
+
+    // screen.debug();
+
+    expect(screen.queryByText("All companies")?.textContent).toMatch(
+      /all companies/i,
+    );
+
+    expect(screen.queryByText("1")?.textContent).toMatch(/1/i);
+
+    expect(screen.queryByText("jobs")?.textContent).toMatch(/jobs/i);
+
+    expect(screen.queryByText("JavaScript Developer")?.textContent).toMatch(
+      /javascript developer/i,
+    );
+
+    expect(screen.queryByText("Sofia")?.textContent).toMatch(/sofia/i);
+
+    expect(screen.queryByText("Remote")?.textContent).toMatch(/remote/i);
+
+    expect(screen.queryByText("Posted 10 days ago")?.textContent).toMatch(
+      /posted 10 days ago/i,
+    );
+  });
+
+  it("should render one job for company B if you search for it", async () => {
+    renderRouter({ initialEntries: ["/"] });
+
+    const user = userEvent.setup();
+
+    await user.type(screen.queryByLabelText("query")!, "react");
+
+    await user.click(screen.queryByRole("button", { name: "Search" })!);
+
+    // screen.debug();
+
+    expect(screen.queryByText("All companies")?.textContent).toMatch(
+      /all companies/i,
+    );
+
+    expect(screen.queryByText("1")?.textContent).toMatch(/1/i);
+
+    expect(screen.queryByText("jobs")?.textContent).toMatch(/jobs/i);
+
+    expect(screen.queryByText("React Developer")?.textContent).toMatch(
+      /react developer/i,
+    );
+
+    expect(screen.queryByText("Plovdiv")?.textContent).toMatch(/plovdiv/i);
+
+    expect(screen.queryByText("On-site")?.textContent).toMatch(/on-site/i);
+
+    expect(screen.queryByText("Posted 1 day ago")?.textContent).toMatch(
+      /posted 1 day ago/i,
+    );
+  });
 });

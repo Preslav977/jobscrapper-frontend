@@ -13,7 +13,12 @@ export function SearchJobsForm({ onSubmit }: SearchJobsFormInterface) {
       >
         <label htmlFor="query"></label>
         <div className={styles.formContent}>
-          <input type="text" name="query" placeholder="Search jobs..." />
+          <input
+            type="text"
+            name="query"
+            aria-label="query"
+            placeholder="Search jobs..."
+          />
           <button type="submit">Search</button>
         </div>
       </form>
