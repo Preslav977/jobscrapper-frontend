@@ -245,7 +245,7 @@ describe("render HomePage", () => {
 
     await user.click(screen.queryByRole("button", { name: "Search" })!);
 
-    screen.debug();
+    // screen.debug();
 
     expect(screen.queryByText("All companies")?.textContent).toMatch(
       /all companies/i,
@@ -266,5 +266,25 @@ describe("render HomePage", () => {
     ).toMatch(
       /we couldn't find any jobs that match your search. Try adjusting your filters or check back later./i,
     );
+  });
+
+  it("should render dashboard when you click on anchor and login", async () => {
+    renderRouter({ initialEntries: ["/", "/login"], initialIndex: 0 });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.queryByText("Log In")!);
+
+    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    const logInButton = screen.queryByRole("button", { name: "Log in" });
+
+    await user.click(logInButton!);
+
+    expect(screen.queryByText("Dashboard")).toBeDefined();
+
+    screen.debug();
   });
 });
