@@ -86,6 +86,43 @@ describe("render LoginForm", () => {
     ).toMatch(/email or password is incorrect!/i);
   });
 
+  it("should render signup form when anchor is clicked", async () => {
+    renderRouter({ initialEntries: ["/login", "/signup"], initialIndex: 0 });
+
+    const user = userEvent.setup();
+
+    const signUpButton = screen.queryByText("Sign up");
+
+    await user.click(signUpButton!);
+
+    // screen.debug();
+
+    expect(screen.queryByText("JobScraper")?.textContent).toMatch(
+      /jobscraper/i,
+    );
+
+    expect(
+      screen.queryByText("Sign up to find your dream jobs with JobScraper")
+        ?.textContent,
+    ).toMatch(/sign up to find your dream jobs with JobScraper/i);
+
+    expect(screen.queryByText("Email")?.textContent).toMatch(/email/i);
+
+    expect(screen.queryByText("Password")?.textContent).toMatch(/password/i);
+
+    expect(screen.queryByText("Confirm Password")?.textContent).toMatch(
+      /confirm password/i,
+    );
+
+    expect(screen.queryByRole("button", { name: "Sign Up" })).toBeDefined();
+
+    expect(screen.queryByText("Already registered?")?.textContent).toMatch(
+      /already registered?/i,
+    );
+
+    expect(screen.queryByText("Log in")?.textContent).toMatch(/log in/i);
+  });
+
   it("should redirect to homepage if credentials are correct", async () => {
     renderRouter({ initialEntries: ["/login", "/"], initialIndex: 0 });
 
