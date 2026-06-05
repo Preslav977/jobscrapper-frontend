@@ -47,7 +47,7 @@ export const handlers = [
         linkedInURL: "",
         githubURL: "",
         portfolioURL: "",
-        role: "USER",
+        role: "ADMIN",
       },
       { status: 200 },
     );
@@ -172,7 +172,7 @@ export const handlers = [
         linkedInURL: "",
         githubURL: "",
         portfolioURL: "",
-        role: "USER",
+        role: "ADMIN",
       },
       { status: 200 },
     );

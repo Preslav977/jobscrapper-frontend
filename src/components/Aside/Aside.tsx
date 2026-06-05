@@ -14,6 +14,8 @@ export function Aside({
 
   const { isUserLoggedIn } = useIsUserLoggedIn();
 
+  // console.log(userDetails, isUserLoggedIn);
+
   if (userDetails)
     return (
       <>
