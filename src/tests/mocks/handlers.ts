@@ -177,4 +177,36 @@ export const handlers = [
       { status: 200 },
     );
   }),
+
+  http.get(`${localhostURL}/companies/jobs/1`, () => {
+    return HttpResponse.json({
+      id: 1,
+      title: "JavaScript Developer",
+      location: "Sofia",
+      remoteOrHybrid: "Remote",
+      datePosted: "Posted 10 days ago",
+      anchorHref: "developer/1",
+      formattedData: {
+        responsibilities: [
+          "Creating software for something",
+          "Updating and testing",
+        ],
+        requirements: [
+          "At least 1 year of JavaScript knowledge",
+          "CSS",
+          "HTML",
+        ],
+        benefits: ["Remote work"],
+        other: [""],
+      },
+      companyID: 1,
+      company: {
+        id: 1,
+        name: "Company A",
+        logo: null,
+        URL: "example.com",
+        scrapMode: "NAVIGATION",
+      },
+    });
+  }),
 ];
