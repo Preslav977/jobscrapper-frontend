@@ -423,4 +423,39 @@ describe("render HomePage", () => {
 
     // screen.debug();
   });
+
+  it("should render user updated details when it is changed on dashboard", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/dashboard"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.queryByText("Log In")!);
+
+    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+
+    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+
+    const logInButton = screen.queryByRole("button", { name: "Log in" });
+
+    await user.click(logInButton!);
+
+    await user.click(screen.queryByText("Dashboard")!);
+
+    await user.type(screen.queryByLabelText("firstName")!, "test");
+
+    await user.type(screen.queryByLabelText("lastName")!, "user");
+
+    const saveButton = screen.queryByRole("button", { name: "Save" });
+
+    await user.click(saveButton!);
+
+    expect(screen.queryByText("test")).toBeDefined();
+
+    expect(screen.queryByText("user")).toBeDefined();
+
+    // screen.debug();
+  });
 });

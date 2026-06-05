@@ -161,8 +161,8 @@ export const handlers = [
     return HttpResponse.json(
       {
         id: 1,
-        firstName: "",
-        lastName: "",
+        firstName: "test",
+        lastName: "user",
         password: "12345678BG",
         confirmPassword: "12345678BG",
         profilePicture: "image.png",
