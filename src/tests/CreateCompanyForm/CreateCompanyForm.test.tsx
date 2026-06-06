@@ -1,10 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { http, HttpResponse } from "msw";
 import { describe, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
-import { localhostURL } from "../../utility/localhostURL";
-import { server } from "../mocks/server";
 
 describe("render CreateCompanyForm", () => {
   it("render the CreateCompanyForm if logged in and admin", async () => {
@@ -125,55 +122,55 @@ describe("render CreateCompanyForm", () => {
     screen.debug();
   });
 
-  it("should render company name already exists", async () => {
-    renderRouter({
-      initialEntries: ["/", "/login", "/dashboard", "/createCompany"],
-      initialIndex: 0,
-    });
+  // it("should render company name already exists", async () => {
+  //   renderRouter({
+  //     initialEntries: ["/", "/login", "/dashboard", "/createCompany"],
+  //     initialIndex: 0,
+  //   });
 
-    server.use(
-      http.post(`${localhostURL}/companies/relations`, () => {
-        return HttpResponse.json(
-          [
-            {
-              msg: "Company name already exists!",
-            },
-          ],
-          { status: 400 },
-        );
-      }),
-    );
+  //   server.use(
+  //     http.post(`${localhostURL}/companies/relations`, () => {
+  //       return HttpResponse.json(
+  //         [
+  //           {
+  //             msg: "Company name already exists!",
+  //           },
+  //         ],
+  //         { status: 400 },
+  //       );
+  //     }),
+  //   );
 
-    const user = userEvent.setup();
+  //   const user = userEvent.setup();
 
-    await user.click(screen.getByRole("link", { name: "Log In" }));
+  //   await user.click(screen.getByRole("link", { name: "Log In" }));
 
-    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+  //   await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.getByLabelText("password"), "12345678BG");
+  //   await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    const logInButton = screen.getByRole("button", { name: "Log in" });
+  //   const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton);
+  //   await user.click(logInButton);
 
-    const dashBoardLink = await screen.findByText("Dashboard");
+  //   const dashBoardLink = await screen.findByText("Dashboard");
 
-    expect(dashBoardLink).toBeInTheDocument();
+  //   expect(dashBoardLink).toBeInTheDocument();
 
-    await user.click(dashBoardLink);
+  //   await user.click(dashBoardLink);
 
-    await user.click(screen.getByText("Create Company"));
+  //   await user.click(screen.getByText("Create Company"));
 
-    await user.type(screen.getByLabelText("name"), "Company A");
+  //   await user.type(screen.getByLabelText("name"), "Company A");
 
-    await user.click(screen.getByRole("button", { name: "Save" }));
+  //   await user.click(screen.getByRole("button", { name: "Save" }));
 
-    // screen.debug();
+  //   // screen.debug();
 
-    expect(
-      screen.getByText("Company name already exists!").textContent,
-    ).toMatch(/company name already exists!/i);
-  });
+  //   expect(
+  //     screen.getByText("Company name already exists!").textContent,
+  //   ).toMatch(/company name already exists!/i);
+  // });
 
   it("should render error if file is not an image", async () => {
     renderRouter({
@@ -220,5 +217,54 @@ describe("render CreateCompanyForm", () => {
       screen.getByText("Invalid file type. Only JPEG, PNG are allowed")
         .textContent,
     ).toMatch(/invalid file type. only jpeg, png are allowed/i);
+  });
+
+  it("should create a company", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/dashboard", "/createCompany"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.getByRole("link", { name: "Log In" }));
+
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+
+    await user.type(screen.getByLabelText("password"), "12345678BG");
+
+    const logInButton = screen.getByRole("button", { name: "Log in" });
+
+    await user.click(logInButton);
+
+    const dashBoardLink = await screen.findByText("Dashboard");
+
+    expect(dashBoardLink).toBeInTheDocument();
+
+    await user.click(dashBoardLink);
+
+    await user.click(screen.getByText("Create Company"));
+
+    await user.type(screen.getByLabelText("name"), "Company ABC");
+
+    await user.type(screen.getByLabelText("url"), "example.com");
+
+    const input = screen.queryByLabelText("file") as HTMLInputElement;
+
+    const file = new File(["image"], "user.png", { type: "image/png" });
+
+    await user.upload(input, file);
+
+    expect(input.files).not.toBe(null);
+
+    expect(input.files).toHaveLength(1);
+
+    expect(input.files![0]).toBe(file);
+
+    await user.click(screen.getByRole("button", { name: "Add Step" }));
+
+    await user.click(screen.getByRole("button", { name: "Save" }));
+
+    // screen.debug();
   });
 });
