@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useUpdateUser } from "../../custom hooks/useUpdateUser/userUpdateUser";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
-import { ErrorComponent } from "../ErrorComponent/ErrorComponen";
+import { ErrorComponent } from "../ErrorComponent/ErrorComponent";
 import styles from "./UserProfilePicture.module.css";
 
 export function UserProfilePicture({

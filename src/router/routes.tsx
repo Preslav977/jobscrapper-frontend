@@ -2,6 +2,7 @@ import { App } from "../App";
 import { HomePage } from "../components/HomePage/HomePage";
 import { LoginForm } from "../components/LoginForm/LoginForm";
 import { ProtectRoutes } from "../components/ProtectRoutes/ProtectRoutes";
+import { RenderCompanies } from "../components/RenderCompanies/RenderCompanies";
 import { RenderJobsDetails } from "../components/RenderJobsDetails/RenderJobsDetails";
 import { SignUpForm } from "../components/SignUpForm/SignUpForm";
 import { CreateCompanyPage } from "../pages/CreateCompanyPage/CreateCompanyPage";
@@ -23,6 +24,15 @@ export const routes = [
       },
       { path: "/", element: <HomePage /> },
       { path: "/jobs/:id", element: <RenderJobsDetails /> },
+
+      {
+        path: "/companies",
+        element: (
+          <ProtectRoutes requireAdmin={false}>
+            <RenderCompanies />
+          </ProtectRoutes>
+        ),
+      },
       {
         path: "dashboard",
         element: (

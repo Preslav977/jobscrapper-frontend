@@ -1,0 +1,63 @@
+.companiesWrapper {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 0.5em;
+  margin-top: 2em;
+}
+
+.companiesContainer {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.companiesContainer a {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.companiesCompanyLogo {
+  max-width: 50px;
+  margin-bottom: 0.25em;
+}
+
+.companiesTitle {
+  font-size: 1.15rem;
+}
+
+.companiesDescriptionWrapper {
+  display: flex;
+  gap: 0.5em;
+}
+
+.noCompaniesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.noCompaniesFoundPara {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.companiesButtons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.companiesEditLink {
+  padding: 0.2em;
+  border-radius: 0.45em;
+  padding-inline: 0.5em;
+  text-decoration: none;
+  border: 2px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+}

@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import type { RenderJobsInterface } from "../../interfaces/RenderJobsInterface/RenderJobsInterface";
-import styles from "./RenderJobs.module.css";
-import { ErrorComponent } from "../ErrorComponent/ErrorComponen";
+import { ErrorComponent } from "../ErrorComponent/ErrorComponent";
 import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
+import styles from "./RenderJobs.module.css";
 
 export function RenderJobs({
   filteredJobs,
