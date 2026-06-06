@@ -83,6 +83,42 @@ describe("render CreateCompanyForm", () => {
 
     expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
 
+    // screen.debug();
+  });
+
+  it("should render company name error if condition is not met", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/dashboard", "/createCompany"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.getByRole("link", { name: "Log In" }));
+
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+
+    await user.type(screen.getByLabelText("password"), "12345678BG");
+
+    const logInButton = screen.getByRole("button", { name: "Log in" });
+
+    await user.click(logInButton);
+
+    const dashBoardLink = await screen.findByText("Dashboard");
+
+    expect(dashBoardLink).toBeInTheDocument();
+
+    await user.click(dashBoardLink);
+
+    await user.click(screen.getByText("Create Company"));
+
+    await user.click(screen.getByRole("button", { name: "Save" }));
+
+    expect(
+      screen.getByText("Company name should be at least 1 character")
+        .textContent,
+    ).toMatch(/company name should be at least 1 character/i);
+
     screen.debug();
   });
 });

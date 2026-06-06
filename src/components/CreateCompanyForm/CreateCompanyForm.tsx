@@ -56,6 +56,7 @@ export function CreateCompanyForm({
           <label className={styles.formLabel} htmlFor="name">
             Name
             <input
+              aria-label="name"
               placeholder="Company"
               type="text"
               id="name"
@@ -72,6 +73,7 @@ export function CreateCompanyForm({
           <label className={styles.formLabel} htmlFor="URL">
             URL
             <input
+              aria-label="url"
               placeholder="https://www.example.com"
               type="text"
               {...register("URL")}
@@ -79,7 +81,12 @@ export function CreateCompanyForm({
             />
           </label>
           <label className={styles.formLabel} htmlFor="file">
-            <input type="file" {...register("file")} id="file" />
+            <input
+              aria-label="file"
+              type="file"
+              {...register("file")}
+              id="file"
+            />
             <span className={styles.formValidationError}>
               {errors.file?.message}
             </span>
