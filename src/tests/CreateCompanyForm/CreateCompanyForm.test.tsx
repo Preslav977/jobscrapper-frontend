@@ -174,4 +174,51 @@ describe("render CreateCompanyForm", () => {
       screen.getByText("Company name already exists!").textContent,
     ).toMatch(/company name already exists!/i);
   });
+
+  it("should render error if file is not an image", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/dashboard", "/createCompany"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.getByRole("link", { name: "Log In" }));
+
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+
+    await user.type(screen.getByLabelText("password"), "12345678BG");
+
+    const logInButton = screen.getByRole("button", { name: "Log in" });
+
+    await user.click(logInButton);
+
+    const dashBoardLink = await screen.findByText("Dashboard");
+
+    expect(dashBoardLink).toBeInTheDocument();
+
+    await user.click(dashBoardLink);
+
+    await user.click(screen.getByText("Create Company"));
+    const input = screen.queryByLabelText("file") as HTMLInputElement;
+
+    const file = new File(["image"], "user.svg", { type: "image/svg" });
+
+    await user.upload(input, file);
+
+    expect(input.files).not.toBe(null);
+
+    expect(input.files).toHaveLength(1);
+
+    expect(input.files![0]).toBe(file);
+
+    await user.click(screen.getByRole("button", { name: "Save" }));
+
+    // screen.debug();
+
+    expect(
+      screen.getByText("Invalid file type. Only JPEG, PNG are allowed")
+        .textContent,
+    ).toMatch(/invalid file type. only jpeg, png are allowed/i);
+  });
 });
