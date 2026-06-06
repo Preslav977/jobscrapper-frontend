@@ -212,8 +212,6 @@ export const handlers = [
 
   http.post(`${localhostURL}/companies/relations`, () => {
     return HttpResponse.json({
-      id: 1,
-      companyID: 1,
       company: {
         id: 1,
         name: "Company ABC",
@@ -230,27 +228,58 @@ export const handlers = [
               datePosted: { extractType: "text", selector: "", attr: "" },
               description: { extractType: "text", selector: "", attr: "" },
               anchorHref: { extractType: "text", selector: "", attr: "" },
+              companyID: 1,
             },
           },
         ],
         steps: [
-          { order: 1, action: "", selector: "", selectOption: "", url: "" },
+          {
+            order: 1,
+            action: "",
+            selector: "",
+            selectOption: "",
+            url: "",
+            companyID: 1,
+          },
         ],
       },
     });
   }),
 
-  // http.get(`${localhostURL}/companies/1`, () => {
-  //   return HttpResponse.json({
-  //     id: 1,
-  //     companyID: 1,
-  //     company: {
-  //       id: 1,
-  //       name: "Company A",
-  //       logo: null,
-  //       URL: "example.com",
-  //       scrapMode: "NAVIGATION",
-  //     },
-  //   });
-  // }),
+  http.get(`${localhostURL}/companies`, () => {
+    return HttpResponse.json([
+      {
+        id: 1,
+        name: "Company ABC",
+        logo: null,
+        URL: "example.com",
+        scrapMode: "NAVIGATION",
+
+        instructions: [
+          {
+            extractionInstructions: {
+              container: { extractType: "text", selector: "", attr: "" },
+              title: { extractType: "text", selector: "", attr: "" },
+              location: { extractType: "text", selector: "", attr: "" },
+              remoteOrHybrid: { extractType: "text", selector: "", attr: "" },
+              datePosted: { extractType: "text", selector: "", attr: "" },
+              description: { extractType: "text", selector: "", attr: "" },
+              anchorHref: { extractType: "text", selector: "", attr: "" },
+              companyID: 1,
+            },
+          },
+        ],
+        steps: [
+          {
+            order: 1,
+            action: "",
+            selector: "",
+            selectOption: "",
+            url: "",
+            companyID: 1,
+          },
+        ],
+      },
+    ]);
+  }),
 ];
