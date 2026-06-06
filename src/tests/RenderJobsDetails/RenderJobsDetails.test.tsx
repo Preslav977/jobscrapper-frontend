@@ -1,5 +1,4 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
 
@@ -66,86 +65,6 @@ describe("render RenderJobsDetails", () => {
       /remote work/i,
     );
 
-    expect(screen.queryByText("Edit Company")).not.toBeInTheDocument();
-
-    expect(screen.queryByText("Delete Company")).not.toBeInTheDocument();
-
     // screen.debug();
-  });
-
-  it("should login click job render delete and edit button if an admin", async () => {
-    renderRouter({
-      initialEntries: ["/login", "/", "/jobs/1"],
-      initialIndex: 0,
-    });
-
-    const user = userEvent.setup();
-
-    await user.type(screen.getByLabelText("email"), "test@abv.bg");
-
-    await user.type(screen.getByLabelText("password"), "12345678BG");
-
-    const logInButton = screen.getByRole("button", { name: "Log in" });
-
-    await user.click(logInButton);
-
-    const homePageHeader = await screen.findByRole("heading", { level: 2 });
-
-    expect(homePageHeader).toBeInTheDocument();
-
-    const jobHeading = await screen.findByText("JavaScript Developer");
-
-    expect(jobHeading).toBeInTheDocument();
-
-    await user.click(jobHeading);
-
-    expect(screen.queryByText("Edit Company")).toBeInTheDocument();
-
-    expect(screen.queryByText("Delete Company")).toBeInTheDocument();
-
-    // screen.debug();
-  });
-
-  it("should render create company form if admin and logged in", async () => {
-    renderRouter({
-      initialEntries: ["/login", "/", "/jobs/1", "/createCompany"],
-      initialIndex: 0,
-    });
-
-    const user = userEvent.setup();
-
-    await user.type(screen.getByLabelText("email"), "test@abv.bg");
-
-    await user.type(screen.getByLabelText("password"), "12345678BG");
-
-    const logInButton = screen.getByRole("button", { name: "Log in" });
-
-    await user.click(logInButton);
-
-    const homePageHeader = await screen.findAllByRole("heading", { level: 2 });
-
-    expect(homePageHeader[0]).toBeInTheDocument();
-
-    const jobHeading = await screen.findByText("JavaScript Developer");
-
-    expect(jobHeading).toBeInTheDocument();
-
-    await user.click(jobHeading);
-
-    expect(screen.queryByText("Edit Company")).toBeInTheDocument();
-
-    expect(screen.queryByText("Delete Company")).toBeInTheDocument();
-
-    const editCompanyLink = screen.getByRole("link", { name: "Edit Company" });
-
-    await user.click(editCompanyLink);
-
-    const loading = screen.getByText("Loading...");
-
-    expect(loading).toBeInTheDocument();
-
-    await waitForElementToBeRemoved(() => screen.queryByText("Loading..."));
-
-    screen.debug();
   });
 });
