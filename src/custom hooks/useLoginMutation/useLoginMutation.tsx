@@ -20,7 +20,7 @@ export function useLoginMutation() {
 
       setIsUserLoggedIn(true);
 
-      void navigate("/companies");
+      void navigate("/");
     },
   });
 }

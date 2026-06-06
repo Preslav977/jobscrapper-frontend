@@ -50,7 +50,7 @@ export function CreateCompanyForm({
         }}
       >
         <fieldset className={styles.formFieldset}>
-          <legend className={styles.formLegend}>
+          <legend aria-label="company-legend" className={styles.formLegend}>
             Company (Name, URL, Logo, scrapMode):
           </legend>
           <label className={styles.formLabel} htmlFor="name">
@@ -86,7 +86,7 @@ export function CreateCompanyForm({
           </label>
           <label className={styles.formLabelNoFullWidth} htmlFor="scrapMode">
             ScrapMode:
-            <select {...register("scrapMode")}>
+            <select aria-label="scrapMode" {...register("scrapMode")}>
               <option value="DIRECT">Direct</option>
               <option value="NAVIGATION">NAVIGATION</option>
               <option value="FETCH">Fetch</option>
@@ -95,7 +95,10 @@ export function CreateCompanyForm({
           </label>
         </fieldset>
         <fieldset className={styles.formFieldset}>
-          <legend className={styles.formLegend}>
+          <legend
+            aria-label="instructions-legend"
+            className={styles.formLegend}
+          >
             Scrap Instructions (Choose Class or Attribute):
           </legend>
           {extractionFields.map((field) => (
@@ -140,7 +143,7 @@ export function CreateCompanyForm({
           ))}
         </fieldset>
         <fieldset className={styles.formFieldset}>
-          <legend className={styles.formLegend}>
+          <legend aria-label="steps-legend" className={styles.formLegend}>
             Scrap Steps (Order, Action, Select, Select Option, URL):
           </legend>
           {fields.map((field, index) => (

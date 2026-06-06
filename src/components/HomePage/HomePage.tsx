@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
+import { useUserDetails } from "../../context/userDetailsContext";
 import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
 import { RenderJobs } from "../RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
@@ -18,6 +19,8 @@ export function HomePage() {
 
   const { isUserLoggedIn } = useIsUserLoggedIn();
 
+  const { userDetails } = useUserDetails();
+
   function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     const formData = new FormData(e.currentTarget);
     const query = formData.get("query") as string;
@@ -29,9 +32,15 @@ export function HomePage() {
     <div className={styles.homePageWrapper}>
       <div className={styles.homePageButtonWrapper}>
         <div className={styles.homePageButtonContainer}>
-          <Link className={styles.homePageAnchor} to={""}>
-            Explore <span className={styles.homePageAnchorArrowDown}>⌄</span>
-          </Link>
+          {isUserLoggedIn && userDetails?.role === "ADMIN" ? (
+            <Link className={styles.homePageAnchor} to={"/companies"}>
+              Companies
+            </Link>
+          ) : (
+            <Link className={styles.homePageAnchor} to={"/"}>
+              Explore <span className={styles.homePageAnchorArrowDown}>⌄</span>
+            </Link>
+          )}
 
           {!isUserLoggedIn ? (
             <Link className={styles.homePageAnchor} to={"/login"}>

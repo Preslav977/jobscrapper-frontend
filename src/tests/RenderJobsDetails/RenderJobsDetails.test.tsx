@@ -65,6 +65,6 @@ describe("render RenderJobsDetails", () => {
       /remote work/i,
     );
 
-    // screen.debug();
+    screen.debug();
   });
 });
