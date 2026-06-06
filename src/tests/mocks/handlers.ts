@@ -209,4 +209,18 @@ export const handlers = [
       },
     });
   }),
+
+  // http.get(`${localhostURL}/companies/1`, () => {
+  //   return HttpResponse.json({
+  //     id: 1,
+  //     companyID: 1,
+  //     company: {
+  //       id: 1,
+  //       name: "Company A",
+  //       logo: null,
+  //       URL: "example.com",
+  //       scrapMode: "NAVIGATION",
+  //     },
+  //   });
+  // }),
 ];
