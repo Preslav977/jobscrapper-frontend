@@ -1,7 +1,10 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { http, HttpResponse } from "msw";
 import { describe, it } from "vitest";
 import { renderRouter } from "../../router/renderRouter";
+import { localhostURL } from "../../utility/localhostURL";
+import { server } from "../mocks/server";
 
 describe("render CreateCompanyForm", () => {
   it("render the CreateCompanyForm if logged in and admin", async () => {
@@ -120,5 +123,55 @@ describe("render CreateCompanyForm", () => {
     ).toMatch(/company name should be at least 1 character/i);
 
     screen.debug();
+  });
+
+  it("should render company name already exists", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/dashboard", "/createCompany"],
+      initialIndex: 0,
+    });
+
+    server.use(
+      http.post(`${localhostURL}/companies/relations`, () => {
+        return HttpResponse.json(
+          [
+            {
+              msg: "Company name already exists!",
+            },
+          ],
+          { status: 400 },
+        );
+      }),
+    );
+
+    const user = userEvent.setup();
+
+    await user.click(screen.getByRole("link", { name: "Log In" }));
+
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+
+    await user.type(screen.getByLabelText("password"), "12345678BG");
+
+    const logInButton = screen.getByRole("button", { name: "Log in" });
+
+    await user.click(logInButton);
+
+    const dashBoardLink = await screen.findByText("Dashboard");
+
+    expect(dashBoardLink).toBeInTheDocument();
+
+    await user.click(dashBoardLink);
+
+    await user.click(screen.getByText("Create Company"));
+
+    await user.type(screen.getByLabelText("name"), "Company A");
+
+    await user.click(screen.getByRole("button", { name: "Save" }));
+
+    // screen.debug();
+
+    expect(
+      screen.getByText("Company name already exists!").textContent,
+    ).toMatch(/company name already exists!/i);
   });
 });
