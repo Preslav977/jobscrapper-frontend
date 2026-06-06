@@ -162,6 +162,54 @@ describe("render RenderCompanies", () => {
 
     expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
 
-    screen.debug();
+    // screen.debug();
+  });
+
+  it("should render error when updating company if image is not png", async () => {
+    renderRouter({
+      initialEntries: ["/", "/login", "/companies"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.click(screen.getByRole("link", { name: "Log In" }));
+
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+
+    await user.type(screen.getByLabelText("password"), "12345678BG");
+
+    const logInButton = screen.getByRole("button", { name: "Log in" });
+
+    await user.click(logInButton);
+
+    const dashBoardLink = await screen.findByText("Dashboard");
+
+    expect(dashBoardLink).toBeInTheDocument();
+
+    await user.click(dashBoardLink);
+
+    await user.click(screen.getByText("Create Company"));
+
+    const input = screen.queryByLabelText("file") as HTMLInputElement;
+
+    const file = new File(["image"], "user.svg", { type: "image/svg" });
+
+    await user.upload(input, file);
+
+    expect(input.files).not.toBe(null);
+
+    expect(input.files).toHaveLength(1);
+
+    expect(input.files![0]).toBe(file);
+
+    await user.click(screen.getByRole("button", { name: "Save" }));
+
+    // screen.debug();
+
+    expect(
+      screen.getByText("Invalid file type. Only JPEG, PNG are allowed")
+        .textContent,
+    ).toMatch(/invalid file type. only jpeg, png are allowed/i);
   });
 });
