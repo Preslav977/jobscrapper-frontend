@@ -263,6 +263,35 @@ describe("render RenderCompanies", () => {
       /delete company/i,
     );
 
-    screen.debug();
+    // screen.debug();
+  });
+
+  it("should delete company", async () => {
+    renderRouter({
+      initialEntries: ["/login", "/", "/companies", "/companies/1"],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+
+    await user.type(screen.getByLabelText("password"), "12345678BG");
+
+    const logInButton = screen.getByRole("button", { name: "Log in" });
+
+    await user.click(logInButton);
+
+    const companiesLink = await screen.findByText("Companies");
+
+    expect(companiesLink).toBeInTheDocument();
+
+    await user.click(companiesLink);
+
+    await user.click(screen.getByText("Delete Company"));
+
+    expect(screen.queryByText("Company ABC")).not.toBeInTheDocument();
+
+    // screen.debug();
   });
 });

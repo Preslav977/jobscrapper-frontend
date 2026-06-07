@@ -353,4 +353,10 @@ export const handlers = [
       ],
     });
   }),
+
+  http.delete(`${localhostURL}/companies/1`, () => {
+    return HttpResponse.json({
+      id: 1,
+    });
+  }),
 ];
