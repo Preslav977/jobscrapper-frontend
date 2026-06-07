@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { UpdateCompany } from "../../api/UpdateCompany/UpdateCompany";
 import { useNavigate } from "react-router";
+import { UpdateCompany } from "../../api/UpdateCompany/UpdateCompany";
 
 const handleUpdateCompany = ({
   id,
@@ -18,8 +18,12 @@ export function useUpdateCompany() {
   return useMutation({
     mutationFn: handleUpdateCompany,
 
-    onSuccess: () => {
-      void navigate("/");
+    onSuccess: (data) => {
+      console.log(data);
+
+      console.log("updated the company");
+
+      void navigate("/companies");
     },
     onError: (error: Error) => {
       console.log(error);

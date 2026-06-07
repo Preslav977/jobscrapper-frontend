@@ -284,39 +284,73 @@ export const handlers = [
   }),
 
   http.get(`${localhostURL}/companies/1`, () => {
-    return HttpResponse.json([
-      {
-        id: 1,
-        name: "Company ABC",
-        logo: null,
-        URL: "example.com",
-        scrapMode: "NAVIGATION",
+    return HttpResponse.json({
+      id: 1,
+      name: "Company ABC",
+      logo: null,
+      URL: "example.com",
+      scrapMode: "NAVIGATION",
 
-        instructions: [
-          {
-            extractionInstructions: {
-              container: { extractType: "text", selector: "", attr: "" },
-              title: { extractType: "text", selector: "", attr: "" },
-              location: { extractType: "text", selector: "", attr: "" },
-              remoteOrHybrid: { extractType: "text", selector: "", attr: "" },
-              datePosted: { extractType: "text", selector: "", attr: "" },
-              description: { extractType: "text", selector: "", attr: "" },
-              anchorHref: { extractType: "text", selector: "", attr: "" },
-              companyID: 1,
-            },
-          },
-        ],
-        steps: [
-          {
-            order: 1,
-            action: "",
-            selector: "",
-            selectOption: "",
-            url: "",
+      instructions: [
+        {
+          extractionInstructions: {
+            container: { extractType: "text", selector: "", attr: "" },
+            title: { extractType: "text", selector: "", attr: "" },
+            location: { extractType: "text", selector: "", attr: "" },
+            remoteOrHybrid: { extractType: "text", selector: "", attr: "" },
+            datePosted: { extractType: "text", selector: "", attr: "" },
+            description: { extractType: "text", selector: "", attr: "" },
+            anchorHref: { extractType: "text", selector: "", attr: "" },
             companyID: 1,
           },
-        ],
-      },
-    ]);
+        },
+      ],
+      steps: [
+        {
+          order: 1,
+          action: "",
+          selector: "",
+          selectOption: "",
+          url: "",
+          companyID: 1,
+        },
+      ],
+    });
+  }),
+
+  http.put(`${localhostURL}/companies/1/relations/1`, () => {
+    return HttpResponse.json({
+      id: 1,
+      name: "New Company",
+      logo: null,
+      URL: "company.com",
+      scrapMode: "NAVIGATION",
+      instructions: [
+        {
+          id: 1,
+          companyID: 1,
+          extractionInstructions: {
+            container: { extractType: "text", selector: "", attr: "" },
+            title: { extractType: "text", selector: "", attr: "" },
+            location: { extractType: "text", selector: "", attr: "" },
+            remoteOrHybrid: { extractType: "text", selector: "", attr: "" },
+            datePosted: { extractType: "text", selector: "", attr: "" },
+            description: { extractType: "text", selector: "", attr: "" },
+            anchorHref: { extractType: "text", selector: "", attr: "" },
+          },
+        },
+      ],
+      steps: [
+        {
+          id: 1,
+          order: 1,
+          action: "",
+          selector: "",
+          selectOption: "",
+          url: "",
+          companyID: 1,
+        },
+      ],
+    });
   }),
 ];

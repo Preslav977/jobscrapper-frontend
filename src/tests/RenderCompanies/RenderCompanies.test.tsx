@@ -212,4 +212,57 @@ describe("render RenderCompanies", () => {
         .textContent,
     ).toMatch(/invalid file type. only jpeg, png are allowed/i);
   });
+
+  it("should update company", async () => {
+    renderRouter({
+      initialEntries: [
+        "/login",
+        "/",
+        "/companies",
+        "/companies/1",
+        "/updateCompany/1/companyID/1",
+      ],
+      initialIndex: 0,
+    });
+
+    const user = userEvent.setup();
+
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
+
+    await user.type(screen.getByLabelText("password"), "12345678BG");
+
+    const logInButton = screen.getByRole("button", { name: "Log in" });
+
+    await user.click(logInButton);
+
+    const companiesLink = await screen.findByText("Companies");
+
+    expect(companiesLink).toBeInTheDocument();
+
+    await user.click(companiesLink);
+
+    await user.click(screen.getByText("Edit Company"));
+
+    await user.type(screen.getByLabelText("name"), "New Company");
+
+    await user.type(screen.getByLabelText("url"), "company.com");
+
+    const saveButton = screen.getByRole("button", { name: "Save" });
+
+    await user.click(saveButton);
+
+    expect(screen.queryByText("Company ABC")?.textContent).toMatch(
+      /company abc/i,
+    );
+
+    expect(screen.getByText("Edit Company").textContent).toMatch(
+      /edit company/i,
+    );
+
+    expect(screen.getByText("Delete Company").textContent).toMatch(
+      /delete company/i,
+    );
+
+    screen.debug();
+  });
 });

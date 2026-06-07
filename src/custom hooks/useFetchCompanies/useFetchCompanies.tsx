@@ -20,7 +20,5 @@ export const useFetchCompanies = () => {
     initialData: [],
   });
 
-  console.log(data);
-
   return { isPending, isError, data, error };
 };

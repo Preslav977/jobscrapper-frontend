@@ -9,16 +9,17 @@ import type { companySchema } from "../../schemas/companySchema/companySchema";
 export function UpdateCompanyPage() {
   const { id, companyID } = useParams();
 
-  const Id = Number(id);
-
-  const companyId = Number(companyID);
-
-  const { data: company, isPending, error } = useFetchCompanyDetails(Id);
+  const {
+    data: company,
+    isPending,
+    error,
+  } = useFetchCompanyDetails(Number(id));
   const { mutate: updateCompany } = useUpdateCompany();
 
   if (isPending) return <p>Loading...</p>;
 
   const initialFormValues: z.input<typeof companySchema> = {
+    id: company!.id,
     name: company!.name,
     URL: company!.URL,
     scrapMode: company!.scrapMode,
@@ -32,7 +33,7 @@ export function UpdateCompanyPage() {
   const handleUpdate = (data: z.output<typeof companySchema>) => {
     const formData = serializeFormData(data);
 
-    updateCompany({ id: Id, companyID: companyId, formData });
+    updateCompany({ id: Number(id), companyID: Number(companyID), formData });
   };
 
   return (

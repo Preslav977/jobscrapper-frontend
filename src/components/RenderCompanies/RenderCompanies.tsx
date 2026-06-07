@@ -35,7 +35,7 @@ export function RenderCompanies() {
             <div className={styles.companiesButtons}>
               <Link
                 className={styles.companiesEditLink}
-                to={`/updateCompany/${company.id}/companyID/${company.instructions[0].companyID}`}
+                to={`/updateCompany/${company.id}/companyID/${company.steps[0].companyID}`}
               >
                 Edit Company
               </Link>

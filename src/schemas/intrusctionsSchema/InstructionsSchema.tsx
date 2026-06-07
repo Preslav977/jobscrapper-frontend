@@ -2,7 +2,6 @@ import * as z from "zod";
 
 export const instructionsSchema = z.object({
   id: z.number().optional(),
-  companyID: z.number().optional(),
   extractionInstructions: z.object({
     container: z.object({
       extractType: z.string(),
@@ -40,4 +39,5 @@ export const instructionsSchema = z.object({
       attr: z.string().optional(),
     }),
   }),
+  companyID: z.number().optional(),
 });
