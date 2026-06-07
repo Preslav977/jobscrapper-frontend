@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router";
+import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
+import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import { useFetchJobsDetails } from "../../custom hooks/useFetchJobsDetails/useFetchJobsDetails";
-import { ErrorComponent } from "../ErrorComponent/ErrorComponent";
-import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
 import styles from "./RenderJobsDetails.module.css";
 
 export function RenderJobsDetails() {

@@ -1,7 +1,7 @@
 import { Link } from "react-router";
+import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
+import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import type { RenderJobsInterface } from "../../interfaces/RenderJobsInterface/RenderJobsInterface";
-import { ErrorComponent } from "../ErrorComponent/ErrorComponent";
-import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
 import styles from "./RenderJobs.module.css";
 
 export function RenderJobs({

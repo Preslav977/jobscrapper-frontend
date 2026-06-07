@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import { useUserDetails } from "../../context/userDetailsContext";
 import { useJobSearch } from "../../custom hooks/useJobSearch/useJobSearch";
-import { RenderJobs } from "../RenderJobs/RenderJobs";
+import { RenderJobs } from "../../pages/RenderJobs/RenderJobs";
 import { SearchJobsForm } from "../SearchJobsForm/SearchJobsForm";
 import { SelectJobsByCompany } from "../SelectJobsByCompany/SelectJobsByCompany";
 import styles from "./HomePage.module.css";
