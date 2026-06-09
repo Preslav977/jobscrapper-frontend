@@ -63,7 +63,9 @@ describe("render HomePage", () => {
         ?.textContent,
     ).toMatch(/discover your future job. All in one place./i);
 
-    expect(screen.queryByRole("button", { name: "Search" })).toBeDefined();
+    expect(
+      screen.queryByRole("button", { name: "Search" }),
+    ).toBeInTheDocument();
 
     expect(screen.queryByText("All companies")?.textContent).toMatch(
       /all companies/i,
@@ -73,7 +75,9 @@ describe("render HomePage", () => {
 
     expect(screen.queryByText("Log In")?.textContent).toMatch(/log in/i);
 
-    expect(screen.queryByRole("button", { name: "Search" })).toBeDefined();
+    expect(
+      screen.queryByRole("button", { name: "Search" }),
+    ).toBeInTheDocument();
 
     expect(screen.queryByText("All companies")?.textContent).toMatch(
       /all companies/i,
@@ -113,11 +117,11 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    const allCompanies = screen.queryByText("All companies");
+    const allCompanies = screen.getByText("All companies");
 
-    await user.click(allCompanies!);
+    await user.click(allCompanies);
 
-    await user.click(screen.queryByText("Company A")!);
+    await user.click(screen.getByText("Company A"));
 
     expect(screen.queryByText("Company A")?.textContent).toMatch(/company a/i);
 
@@ -145,11 +149,11 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    const allCompanies = screen.queryByText("All companies");
+    const allCompanies = screen.getByText("All companies");
 
-    await user.click(allCompanies!);
+    await user.click(allCompanies);
 
-    await user.click(screen.queryByText("Company B")!);
+    await user.click(screen.getByText("Company B"));
 
     expect(screen.queryByText("Company B")?.textContent).toMatch(/company b/i);
 
@@ -177,9 +181,9 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    await user.type(screen.queryByLabelText("query")!, "javascript");
+    await user.type(screen.getByLabelText("query"), "javascript");
 
-    await user.click(screen.queryByRole("button", { name: "Search" })!);
+    await user.click(screen.getByRole("button", { name: "Search" }));
 
     // screen.debug();
 
@@ -209,7 +213,7 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    await user.type(screen.queryByLabelText("query")!, "react");
+    await user.type(screen.getByLabelText("query"), "react");
 
     await user.click(screen.queryByRole("button", { name: "Search" })!);
 
@@ -241,9 +245,9 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    await user.type(screen.queryByLabelText("query")!, "typescript");
+    await user.type(screen.getByLabelText("query"), "typescript");
 
-    await user.click(screen.queryByRole("button", { name: "Search" })!);
+    await user.click(screen.getByRole("button", { name: "Search" }));
 
     // screen.debug();
 
@@ -273,17 +277,17 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    await user.click(screen.queryByText("Log In")!);
+    await user.click(screen.getByText("Log In"));
 
-    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    const logInButton = screen.queryByRole("button", { name: "Log in" });
+    const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
-    expect(screen.queryByText("Dashboard")).toBeDefined();
+    expect(screen.queryByText("Dashboard")).toBeInTheDocument();
 
     // screen.debug();
   });
@@ -296,17 +300,17 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    await user.click(screen.queryByText("Log In")!);
+    await user.click(screen.getByText("Log In"));
 
-    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    const logInButton = screen.queryByRole("button", { name: "Log in" });
+    const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
-    await user.click(screen.queryByText("Dashboard")!);
+    await user.click(screen.getByText("Dashboard"));
 
     // screen.debug();
 
@@ -395,17 +399,17 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    await user.click(screen.queryByText("Log In")!);
+    await user.click(screen.getByText("Log In"));
 
-    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    const logInButton = screen.queryByRole("button", { name: "Log in" });
+    const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
-    await user.click(screen.queryByText("Dashboard")!);
+    await user.click(screen.getByText("Dashboard"));
 
     const input = screen.queryByLabelText("file") as HTMLInputElement;
 
@@ -432,29 +436,29 @@ describe("render HomePage", () => {
 
     const user = userEvent.setup();
 
-    await user.click(screen.queryByText("Log In")!);
+    await user.click(screen.getByText("Log In"));
 
-    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    const logInButton = screen.queryByRole("button", { name: "Log in" });
+    const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
-    await user.click(screen.queryByText("Dashboard")!);
+    await user.click(screen.getByText("Dashboard"));
 
-    await user.type(screen.queryByLabelText("firstName")!, "test");
+    await user.type(screen.getByLabelText("firstName"), "test");
 
-    await user.type(screen.queryByLabelText("lastName")!, "user");
+    await user.type(screen.getByLabelText("lastName"), "user");
 
-    const saveButton = screen.queryByRole("button", { name: "Save" });
+    const saveButton = screen.getByRole("button", { name: "Save" });
 
-    await user.click(saveButton!);
+    await user.click(saveButton);
 
-    expect(screen.queryByText("test")).toBeDefined();
+    expect(screen.queryByText("test")).toBeInTheDocument();
 
-    expect(screen.queryByText("user")).toBeDefined();
+    expect(screen.queryByText("user")).toBeInTheDocument();
 
     // screen.debug();
   });

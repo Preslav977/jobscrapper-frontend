@@ -22,7 +22,9 @@ describe("render LoginForm", () => {
 
     expect(screen.queryByText("Password")?.textContent).toMatch(/password/i);
 
-    expect(screen.queryByRole("button", { name: "Log in" })).toBeDefined();
+    expect(
+      screen.queryByRole("button", { name: "Log in" }),
+    ).toBeInTheDocument();
 
     expect(screen.queryByText("Not registered yet?")?.textContent).toMatch(
       /not registered yet?/i,
@@ -36,9 +38,9 @@ describe("render LoginForm", () => {
 
     const user = userEvent.setup();
 
-    const logInButton = screen.queryByRole("button", { name: "Log in" });
+    const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
     // screen.debug();
 
@@ -71,13 +73,13 @@ describe("render LoginForm", () => {
 
     const user = userEvent.setup();
 
-    await user.type(screen.queryByLabelText("email")!, "test@abv.bg");
+    await user.type(screen.getByLabelText("email"), "test@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    const logInButton = screen.queryByRole("button", { name: "Log in" });
+    const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
     // screen.debug();
 
@@ -91,9 +93,9 @@ describe("render LoginForm", () => {
 
     const user = userEvent.setup();
 
-    const signUpButton = screen.queryByText("Sign up");
+    const signUpButton = screen.getByText("Sign up");
 
-    await user.click(signUpButton!);
+    await user.click(signUpButton);
 
     // screen.debug();
 
@@ -114,7 +116,9 @@ describe("render LoginForm", () => {
       /confirm password/i,
     );
 
-    expect(screen.queryByRole("button", { name: "Sign Up" })).toBeDefined();
+    expect(
+      screen.queryByRole("button", { name: "Sign Up" }),
+    ).toBeInTheDocument();
 
     expect(screen.queryByText("Already registered?")?.textContent).toMatch(
       /already registered?/i,
@@ -128,13 +132,13 @@ describe("render LoginForm", () => {
 
     const user = userEvent.setup();
 
-    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    const logInButton = screen.queryByRole("button", { name: "Log in" });
+    const logInButton = screen.getByRole("button", { name: "Log in" });
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
     expect(await screen.findByText("JavaScript Developer")).toBeDefined();
 

@@ -29,7 +29,9 @@ describe("render SignUpForm", () => {
       /confirm password/i,
     );
 
-    expect(screen.queryByRole("button", { name: "Sign Up" })).toBeDefined();
+    expect(
+      screen.queryByRole("button", { name: "Sign Up" }),
+    ).toBeInTheDocument();
 
     expect(screen.queryByText("Already registered?")?.textContent).toMatch(
       /already registered?/i,
@@ -43,9 +45,9 @@ describe("render SignUpForm", () => {
 
     const user = userEvent.setup();
 
-    const signUpButton = screen.queryByRole("button", { name: "Sign Up" });
+    const signUpButton = screen.getByRole("button", { name: "Sign Up" });
 
-    await user.click(signUpButton!);
+    await user.click(signUpButton);
 
     // screen.debug();
 
@@ -71,15 +73,15 @@ describe("render SignUpForm", () => {
 
     const user = userEvent.setup();
 
-    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    await user.type(screen.queryByLabelText("confirmPassword")!, "12345678BG");
+    await user.type(screen.getByLabelText("confirmPassword"), "12345678BG");
 
-    const signUpButton = screen.queryByRole("button", { name: "Sign Up" });
+    const signUpButton = screen.getByRole("button", { name: "Sign Up" });
 
-    await user.click(signUpButton!);
+    await user.click(signUpButton);
 
     // screen.debug();
 
@@ -122,15 +124,15 @@ describe("render SignUpForm", () => {
       }),
     );
 
-    await user.type(screen.queryByLabelText("email")!, "testing@abv.bg");
+    await user.type(screen.getByLabelText("email"), "testing@abv.bg");
 
-    await user.type(screen.queryByLabelText("password")!, "12345678BG");
+    await user.type(screen.getByLabelText("password"), "12345678BG");
 
-    await user.type(screen.queryByLabelText("confirmPassword")!, "12345678BG");
+    await user.type(screen.getByLabelText("confirmPassword"), "12345678BG");
 
-    const signUpButton = screen.queryByRole("button", { name: "Sign Up" });
+    const signUpButton = screen.getByRole("button", { name: "Sign Up" });
 
-    await user.click(signUpButton!);
+    await user.click(signUpButton);
 
     // screen.debug();
 
@@ -144,9 +146,9 @@ describe("render SignUpForm", () => {
 
     const user = userEvent.setup();
 
-    const logInButton = screen.queryByText("Log in");
+    const logInButton = screen.getByText("Log in");
 
-    await user.click(logInButton!);
+    await user.click(logInButton);
 
     // screen.debug();
 

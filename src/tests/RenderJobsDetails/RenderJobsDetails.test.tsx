@@ -12,59 +12,56 @@ describe("render RenderJobsDetails", () => {
 
     await waitForElementToBeRemoved(() => screen.queryByText("Loading..."));
 
-    expect(screen.queryByText("Company A")!.textContent).toMatch(/company a/i);
+    expect(screen.getByText("Company A").textContent).toMatch(/company a/i);
 
-    expect(screen.queryByText("Back to jobs")!.textContent).toMatch(
+    expect(screen.getByText("Back to jobs").textContent).toMatch(
       /back to jobs/i,
     );
 
-    expect(screen.queryByText("JavaScript Developer")!.textContent).toMatch(
+    expect(screen.getByText("JavaScript Developer").textContent).toMatch(
       /javascript developer/i,
     );
 
-    expect(screen.queryByText("Sofia")!.textContent).toMatch(/sofia/i);
+    expect(screen.getByText("Sofia").textContent).toMatch(/sofia/i);
 
-    expect(screen.queryByText("Remote")!.textContent).toMatch(/remote/i);
+    expect(screen.getByText("Remote").textContent).toMatch(/remote/i);
 
-    expect(screen.queryByText("Posted 10 days ago")!.textContent).toMatch(
+    expect(screen.getByText("Posted 10 days ago").textContent).toMatch(
       /posted 10 days ago/i,
     );
 
-    expect(screen.queryByText("Visit Job Page")!.textContent).toMatch(
+    expect(screen.getByText("Visit Job Page").textContent).toMatch(
       /visit job page/i,
     );
 
-    expect(screen.queryByText("Responsibilities")!.textContent).toMatch(
+    expect(screen.getByText("Responsibilities").textContent).toMatch(
       /responsibilities/i,
     );
 
     expect(
-      screen.queryByText("Creating software for something")!.textContent,
+      screen.getByText("Creating software for something").textContent,
     ).toMatch(/creating software for something/i);
 
-    expect(screen.queryByText("Updating and testing")!.textContent).toMatch(
+    expect(screen.getByText("Updating and testing").textContent).toMatch(
       /updating and testing/i,
     );
 
-    expect(screen.queryByText("Requirements")!.textContent).toMatch(
+    expect(screen.getByText("Requirements").textContent).toMatch(
       /requirements/i,
     );
 
     expect(
-      screen.queryByText("At least 1 year of JavaScript knowledge")!
-        .textContent,
+      screen.getByText("At least 1 year of JavaScript knowledge").textContent,
     ).toMatch(/at least 1 year of JavaScript knowledge/i);
 
-    expect(screen.queryByText("CSS")!.textContent).toMatch(/css/i);
+    expect(screen.getByText("CSS").textContent).toMatch(/css/i);
 
-    expect(screen.queryByText("HTML")!.textContent).toMatch(/html/i);
+    expect(screen.getByText("HTML").textContent).toMatch(/html/i);
 
-    expect(screen.queryByText("Benefits")!.textContent).toMatch(/benefits/i);
+    expect(screen.getByText("Benefits").textContent).toMatch(/benefits/i);
 
-    expect(screen.queryByText("Remote work")!.textContent).toMatch(
-      /remote work/i,
-    );
+    expect(screen.getByText("Remote work").textContent).toMatch(/remote work/i);
 
-    screen.debug();
+    // screen.debug();
   });
 });

@@ -11,7 +11,6 @@ window.__TANSTACK_QUERY_CLIENT__ = queryClient;
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { Outlet } from "react-router";
-import "./App.css";
 import { isUserLoggedInContext } from "./context/isUserLoggedInContext";
 import { userDetailsContext } from "./context/userDetailsContext";
 import type { UserDetailsInterface } from "./interfaces/UserDetailsInterface/UserDetailsInterface";
