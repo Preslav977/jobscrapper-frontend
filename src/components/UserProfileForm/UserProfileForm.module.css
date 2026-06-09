@@ -1,6 +1,6 @@
 .profileFormContainer {
   border-radius: var(--radius-md);
-  outline: 1px solid var(--color-text-primary);
+  outline: 1px solid var(--color-text-muted);
   padding: 1em;
 }
 

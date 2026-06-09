@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 1em;
 }
 
 .jobDetailsLogoHeaderContainer {
@@ -22,8 +23,8 @@
 }
 
 .jobCompanyLogo {
-  max-width: 25px;
   max-height: 25px;
+  object-fit: contain;
 }
 
 .jobCompanyHeader {
@@ -78,6 +79,7 @@ hr {
   border-radius: 0.45em;
   padding-inline: 0.5em;
   margin-top: 0.25em;
+  max-width: 100%;
 }
 
 .jobAnchorHrefContainer a {

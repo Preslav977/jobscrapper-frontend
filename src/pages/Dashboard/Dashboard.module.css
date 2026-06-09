@@ -1,6 +1,9 @@
 .gridWrapper {
   display: grid;
-  grid-template-columns: 250px 1000px 1fr;
+  grid-template-columns: minmax(auto, 250px) minmax(auto, 1000px) minmax(
+      400px,
+      1fr
+    );
   grid-template-rows: 50px 1fr;
   grid-template-areas:
     "aside nav nav"
@@ -12,7 +15,7 @@
 .asideContainer {
   grid-area: aside;
   padding: 0 1em;
-  box-shadow: var(--main-box-shadow);
+  outline: 1px solid var(--color-text-muted);
 }
 
 .navContainer {
@@ -22,7 +25,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: var(--main-box-shadow);
+  outline: 1px solid var(--color-text-muted);
 }
 
 .profilePictureAndFormSection {
@@ -38,7 +41,7 @@
 .profilePictureContainer {
   grid-area: photo;
   height: 130px;
-  outline: 1px solid black;
+  outline: 1px solid var(--color-text-muted);
   padding: 1em;
   display: flex;
   justify-content: space-between;
@@ -50,8 +53,50 @@
 }
 
 .previewContainer {
-  outline: 1px solid black;
+  outline: 1px solid var(--color-text-muted);
   grid-area: preview;
   margin-right: 1em;
   padding: 0 1em;
+  max-height: 550px;
+}
+
+@media screen and (max-width: 1000px) {
+  .asideContainer {
+    display: none;
+  }
+
+  .gridWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas:
+      "nav nav"
+      "profile preview";
+    column-gap: 0;
+  }
+
+  .profilePictureAndFormSection {
+    padding: 0 1em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .gridWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "nav"
+      "profile"
+      "preview";
+    column-gap: 0;
+  }
+
+  .profilePictureAndFormSection {
+    gap: 1em;
+  }
+
+  .previewContainer {
+    padding: 0 1em;
+    margin-left: 1em;
+  }
 }
