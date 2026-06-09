@@ -80,3 +80,21 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: loading 2000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  width: 30px;
+  height: 30px;
+}
