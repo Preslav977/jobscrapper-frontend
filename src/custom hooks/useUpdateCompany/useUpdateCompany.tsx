@@ -18,11 +18,7 @@ export function useUpdateCompany() {
   return useMutation({
     mutationFn: handleUpdateCompany,
 
-    onSuccess: (data) => {
-      console.log(data);
-
-      console.log("updated the company");
-
+    onSuccess: () => {
       void navigate("/companies");
     },
     onError: (error: Error) => {

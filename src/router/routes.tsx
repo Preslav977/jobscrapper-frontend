@@ -28,7 +28,7 @@ export const routes = [
       {
         path: "/companies",
         element: (
-          <ProtectRoutes requireAdmin={false}>
+          <ProtectRoutes requireAdmin={true}>
             <RenderCompanies />
           </ProtectRoutes>
         ),
@@ -44,7 +44,7 @@ export const routes = [
       {
         path: "/createCompany",
         element: (
-          <ProtectRoutes requireAdmin={false}>
+          <ProtectRoutes requireAdmin={true}>
             <CreateCompanyPage />
           </ProtectRoutes>
         ),
@@ -52,7 +52,7 @@ export const routes = [
       {
         path: "/updateCompany/:id/companyID/:companyID",
         element: (
-          <ProtectRoutes requireAdmin={false}>
+          <ProtectRoutes requireAdmin={true}>
             <UpdateCompanyPage />
           </ProtectRoutes>
         ),
