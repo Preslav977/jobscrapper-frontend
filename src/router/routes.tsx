@@ -28,7 +28,7 @@ export const routes = [
       {
         path: "/companies",
         element: (
-          <ProtectRoutes requireAdmin={true}>
+          <ProtectRoutes requireAdmin={false}>
             <RenderCompanies />
           </ProtectRoutes>
         ),

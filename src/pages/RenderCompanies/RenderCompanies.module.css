@@ -10,7 +10,7 @@
   padding: 1em;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -21,8 +21,9 @@
   color: var(--color-text-primary);
 }
 
-.companiesCompanyLogo {
-  max-width: 50px;
+.companiesLogo {
+  max-height: 25px;
+  object-fit: contain;
   margin-bottom: 0.25em;
 }
 
@@ -40,7 +41,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1em;
+  gap: 0.5em;
+  margin-top: 1em;
+  text-align: center;
 }
 
 .noCompaniesFoundPara {
@@ -60,4 +63,33 @@
   text-decoration: none;
   border: 2px solid var(--color-text-primary);
   color: var(--color-text-primary);
+}
+
+.loadingCompaniesWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingCompaniesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  padding: 1em;
+  width: 100%;
+  margin-top: 2em;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.noCompaniesFoundSVG {
+  width: 50px;
+}
+
+@media screen and (max-width: 530px) {
+  .companiesWrapper {
+    padding: 1em;
+  }
 }

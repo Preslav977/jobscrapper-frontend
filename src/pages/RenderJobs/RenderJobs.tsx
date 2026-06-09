@@ -11,9 +11,11 @@ export function RenderJobs({
 }: RenderJobsInterface) {
   if (isPending)
     return (
-      <div className={styles.loadingJobsContainer}>
-        <img className="loading" src="./loading.svg" alt="Loading" />
-        <LoadingComponent loading={"Loading jobs, please wait..."} />
+      <div className={styles.loadingJobsWrapper}>
+        <div className={styles.loadingJobsContainer}>
+          <img className="loading" src="./loading.svg" alt="Loading" />
+          <LoadingComponent loading={"Loading jobs, please wait..."} />
+        </div>
       </div>
     );
 

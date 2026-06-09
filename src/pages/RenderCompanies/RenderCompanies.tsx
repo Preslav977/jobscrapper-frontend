@@ -14,7 +14,15 @@ export function RenderCompanies() {
 
   const { userDetails } = useUserDetails();
 
-  if (isPending) return <LoadingComponent loading={"Loading..."} />;
+  if (isPending)
+    return (
+      <div className={styles.loadingCompaniesWrapper}>
+        <div className={styles.loadingCompaniesContainer}>
+          <img className="loading" src="./loading.svg" alt="Loading" />
+          <LoadingComponent loading={"Loading companies, please wait..."} />
+        </div>
+      </div>
+    );
 
   if (error) return <ErrorComponent error={error} />;
 
@@ -35,7 +43,7 @@ export function RenderCompanies() {
             <div className={styles.companiesButtons}>
               <Link
                 className={styles.companiesEditLink}
-                to={`/updateCompany/${company.id}/companyID/${company.steps[0].companyID}`}
+                to={`/updateCompany/${company.id}/companyID/${company.id}`}
               >
                 Edit Company
               </Link>
@@ -49,7 +57,12 @@ export function RenderCompanies() {
       ))}
       {companies.length === 0 && (
         <div className={styles.noCompaniesContainer}>
-          <p className={styles.noCompaniesFoundPara}>No company found</p>
+          <img
+            className={styles.noCompaniesFoundSVG}
+            src="./magnifying-glass.svg"
+            alt="No companies has been found"
+          />
+          <p className={styles.noCompaniesFoundPara}>No companies found</p>
         </div>
       )}
     </div>
