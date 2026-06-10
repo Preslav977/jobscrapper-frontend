@@ -61,8 +61,9 @@
   border-radius: 0.45em;
   padding-inline: 0.5em;
   text-decoration: none;
-  border: 2px solid var(--color-text-primary);
-  color: var(--color-text-primary);
+  outline: 1px solid var(--color-text-primary);
+  background-color: var(--color-bg-main);
+  color: var(--color-bg-main);
 }
 
 .loadingWrapper {
@@ -110,6 +111,13 @@
 .jobHomeAnchor {
   display: flex;
   gap: 0.5em;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: text-decoration 0.5 ease-in-out;
+}
+
+.jobHomeAnchor:hover {
+  text-decoration: underline;
 }
 
 .jobHomeAnchorImg {
@@ -137,4 +145,15 @@
 
 .errorSVG {
   width: 25px;
+}
+
+.companiesNameAndLogoAnchor {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.companiesNameAndLogoAnchor > h2 {
+  font-weight: 1000;
+  font-size: 1.05rem;
 }

@@ -11,6 +11,7 @@ export function HomePage() {
   const {
     filteredJobs,
     isPending,
+    isError,
     error,
     selectedCompany,
     setSelectedCompany,
@@ -68,6 +69,7 @@ export function HomePage() {
           <RenderJobs
             filteredJobs={filteredJobs}
             isPending={isPending}
+            isError={isError}
             error={error}
           />
         </>

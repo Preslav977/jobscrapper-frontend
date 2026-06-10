@@ -34,7 +34,7 @@ export function LoginForm() {
       >
         <div className={styles.formHeaderContainer}>
           <h1 className={styles.formHeader}>JobScraper</h1>
-          <p>Welcome back! Sign in</p>
+          <p>Welcome back! Sign in.</p>
         </div>
         <label className={styles.formLabel} htmlFor="email">
           Email

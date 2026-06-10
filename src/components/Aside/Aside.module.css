@@ -1,6 +1,6 @@
 .asideWrapper {
   display: flex;
-  gap: 0.25em;
+  gap: 0.5em;
   line-height: 1.15;
   align-items: center;
   padding: 1em 0;
@@ -41,7 +41,7 @@
   padding-left: 0.25em;
   border-radius: var(--main-border-radius);
   text-decoration: none;
-  color: var(--aside-text);
+  color: var(--color-bg-main);
   transition: background-color 0.5 seconds ease-in-out;
 }
 

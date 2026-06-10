@@ -4,7 +4,12 @@ import { useFetchJobs } from "../useFetchJobs/useFetchJobs";
 export function useJobSearch() {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const { data: allJobs, isPending, error } = useFetchJobs(searchQuery);
+  const {
+    data: allJobs,
+    isPending,
+    error,
+    isError,
+  } = useFetchJobs(searchQuery);
 
   const [selectedCompany, setSelectedCompany] =
     useState<string>("All companies");
@@ -36,6 +41,7 @@ export function useJobSearch() {
     filteredJobs,
     isPending,
     error,
+    isError,
     selectedCompany,
     setSelectedCompany,
     setSearchQuery,

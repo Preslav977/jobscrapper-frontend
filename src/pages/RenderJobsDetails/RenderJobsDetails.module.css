@@ -42,6 +42,11 @@
 .jobHomeAnchor {
   display: flex;
   gap: 0.5em;
+  transition: text-decoration 0.5 ease-in-out;
+}
+
+.jobHomeAnchor:hover {
+  text-decoration: underline;
 }
 
 .jobHomeAnchorImg {
@@ -54,7 +59,7 @@
 }
 
 hr {
-  color: var(--color-text-muted);
+  color: var(--aside-text);
   margin: 0.5em 0;
 }
 
@@ -69,6 +74,7 @@ hr {
 
 .jobList {
   list-style-position: inside;
+  font-size: 1.05rem;
 }
 
 .jobAnchorHrefContainer {

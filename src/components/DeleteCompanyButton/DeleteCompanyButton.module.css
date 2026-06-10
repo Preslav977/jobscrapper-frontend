@@ -2,8 +2,10 @@
   cursor: pointer;
   text-align: center;
   padding: 0.2em;
-  border-radius: 0.45em;
   padding-inline: 0.5em;
+  border: 0;
+  outline: 1px solid var(--color-text-primary);
+  background-color: var(--color-bg-main);
 }
 
 .errorWrapper {

@@ -15,7 +15,7 @@ export function UserPreview({
             src="./eye.svg"
             alt="preview your profile"
           />
-          <p>Preview</p>
+          <p className={styles.previewPara}>Preview</p>
         </div>
         <p className={styles.previewParaInfo}>
           This is how your profile will appear to companies and recruiters. Make

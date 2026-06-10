@@ -33,6 +33,10 @@
   gap: 0.5em;
 }
 
+.jobsDescriptionWrapper > p {
+  color: var(--color-text-muted);
+}
+
 .noJobsContainer {
   display: flex;
   flex-direction: column;
@@ -92,4 +96,15 @@
 
 .errorSVG {
   width: 25px;
+}
+
+.jobsCompanyNameAndLogoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.jobsCompanyName {
+  font-size: 1.05rem;
+  font-weight: 1000;
 }

@@ -42,7 +42,7 @@ export function UserProfileForm({
               src="./user.svg"
               alt="user"
             />
-            <p>Your Profile</p>
+            <p className={styles.yourProfilePara}>Your Profile</p>
           </div>
           <p className={styles.paraInfo}>
             Fill in your basic info to complete your profile and help us tailor

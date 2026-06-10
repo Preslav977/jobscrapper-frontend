@@ -40,7 +40,7 @@ export function SignUpForm() {
       >
         <div className={styles.formHeaderContainer}>
           <h1 className={styles.formHeader}>JobScraper</h1>
-          <p>Sign up to find your dream jobs with JobScraper</p>
+          <p>Sign up to find your dream jobs with JobScraper.</p>
         </div>
         <label className={styles.formLabel} htmlFor="email">
           Email
@@ -65,6 +65,7 @@ export function SignUpForm() {
             type="password"
             id="password"
             aria-label="password"
+            placeholder="********"
             {...register("password", {
               required: true,
               min: 8,
@@ -82,6 +83,7 @@ export function SignUpForm() {
             type="password"
             id="confirmPassword"
             aria-label="confirmPassword"
+            placeholder="********"
             {...register("confirmPassword", {
               required: true,
               min: 8,

@@ -20,6 +20,7 @@
   margin-top: 0.5em;
   width: 70%;
   line-height: 1.15;
+  color: var(--aside-text);
 }
 
 .formUploadingProfilePicture {
@@ -88,4 +89,8 @@
 
 .errorSVG {
   width: 25px;
+}
+
+.profilePhotoPara {
+  font-weight: 700;
 }

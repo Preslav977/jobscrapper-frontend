@@ -11,6 +11,7 @@
 .previewParaInfo {
   width: 70%;
   margin: 1em 0;
+  color: var(--aside-text);
 }
 
 .previewUserProfilePictureSpan {
@@ -40,6 +41,11 @@
 }
 
 .previewUserEmail {
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 1.2rem;
   margin-bottom: 1em;
+}
+
+.previewPara {
+  font-weight: 700;
 }

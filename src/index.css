@@ -6,7 +6,7 @@
   --color-text-muted: oklch(70.8% 0 0);
   --color-bg-main: oklch(98.5% 0 0);
   --color-status-error: red;
-  --font-size-xl: 2.5rem;
+  --font-size-xl: 2.8rem;
   --font-size-base: 1.25rem;
   --form-max-width: 400px;
   --form-max-height: 500px;
@@ -19,6 +19,7 @@
 *::after {
   box-sizing: border-box;
   border-radius: var(--radius-md);
+  font-family: "Nunito Sans", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 *:not(dialog) {

@@ -47,14 +47,15 @@ export function RenderCompanies() {
             />{" "}
             Back to jobs
           </Link>
-
-          <hr />
         </div>
       </div>
       <div className={styles.companiesWrapper}>
         {companies.map((company) => (
           <div className={styles.companiesContainer} key={company.id}>
-            <Link to={`/company/${company.id}`}>
+            <Link
+              className={styles.companiesNameAndLogoAnchor}
+              to={`/company/${company.id}`}
+            >
               <img
                 className={styles.companiesLogo}
                 src={

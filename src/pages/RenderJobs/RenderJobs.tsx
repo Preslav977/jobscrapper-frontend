@@ -37,15 +37,18 @@ export function RenderJobs({
           <div key={jobs.id}>
             <div className={styles.jobsContainer}>
               <Link to={`/jobs/${jobs.id}`}>
-                <img
-                  className={styles.jobsCompanyLogo}
-                  src={
-                    jobs.company.logo
-                      ? jobs.company.logo
-                      : `${jobs.company.name} Logo`
-                  }
-                  alt={jobs.company.name + "Logo"}
-                />
+                <div className={styles.jobsCompanyNameAndLogoContainer}>
+                  <img
+                    className={styles.jobsCompanyLogo}
+                    src={
+                      jobs.company.logo
+                        ? jobs.company.logo
+                        : `${jobs.company.name} Logo`
+                    }
+                    alt={jobs.company.name + "Logo"}
+                  />
+                  <p className={styles.jobsCompanyName}>{jobs.company.name}</p>
+                </div>
                 <h2 className={styles.jobsTitle}>{jobs.title}</h2>
                 <div className={styles.jobsDescriptionWrapper}>
                   <p>{jobs.location}</p>

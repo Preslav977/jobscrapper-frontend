@@ -45,7 +45,7 @@ export function UserProfilePicture({
               src="./camera.svg"
               alt="default profile picture"
             />
-            <p>Profile photo</p>
+            <p className={styles.profilePhotoPara}>Profile photo</p>
           </div>
           <p className={styles.profilePicturePara}>
             Upload a profile picture so companies and recruiters can recognize

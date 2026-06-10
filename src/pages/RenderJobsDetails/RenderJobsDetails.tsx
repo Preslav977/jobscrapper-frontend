@@ -9,7 +9,7 @@ export function RenderJobsDetails() {
 
   const { isPending, isError, data, error } = useFetchJobsDetails(Number(id));
 
-  if (!isPending)
+  if (isPending)
     return (
       <div className={styles.loadingWrapper}>
         <div className={styles.loadingContainer}>

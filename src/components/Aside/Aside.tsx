@@ -43,7 +43,7 @@ export function Aside({
           </div>
           <Link
             style={{
-              backgroundColor: pathname === "/" ? "lightgray" : "",
+              backgroundColor: pathname === "/" ? "oklch(20.5% 0 0)" : "",
             }}
             to={"/"}
             className={styles.asideMenuContainer}
@@ -53,7 +53,8 @@ export function Aside({
           </Link>
           <Link
             style={{
-              backgroundColor: pathname === "/dashboard" ? "lightgray" : "",
+              backgroundColor:
+                pathname === "/dashboard" ? "oklch(20.5% 0 0)" : "",
             }}
             to={"/dashboard"}
             className={styles.asideMenuContainer}
@@ -73,7 +74,7 @@ export function Aside({
               <Link
                 style={{
                   backgroundColor:
-                    pathname === "/createCompany" ? "lightgray" : "",
+                    pathname === "/createCompany" ? "oklch(20.5% 0 0)" : "",
                 }}
                 to={"/createCompany"}
                 className={styles.asideMenuContainer}
