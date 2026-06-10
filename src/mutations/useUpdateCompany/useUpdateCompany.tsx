@@ -22,7 +22,7 @@ export function useUpdateCompany() {
       void navigate("/companies");
     },
     onError: (error: Error) => {
-      console.log(error);
+      // console.log(error);
     },
   });
 }

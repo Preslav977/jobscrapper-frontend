@@ -19,7 +19,7 @@ export function useUpdateUser() {
       setUserDetails(data);
     },
     onError: (error: Error) => {
-      console.log(error);
+      // console.log(error);
     },
   });
 }

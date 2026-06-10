@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
-import { useLoginMutation } from "../../api/custom hooks/useLoginMutation/useLoginMutation";
 import type { FormLogin } from "../../interfaces/FormInterface/FormInterfaces";
+import { useLoginMutation } from "../../mutations/useLoginMutation/useLoginMutation";
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
 import styles from "./LoginForm.module.css";

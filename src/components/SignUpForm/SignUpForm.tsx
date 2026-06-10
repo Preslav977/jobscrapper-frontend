@@ -9,8 +9,8 @@ import { Link } from "react-router";
 
 import styles from "./SignUpForm.module.css";
 
-import { useSigUpMutation } from "../../api/custom hooks/useSignUpMutation/userSignUpMutation";
 import type { FormSignUp } from "../../interfaces/FormInterface/FormInterfaces";
+import { useSigUpMutation } from "../../mutations/useSignUpMutation/userSignUpMutation";
 
 export function SignUpForm() {
   const { mutate, error, isPending } = useSigUpMutation();

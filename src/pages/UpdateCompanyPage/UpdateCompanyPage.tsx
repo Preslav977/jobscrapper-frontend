@@ -65,6 +65,8 @@ export function UpdateCompanyPage() {
     <CreateCompanyForm
       defaultValues={initialFormValues}
       onSubmit={handleUpdate}
+      isPending={isPending}
+      isError={isError}
       error={error}
     />
   );
