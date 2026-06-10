@@ -1,10 +1,13 @@
 import { useParams } from "react-router";
 import type z from "zod";
 import { CreateCompanyForm } from "../../components/CreateCompanyForm/CreateCompanyForm";
+import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
+import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import { useFetchCompanyDetails } from "../../custom hooks/useFetchCompanyDetails/useFetchCompanyDetails";
 import { useUpdateCompany } from "../../custom hooks/useUpdateCompany/useUpdateCompany";
 import { serializeFormData } from "../../helper/serializeFormData/serializeFormData";
 import type { companySchema } from "../../schemas/companySchema/companySchema";
+import styles from "./UpdateCompanyPage.module.css";
 
 export function UpdateCompanyPage() {
   const { id, companyID } = useParams();
@@ -13,11 +16,32 @@ export function UpdateCompanyPage() {
     data: company,
     isPending,
     error,
+    isError,
   } = useFetchCompanyDetails(Number(id));
 
   const { mutate: updateCompany } = useUpdateCompany();
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <div className={styles.loadingWrapper}>
+        <div className={styles.loadingContainer}>
+          <img className="loading" src="/loading.svg" alt="Loading" />
+          <LoadingComponent
+            loading={"Loading updating company, please wait..."}
+          />
+        </div>
+      </div>
+    );
+
+  if (isError)
+    return (
+      <div className={styles.errorsWrapper}>
+        <div className={styles.errorContainer}>
+          <img className={styles.errorSVG} src="./error.svg" alt="Error" />
+          <ErrorComponent error={error ? error.message : null} />
+        </div>
+      </div>
+    );
 
   const initialFormValues: z.input<typeof companySchema> = {
     id: company ? company.id : 0,

@@ -11,7 +11,7 @@ export function UserProfileForm({
 }) {
   const { register } = useForm();
 
-  const { mutate, error } = useUpdateUser();
+  const { mutate, error, isError } = useUpdateUser();
 
   const onSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,7 +22,15 @@ export function UserProfileForm({
     });
   };
 
-  if (error) return <ErrorComponent error={error} />;
+  if (isError)
+    return (
+      <div className={styles.errorWrapper}>
+        <div className={styles.errorContainer}>
+          <img className={styles.errorSVG} src="./error.svg" alt="Error" />
+          <ErrorComponent error={error ? error.message : null} />
+        </div>
+      </div>
+    );
 
   if (userDetails)
     return (

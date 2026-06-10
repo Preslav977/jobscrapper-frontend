@@ -10,6 +10,12 @@ async function fetchCompanies(): Promise<Company[]> {
     },
   });
 
+  if (response.status >= 400) {
+    throw new Error(
+      `Incorrect URL, check if is spelled correctly, status: ${response.status}`,
+    );
+  }
+
   return response.json() as Promise<Company[]>;
 }
 

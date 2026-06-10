@@ -9,9 +9,25 @@ export function RenderJobsDetails() {
 
   const { isPending, isError, data, error } = useFetchJobsDetails(Number(id));
 
-  if (isPending) return <LoadingComponent loading={"Loading..."} />;
+  if (!isPending)
+    return (
+      <div className={styles.loadingWrapper}>
+        <div className={styles.loadingContainer}>
+          <img className="loading" src="/loading.svg" alt="Loading" />
+          <LoadingComponent loading={"Loading job details, please wait..."} />
+        </div>
+      </div>
+    );
 
-  if (isError) return <ErrorComponent error={error} />;
+  if (isError)
+    return (
+      <div className={styles.errorWrapper}>
+        <div className={styles.errorContainer}>
+          <img className={styles.errorSVG} src="./error.svg" alt="Error" />
+          <ErrorComponent error={error ? error.message : null} />
+        </div>
+      </div>
+    );
 
   return (
     <div className={styles.jobDetailsWrapper}>

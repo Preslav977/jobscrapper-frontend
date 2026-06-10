@@ -7,19 +7,28 @@ import styles from "./RenderJobs.module.css";
 export function RenderJobs({
   filteredJobs,
   isPending,
+  isError,
   error,
 }: RenderJobsInterface) {
   if (isPending)
     return (
-      <div className={styles.loadingJobsWrapper}>
-        <div className={styles.loadingJobsContainer}>
+      <div className={styles.loadingWrapper}>
+        <div className={styles.loadingContainer}>
           <img className="loading" src="./loading.svg" alt="Loading" />
           <LoadingComponent loading={"Loading jobs, please wait..."} />
         </div>
       </div>
     );
 
-  if (error) return <ErrorComponent error={error} />;
+  if (isError)
+    return (
+      <div className={styles.errorWrapper}>
+        <div className={styles.errorContainer}>
+          <img className={styles.errorSVG} src="./error.svg" alt="Error" />
+          <ErrorComponent error={error ? error.message : null} />
+        </div>
+      </div>
+    );
 
   return (
     <>

@@ -11,7 +11,7 @@ export function UserProfilePicture({
 }) {
   const { register } = useForm();
 
-  const { mutate, error } = useUpdateUser();
+  const { mutate, error, isError } = useUpdateUser();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -25,7 +25,15 @@ export function UserProfilePicture({
     }
   };
 
-  if (error) return <ErrorComponent error={error} />;
+  if (isError)
+    return (
+      <div className={styles.errorWrapper}>
+        <div className={styles.errorContainer}>
+          <img className={styles.errorSVG} src="./error.svg" alt="Error" />
+          <ErrorComponent error={error ? error.message : null} />
+        </div>
+      </div>
+    );
 
   if (userDetails)
     return (
