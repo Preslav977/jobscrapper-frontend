@@ -1,4 +1,4 @@
-import { useDeleteCompany } from "../../custom hooks/useDeleteCompany/useDeleteCompany";
+import { useDeleteCompany } from "../../mutations/useDeleteCompany/useDeleteCompany";
 import { ErrorComponent } from "../ErrorComponent/ErrorComponent";
 import styles from "./DeleteCompanyButton.module.css";
 

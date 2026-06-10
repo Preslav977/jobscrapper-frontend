@@ -14,6 +14,7 @@ import { Outlet } from "react-router";
 import { isUserLoggedInContext } from "./context/isUserLoggedInContext";
 import { userDetailsContext } from "./context/userDetailsContext";
 import type { UserDetailsInterface } from "./interfaces/UserDetailsInterface/UserDetailsInterface";
+import { Footer } from "./pages/Footer/Footer";
 
 export function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
@@ -30,6 +31,7 @@ export function App() {
             value={{ isUserLoggedIn, setIsUserLoggedIn }}
           >
             <Outlet />
+            <Footer />
           </isUserLoggedInContext.Provider>
         </userDetailsContext.Provider>
       </QueryClientProvider>

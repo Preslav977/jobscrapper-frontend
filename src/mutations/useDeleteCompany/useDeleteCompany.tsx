@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { DeleteCompany } from "../../api/DeleteCompany/DeleteCompany";
 import { useNavigate } from "react-router";
+import { DeleteCompany } from "../../api/DeleteCompany/DeleteCompany";
 
 const handleDeleteCompany = (id: number) => DeleteCompany({ id });
 

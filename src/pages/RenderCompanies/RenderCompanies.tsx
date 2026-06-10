@@ -1,10 +1,10 @@
 import { Link } from "react-router";
+import { useFetchCompanies } from "../../api/custom hooks/useFetchCompanies/useFetchCompanies";
 import { DeleteCompanyButton } from "../../components/DeleteCompanyButton/DeleteCompanyButton";
 import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
 import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import { useUserDetails } from "../../context/userDetailsContext";
-import { useFetchCompanies } from "../../custom hooks/useFetchCompanies/useFetchCompanies";
 import styles from "./RenderCompanies.module.css";
 
 export function RenderCompanies() {

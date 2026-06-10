@@ -9,11 +9,11 @@ import { Link } from "react-router";
 
 import styles from "./SignUpForm.module.css";
 
-import { useSigUpMutation } from "../../custom hooks/useSignUpMutation/userSignUpMutation";
+import { useSigUpMutation } from "../../api/custom hooks/useSignUpMutation/userSignUpMutation";
 import type { FormSignUp } from "../../interfaces/FormInterface/FormInterfaces";
 
 export function SignUpForm() {
-  const { mutate, error } = useSigUpMutation();
+  const { mutate, error, isPending } = useSigUpMutation();
 
   const {
     register,
@@ -98,7 +98,11 @@ export function SignUpForm() {
           {errors.confirmPassword?.message}
         </span>
 
-        <button className={styles.submitButton} type="submit">
+        <button
+          className={styles.submitButton}
+          type="submit"
+          disabled={isPending ? true : false}
+        >
           Sign Up
         </button>
 

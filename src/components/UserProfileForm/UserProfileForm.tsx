@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useUpdateUser } from "../../custom hooks/useUpdateUser/userUpdateUser";
 import type { UserDetailsInterface } from "../../interfaces/UserDetailsInterface/UserDetailsInterface";
+import { useUpdateUser } from "../../mutations/useUpdateUser/userUpdateUser";
 import { ErrorComponent } from "../ErrorComponent/ErrorComponent";
 import styles from "./UserProfileForm.module.css";
 
@@ -11,7 +11,7 @@ export function UserProfileForm({
 }) {
   const { register } = useForm();
 
-  const { mutate, error, isError } = useUpdateUser();
+  const { mutate, error, isError, isPending } = useUpdateUser();
 
   const onSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -135,7 +135,11 @@ export function UserProfileForm({
             />
           </label>
 
-          <button className={styles.profileFormSubmitBtn} type="submit">
+          <button
+            className={styles.profileFormSubmitBtn}
+            type="submit"
+            disabled={isPending ? true : false}
+          >
             Save
           </button>
         </form>

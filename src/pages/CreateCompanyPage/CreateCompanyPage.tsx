@@ -1,11 +1,11 @@
 import type z from "zod";
 import { CreateCompanyForm } from "../../components/CreateCompanyForm/CreateCompanyForm";
-import { useCreateCompany } from "../../custom hooks/useCreateCompany/useCreateCompany";
 import { serializeFormData } from "../../helper/serializeFormData/serializeFormData";
+import { useCreateCompany } from "../../mutations/useCreateCompany/useCreateCompany";
 import type { companySchema } from "../../schemas/companySchema/companySchema";
 
 export function CreateCompanyPage() {
-  const { mutate, error } = useCreateCompany();
+  const { mutate, error, isPending, isError } = useCreateCompany();
 
   const emptyValues: z.input<typeof companySchema> = {
     id: 0,
@@ -29,6 +29,8 @@ export function CreateCompanyPage() {
     <CreateCompanyForm
       defaultValues={emptyValues}
       onSubmit={handleCreate}
+      isPending={isPending}
+      isError={isError}
       error={error}
     />
   );

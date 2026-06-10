@@ -1,14 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
-import { useLoginMutation } from "../../custom hooks/useLoginMutation/useLoginMutation";
+import { useLoginMutation } from "../../api/custom hooks/useLoginMutation/useLoginMutation";
 import type { FormLogin } from "../../interfaces/FormInterface/FormInterfaces";
 import { loginSchema } from "../../schemas/loginSchema/loginSchema";
 import { passwordRegex } from "../../schemas/signUpSchema/signUpSchema";
 import styles from "./LoginForm.module.css";
 
 export function LoginForm() {
-  const { mutate, error } = useLoginMutation();
+  const { mutate, error, isPending } = useLoginMutation();
 
   const {
     register,
@@ -73,7 +73,11 @@ export function LoginForm() {
           {errors.password?.message}
         </span>
 
-        <button className={styles.submitButton} type="submit">
+        <button
+          className={styles.submitButton}
+          type="submit"
+          disabled={isPending ? true : false}
+        >
           Log in
         </button>
 

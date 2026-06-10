@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Company } from "../../interfaces/CompanyInterface/CompanyInterface";
-import { localhostURL } from "../../utility/localhostURL";
+import type { Jobs } from "../../../interfaces/JobsInterface/JobsInterface";
+import { localhostURL } from "../../../utility/localhostURL";
 
-async function fetchCompanyDetails(id: number): Promise<Company> {
-  const response = await fetch(`${localhostURL}/companies/${id}`, {
+async function fetchJobsDetails(id: number): Promise<Jobs> {
+  const response = await fetch(`${localhostURL}/companies/jobs/${id}`, {
     mode: "cors",
     headers: {
       Authorization: sessionStorage.getItem("token")!,
@@ -16,13 +16,13 @@ async function fetchCompanyDetails(id: number): Promise<Company> {
     );
   }
 
-  return response.json() as Promise<Company>;
+  return response.json() as Promise<Jobs>;
 }
 
-export const useFetchCompanyDetails = (id: number) => {
+export const useFetchJobsDetails = (id: number) => {
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["id"],
-    queryFn: () => fetchCompanyDetails(id),
+    queryKey: ["jobsDetails", id],
+    queryFn: () => fetchJobsDetails(id),
   });
 
   return { isPending, isError, data, error };

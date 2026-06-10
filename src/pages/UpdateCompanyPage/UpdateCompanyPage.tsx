@@ -1,11 +1,11 @@
 import { useParams } from "react-router";
 import type z from "zod";
+import { useFetchCompanyDetails } from "../../api/custom hooks/useFetchCompanyDetails/useFetchCompanyDetails";
 import { CreateCompanyForm } from "../../components/CreateCompanyForm/CreateCompanyForm";
 import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
 import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
-import { useFetchCompanyDetails } from "../../custom hooks/useFetchCompanyDetails/useFetchCompanyDetails";
-import { useUpdateCompany } from "../../custom hooks/useUpdateCompany/useUpdateCompany";
 import { serializeFormData } from "../../helper/serializeFormData/serializeFormData";
+import { useUpdateCompany } from "../../mutations/useUpdateCompany/useUpdateCompany";
 import type { companySchema } from "../../schemas/companySchema/companySchema";
 import styles from "./UpdateCompanyPage.module.css";
 

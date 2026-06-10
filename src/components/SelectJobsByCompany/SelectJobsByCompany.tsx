@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useFetchJobs } from "../../custom hooks/useFetchJobs/useFetchJobs";
+import { useFetchJobs } from "../../api/custom hooks/useFetchJobs/useFetchJobs";
 import type { SelectJobsByCompanyInterface } from "../../interfaces/SelectJobsByCompanyInterface/SelectJobsByCompanyInterface";
 import styles from "./SelectJobsByCompany.module.css";
 
