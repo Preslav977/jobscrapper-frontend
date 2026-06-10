@@ -2,13 +2,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import type { CompanyFormProps } from "../../interfaces/CompanyFormProps/CompanyFormProps";
 import { companySchema } from "../../schemas/companySchema/companySchema";
+import { ErrorComponent } from "../ErrorComponent/ErrorComponent";
 import { LoadingComponent } from "../LoadingComponent/LoadingComponent";
 import styles from "./CreateCompanyForm.module.css";
 
 export function CreateCompanyForm({
   defaultValues,
   onSubmit,
-  isLoading,
+  isPending,
+  isError,
   error,
 }: CompanyFormProps) {
   const {
@@ -36,7 +38,27 @@ export function CreateCompanyForm({
     { id: 6, key: "anchorHref", label: "Anchor Href" },
   ] as const;
 
-  if (isLoading) return <LoadingComponent loading={"Loading ..."} />;
+  if (isPending)
+    return (
+      <div className={styles.loadingWrapper}>
+        <div className={styles.loadingContainer}>
+          <img className="loading" src="/loading.svg" alt="Loading" />
+          <LoadingComponent
+            loading={"Loading create company, please wait..."}
+          />
+        </div>
+      </div>
+    );
+
+  if (isError)
+    return (
+      <div className={styles.errorWrapper}>
+        <div className={styles.errorContainer}>
+          <img className={styles.errorSVG} src="/error.svg" alt="Error" />
+          <ErrorComponent error={error ? error.message : null} />
+        </div>
+      </div>
+    );
 
   return (
     <div className={styles.formWrapper}>

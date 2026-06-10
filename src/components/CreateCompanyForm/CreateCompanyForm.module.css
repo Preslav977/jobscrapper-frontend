@@ -44,3 +44,45 @@
   margin-bottom: 0.5em;
   padding: 0 1em;
 }
+
+.loadingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  padding: 1em;
+  width: 100%;
+  margin-top: 5em;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.errorWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  padding: 1em;
+  width: 100%;
+  margin-top: 5em;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.errorSVG {
+  width: 25px;
+}

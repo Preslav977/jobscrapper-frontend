@@ -10,6 +10,12 @@ async function fetchCompanyDetails(id: number): Promise<Company> {
     },
   });
 
+  if (response.status >= 400) {
+    throw new Error(
+      `Incorrect URL, check if is spelled correctly, status: ${response.status} || "Token has expired. Login again!"`,
+    );
+  }
+
   return response.json() as Promise<Company>;
 }
 

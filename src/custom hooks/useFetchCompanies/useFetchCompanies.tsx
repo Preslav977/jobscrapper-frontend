@@ -12,7 +12,7 @@ async function fetchCompanies(): Promise<Company[]> {
 
   if (response.status >= 400) {
     throw new Error(
-      `Incorrect URL, check if is spelled correctly, status: ${response.status}`,
+      `Incorrect URL, check if is spelled correctly, status: ${response.status} || "Token has expired. Login again!"`,
     );
   }
 

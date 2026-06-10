@@ -5,3 +5,26 @@
   border-radius: 0.45em;
   padding-inline: 0.5em;
 }
+
+.errorWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  padding: 1em;
+  width: 100%;
+  margin-top: 5em;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.errorSVG {
+  width: 25px;
+}
