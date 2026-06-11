@@ -78,6 +78,7 @@ export function CreateCompanyForm({
           <label className={styles.formLabel} htmlFor="name">
             Name
             <input
+              className={styles.formInput}
               aria-label="name"
               placeholder="Company"
               type="text"
@@ -95,6 +96,7 @@ export function CreateCompanyForm({
           <label className={styles.formLabel} htmlFor="URL">
             URL
             <input
+              className={styles.formInput}
               aria-label="url"
               placeholder="https://www.example.com"
               type="text"
@@ -104,6 +106,7 @@ export function CreateCompanyForm({
           </label>
           <label className={styles.formLabel} htmlFor="file">
             <input
+              className={styles.formInput}
               aria-label="file"
               type="file"
               {...register("file")}
@@ -115,7 +118,11 @@ export function CreateCompanyForm({
           </label>
           <label className={styles.formLabelNoFullWidth} htmlFor="scrapMode">
             ScrapMode:
-            <select aria-label="scrapMode" {...register("scrapMode")}>
+            <select
+              className={styles.formSelect}
+              aria-label="scrapMode"
+              {...register("scrapMode")}
+            >
               <option value="DIRECT">Direct</option>
               <option value="NAVIGATION">NAVIGATION</option>
               <option value="FETCH">Fetch</option>
@@ -135,6 +142,7 @@ export function CreateCompanyForm({
               <label htmlFor={field.key} className={styles.formLabel}>
                 {field.label}:
                 <input
+                  className={styles.formInput}
                   type="text"
                   {...register(
                     `instructions.0.extractionInstructions.${field.key}.selector`,
@@ -149,6 +157,7 @@ export function CreateCompanyForm({
                 htmlFor={field.key}
               >
                 <select
+                  className={styles.formSelect}
                   {...register(
                     `instructions.0.extractionInstructions.${field.key}.extractType`,
                   )}
@@ -161,6 +170,7 @@ export function CreateCompanyForm({
 
               <label className={styles.formLabel} htmlFor="attribute">
                 <input
+                  className={styles.formInput}
                   type="text"
                   placeholder="CSS attribute [attribute]"
                   {...register(
@@ -185,6 +195,7 @@ export function CreateCompanyForm({
 
               <label className={styles.formLabel} htmlFor="action">
                 <input
+                  className={styles.formInput}
                   placeholder="click, clickEvaluate, clickMore, Fetch"
                   type="text"
                   {...register(`steps.${index}.action`)}
@@ -193,6 +204,7 @@ export function CreateCompanyForm({
 
               <label className={styles.formLabel} htmlFor="selector">
                 <input
+                  className={styles.formInput}
                   type="text"
                   placeholder="Select CSS .className"
                   {...register(`steps.${index}.selector`)}
@@ -201,6 +213,7 @@ export function CreateCompanyForm({
 
               <label htmlFor="selectOption" className={styles.formLabel}>
                 <input
+                  className={styles.formInput}
                   type="text"
                   placeholder="Select option (Bulgaria)"
                   {...register(`steps.${index}.selectOption`)}
@@ -208,13 +221,18 @@ export function CreateCompanyForm({
               </label>
               <label className={styles.formLabel} htmlFor="url">
                 <input
+                  className={styles.formInput}
                   placeholder="Fetch URL (https://www.example.com/careers)"
                   type="text"
                   {...register(`steps.${index}.url`)}
                 />
               </label>
               <div className={styles.stepButtons}>
-                <button type="button" onClick={() => remove(index)}>
+                <button
+                  className={styles.buttonSecondary}
+                  type="button"
+                  onClick={() => remove(index)}
+                >
                   Remove Step
                 </button>
               </div>
@@ -222,6 +240,7 @@ export function CreateCompanyForm({
           ))}
           <div className={styles.stepButtons}>
             <button
+              className={styles.buttonSecondary}
               type="button"
               onClick={() =>
                 append({
@@ -240,7 +259,9 @@ export function CreateCompanyForm({
           </div>
         </fieldset>
 
-        <button type="submit">Save</button>
+        <button className={styles.buttonPrimary} type="submit">
+          Save
+        </button>
       </form>
     </div>
   );
