@@ -34,7 +34,7 @@
 }
 
 .jobsDescriptionWrapper > p {
-  color: var(--color-text-muted);
+  color: var(--aside-text);
 }
 
 .noJobsContainer {

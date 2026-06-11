@@ -293,6 +293,7 @@ export const handlers = [
 
       instructions: [
         {
+          id: 1,
           extractionInstructions: {
             container: { extractType: "text", selector: "", attr: "" },
             title: { extractType: "text", selector: "", attr: "" },
@@ -307,6 +308,7 @@ export const handlers = [
       ],
       steps: [
         {
+          id: 1,
           order: 1,
           action: "",
           selector: "",

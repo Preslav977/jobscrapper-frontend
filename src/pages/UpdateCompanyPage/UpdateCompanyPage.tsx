@@ -44,15 +44,15 @@ export function UpdateCompanyPage() {
     );
 
   const initialFormValues: z.input<typeof companySchema> = {
-    id: company ? company.id : 0,
-    name: company ? company.name : "",
-    URL: company ? company.URL : "",
-    scrapMode: company ? company.scrapMode : "",
+    id: company!.id,
+    name: company!.name,
+    URL: company!.URL,
+    scrapMode: company!.scrapMode,
     file: undefined,
-    logo: company ? company.logo : null,
-    jobs: company ? company.jobs : [],
-    instructions: company ? company.instructions : [],
-    steps: company ? company.steps : [],
+    logo: company!.logo || null,
+    jobs: company!.jobs || [],
+    instructions: company!.instructions || [],
+    steps: company!.steps || [],
   };
 
   const handleUpdate = (data: z.output<typeof companySchema>) => {

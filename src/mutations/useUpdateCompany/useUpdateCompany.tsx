@@ -20,9 +20,11 @@ export function useUpdateCompany() {
 
     onSuccess: () => {
       void navigate("/companies");
+
+      // console.log(data);
     },
     onError: (error: Error) => {
-      // console.log(error);
+      console.log(error);
     },
   });
 }

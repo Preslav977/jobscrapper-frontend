@@ -8,7 +8,6 @@ export function CreateCompanyPage() {
   const { mutate, error, isPending, isError } = useCreateCompany();
 
   const emptyValues: z.input<typeof companySchema> = {
-    id: 0,
     name: "",
     URL: "",
     scrapMode: "NAVIGATION",

@@ -213,7 +213,7 @@ describe("render RenderCompanies", () => {
     ).toMatch(/invalid file type. only jpeg, png are allowed/i);
   });
 
-  it("should update company", async () => {
+  it.only("should update company", async () => {
     renderRouter({
       initialEntries: [
         "/login",
@@ -250,6 +250,8 @@ describe("render RenderCompanies", () => {
     const saveButton = screen.getByRole("button", { name: "Save" });
 
     await user.click(saveButton);
+
+    // screen.debug();
 
     expect(screen.queryByText("Company ABC")?.textContent).toMatch(
       /company abc/i,

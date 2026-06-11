@@ -5,6 +5,7 @@ import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
 import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import { useIsUserLoggedIn } from "../../context/isUserLoggedInContext";
 import { useUserDetails } from "../../context/userDetailsContext";
+import { Footer } from "../Footer/Footer";
 import styles from "./RenderCompanies.module.css";
 
 export function RenderCompanies() {
@@ -93,6 +94,7 @@ export function RenderCompanies() {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }

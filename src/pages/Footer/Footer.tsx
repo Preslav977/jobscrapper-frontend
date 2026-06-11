@@ -5,7 +5,9 @@ export function Footer() {
     <footer className={styles.footerContainer}>
       <h3 className={styles.footerHeader}>JobScraper</h3>
 
-      <p>© {new Date().getFullYear()} year. All rights reserved.</p>
+      <p className={styles.footerPara}>
+        © {new Date().getFullYear()} year. All rights reserved.
+      </p>
     </footer>
   );
 }

@@ -14,6 +14,7 @@ export function useCreateCompany() {
     onSuccess: () => {
       void navigate("/");
     },
+
     onError: (error: Error) => {
       // console.log(error);
     },

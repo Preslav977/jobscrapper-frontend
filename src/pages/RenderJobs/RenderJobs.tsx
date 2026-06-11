@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
 import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import type { RenderJobsInterface } from "../../interfaces/RenderJobsInterface/RenderJobsInterface";
+import { Footer } from "../Footer/Footer";
 import styles from "./RenderJobs.module.css";
 
 export function RenderJobs({
@@ -74,6 +75,7 @@ export function RenderJobs({
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }

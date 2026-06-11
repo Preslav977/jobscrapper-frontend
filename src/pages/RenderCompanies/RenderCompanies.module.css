@@ -24,7 +24,7 @@
 .companiesLogo {
   max-height: 25px;
   object-fit: contain;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.5em;
 }
 
 .companiesTitle {
@@ -61,7 +61,7 @@
   border-radius: 0.45em;
   padding-inline: 0.5em;
   text-decoration: none;
-  outline: 1px solid var(--color-text-primary);
+  outline: 1px solid var(--outline-color-primary);
   background-color: var(--color-bg-main);
   color: var(--color-bg-main);
 }

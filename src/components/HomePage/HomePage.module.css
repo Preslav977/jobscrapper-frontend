@@ -38,11 +38,11 @@
 }
 
 .homePageAnchor {
-  border: 1px solid var(--color-text-muted);
   text-decoration: none;
   color: var(--color-text-primary);
   margin-top: 1em;
   padding: 0.25em;
   padding-inline: 0.75em;
   border-radius: 0.75em;
+  outline: 1px solid var(--outline-color-primary);
 }
