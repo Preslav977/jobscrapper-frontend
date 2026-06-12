@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+# jobscrapper-frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> React SPA for browsing and filtering scraped Developer and Engineer job listings — built with TypeScript, TanStack Query, React Hook Form, and Zod.
 
-Currently, two official plugins are available:
+[![GitHub stars](https://img.shields.io/github/stars/Preslav977/jobscrapper-frontend?style=social)](https://github.com/Preslav977/jobscrapper-frontend)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[![Star History Chart](https://api.star-history.com/svg?repos=Preslav977/jobscrapper-frontend&type=Date)](https://star-history.com/#Preslav977/jobscrapper-frontend&Date)
 
-## React Compiler
+[Live site]() [Backend Repo](https://github.com/Preslav977/jobscrapper-backend)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<img width="1920" height="939" alt="Image" src="https://github.com/user-attachments/assets/86158f03-87fc-4fcf-9259-e922093b6eaa" />
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Feature             | Description                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| ✅ Live Validation  | Per-field Zod schemas validated via React Hook Form on signup, login, company creation, and user update |
+| 🔍 Job Filtering    | Filter jobs by company name (select) or by title, location, remote/hybrid (text input)                  |
+| 👤 User Dashboard   | View and update profile information                                                                     |
+| 🏢 Company Form     | Create or update a company with instructions, steps, and an optional image upload                       |
+| 🔐 Protected Routes | `ProtectedRoute` component guards routes by checking login status and ADMIN role                        |
+| ⚡ TanStack Query   | Custom hooks in `mutations/` handle all fetching and mutations with caching and invalidation            |
+| 🧪 Tests            | MSW intercepts each API request during tests — no live server required                                  |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Quick Start
+
+### Install
+
+```bash
+git clone https://github.com/Preslav977/jobscrapper-frontend.git
+cd jobscrapper-frontend
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Configure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env` file in the root:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_URL=
 ```
+
+### Run
+
+```bash
+npm run dev
+```
+
+> App runs on [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🏗️ Architecture
+
+```
+src/
+  api/            # Fetch wrappers per resource (jobs, company, user)
+  assets/         # Static assets
+  components/     # Reusable UI components
+  context/        # Auth state via React Context
+  helper/         # Shared helper functions
+  interfaces/     # TypeScript interfaces
+  mutations/      # TanStack Query fetch and mutation hooks
+  pages/          # Route-level components (Jobs, Dashboard, Company)
+  router/         # React Router definitions + ProtectedRoute
+  schemas/        # Zod schemas: company, instructions, steps, jobs, login, signup
+  tests/          # MSW handlers and test files
+  utility/        # Shared utilities
+  App.tsx         # Root component
+  main.tsx        # Entry point
+```
+
+Forms are managed by React Hook Form backed by Zod schemas — validation runs per-field before any request is sent. Data fetching and mutations live in `mutations/` as TanStack Query custom hooks, keeping components free of fetch logic. `ProtectedRoute` wraps restricted routes and checks both login state and role before rendering. MSW intercepts all API calls during tests so no backend connection is needed.
+
+---
+
+## 🤝 Contributing
+
+1. Reach out to me first
+2. Fork → Branch → PR
+3. Run `npm test` before submitting
+
+---
+
+## 📄 License
+
+MIT © [Preslav977](https://github.com/Preslav977)
