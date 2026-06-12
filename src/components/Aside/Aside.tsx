@@ -32,7 +32,10 @@ export function Aside({
               <p>{!userDetails.firstName ? "null" : userDetails.firstName}</p>
               <p>{!userDetails.lastName ? "null" : userDetails.lastName}</p>
             </div>
-            <a className={styles.asideUserEmail} href={userDetails.email}>
+            <a
+              className={styles.asideUserEmail}
+              href={`mailto:${userDetails.email}`}
+            >
               {userDetails.email}
             </a>
           </div>
