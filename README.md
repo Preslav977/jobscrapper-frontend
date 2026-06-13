@@ -7,7 +7,7 @@
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Preslav977/jobscrapper-frontend&type=Date)](https://star-history.com/#Preslav977/jobscrapper-frontend&Date)
 
-[Live site]() [Backend Repo](https://github.com/Preslav977/jobscrapper-backend)
+[Live site](https://jobscrapper-frontend-sxkw.vercel.app/) [Backend Repo](https://github.com/Preslav977/jobscrapper-backend)
 
 <img width="1920" height="939" alt="Image" src="https://github.com/user-attachments/assets/86158f03-87fc-4fcf-9259-e922093b6eaa" />
 
