@@ -18,8 +18,5 @@ export function useUpdateUser() {
     onSuccess: (data) => {
       setUserDetails(data);
     },
-    onError: (error: Error) => {
-      // console.log(error);
-    },
   });
 }

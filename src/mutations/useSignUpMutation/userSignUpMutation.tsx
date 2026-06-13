@@ -10,8 +10,5 @@ export function useSigUpMutation() {
     onSuccess: () => {
       void navigate("/login");
     },
-    onError: (error: Error) => {
-      // console.log(error);
-    },
   });
 }

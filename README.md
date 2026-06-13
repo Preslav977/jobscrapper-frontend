@@ -39,11 +39,7 @@ npm install
 
 ### Configure
 
-Create a `.env` file in the root:
-
-```env
-VITE_API_URL=
-```
+You don't need .env file in utility folder there's localhostURL file
 
 ### Run
 

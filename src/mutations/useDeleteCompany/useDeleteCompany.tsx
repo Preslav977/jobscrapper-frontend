@@ -13,8 +13,5 @@ export function useDeleteCompany() {
     onSuccess: () => {
       void navigate("/");
     },
-    onError: (error: Error) => {
-      // console.log(error);
-    },
   });
 }
