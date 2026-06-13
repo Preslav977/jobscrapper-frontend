@@ -5,6 +5,7 @@ import { ProtectRoutes } from "../components/ProtectRoutes/ProtectRoutes";
 import { SignUpForm } from "../components/SignUpForm/SignUpForm";
 import { CreateCompanyPage } from "../pages/CreateCompanyPage/CreateCompanyPage";
 import { Dashboard } from "../pages/Dashboard/Dashboard";
+import { ErrorPage } from "../pages/ErrorPage/ErrorPage";
 import { RenderCompanies } from "../pages/RenderCompanies/RenderCompanies";
 import { RenderJobsDetails } from "../pages/RenderJobsDetails/RenderJobsDetails";
 import { UpdateCompanyPage } from "../pages/UpdateCompanyPage/UpdateCompanyPage";
@@ -13,6 +14,7 @@ export const routes = [
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "signup",
