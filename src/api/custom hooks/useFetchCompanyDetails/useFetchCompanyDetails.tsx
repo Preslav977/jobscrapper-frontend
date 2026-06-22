@@ -21,7 +21,7 @@ async function fetchCompanyDetails(id: number): Promise<Company> {
 
 export const useFetchCompanyDetails = (id: number) => {
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["id"],
+    queryKey: ["company", id],
     queryFn: () => fetchCompanyDetails(id),
   });
 
