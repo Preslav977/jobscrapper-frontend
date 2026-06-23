@@ -61,6 +61,7 @@ export function LoginForm() {
             id="password"
             aria-label="password"
             placeholder="**********"
+            autoComplete="password"
             {...register("password", {
               required: true,
               min: 8,

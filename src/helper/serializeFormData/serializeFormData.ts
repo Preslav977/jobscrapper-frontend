@@ -12,7 +12,6 @@ export function serializeFormData(data: z.output<typeof companySchema>) {
     name: data.name,
     URL: data.URL,
     scrapMode: data.scrapMode,
-    jobs: data.jobs,
     instructions: data.instructions,
     steps: data.steps,
   };

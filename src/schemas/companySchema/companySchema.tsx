@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { instructionsSchema } from "../intrusctionsSchema/InstructionsSchema";
-import { jobsSchema } from "../jobsSchema.tsx/jobsSchema";
 import { stepsSchema } from "../stepsSchema/stepsSchema";
+import { jobsSchema } from "../jobsSchema.tsx/jobsSchema";
 
 const MAX_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/png", "image/jpeg"];
@@ -24,7 +24,7 @@ export const companySchema = z.object({
     }, "Invalid file type. Only JPEG, PNG are allowed"),
   logo: z.nullish(z.string().optional()),
   scrapMode: z.string(),
-  jobs: z.array(jobsSchema),
+  jobs: z.array(jobsSchema).optional(),
   instructions: z.array(instructionsSchema),
   steps: z.array(stepsSchema),
 });

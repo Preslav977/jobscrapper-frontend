@@ -50,7 +50,6 @@ export function UpdateCompanyPage() {
     scrapMode: company!.scrapMode,
     file: undefined,
     logo: company!.logo || null,
-    jobs: company!.jobs || [],
     instructions: company!.instructions || [],
     steps: company!.steps || [],
   };
